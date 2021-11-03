@@ -1,0 +1,21 @@
+{
+  "name": "oz-dev-website",
+  "description": "My very own software development website",
+  "email": "aozikuma@gmail.com",
+  "author": "Oscar Palencia (Ozwild)",
+  "license": "GNU GPLv3",
+  "keywords": ["ozwild"],
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "gridsome build",
+    "develop": "gridsome develop",
+    "explore": "gridsome explore"
+  },
+  "dependencies": {
+    "gridsome": "^0.7.0",
+    "sass": "^1.43.4",
+    "sass-loader": "^10.1.1",
+    "webpack": "^4.0.0"
+  }
+}
