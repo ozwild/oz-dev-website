@@ -16,6 +16,5 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  filter: drop-shadow(2px 8px 4px rgba(0, 0, 0, 0.9));
 }
 </style>

@@ -16,11 +16,8 @@ export default {
 
 <style lang="scss" scoped>
 .swsl {
-  background: yellowgreen;
+  background: #282828;
   min-height: 225px;
   height: calc(22.5vw + 15px);
-  transform: translateY(-500px);
-  transition: all 1s ease-in-out;
-  transform: translateY(0);
 }
 </style>

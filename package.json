@@ -4,7 +4,9 @@
   "email": "aozikuma@gmail.com",
   "author": "Oscar Palencia (Ozwild)",
   "license": "GNU GPLv3",
-  "keywords": ["ozwild"],
+  "keywords": [
+    "ozwild"
+  ],
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -14,8 +16,10 @@
   },
   "dependencies": {
     "gridsome": "^0.7.0",
+    "lodash": "^4.17.21",
     "sass": "^1.43.4",
     "sass-loader": "^10.1.1",
+    "vue-lottie": "^0.2.1",
     "webpack": "^4.0.0"
   }
 }
