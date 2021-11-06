@@ -3,7 +3,9 @@
     <ContentSectionAlpha id="1" ref="section1"></ContentSectionAlpha>
     <ContentSectionBeta id="2" ref="section2"></ContentSectionBeta>
     <ContentSectionNinja id="3" ref="section3"></ContentSectionNinja>
-    <HeaderSection id="4" ref="section4"></HeaderSection>
+    <ContentSectionIAm id="4" ref="section4"></ContentSectionIAm>
+    <ContentSectionPower id="5" ref="section5"></ContentSectionPower>
+    <ContentSectionMatrix id="6" ref="section6"></ContentSectionMatrix>
   </div>
 </template>
 
@@ -17,19 +19,23 @@ query {
 
 <script>
 import { debounce } from "lodash";
-import HeaderSection from "../components/sections/HeaderSection.vue";
+import ContentSectionMatrix from "../components/sections/ContentSectionMatrix.vue";
 import ContentSectionAlpha from "../components/sections/ContentSectionAlpha.vue";
 import ContentSectionBeta from "../components/sections/ContentSectionBeta.vue";
 import ContentSectionPow from "../components/sections/ContentSectionPow.vue";
 import ContentSectionNinja from "../components/sections/ContentSectionNinja.vue";
+import ContentSectionPower from "../components/sections/ContentSectionPower.vue";
+import ContentSectionIAm from "../components/sections/ContentSectionIAm.vue";
 
 export default {
   components: {
-    HeaderSection,
+    ContentSectionMatrix,
     ContentSectionAlpha,
     ContentSectionBeta,
     ContentSectionPow,
     ContentSectionNinja,
+    ContentSectionIAm,
+    ContentSectionPower,
   },
   data() {
     return {
@@ -44,9 +50,11 @@ export default {
       this.$refs.section2,
       this.$refs.section3,
       this.$refs.section4,
+      this.$refs.section5,
+      this.$refs.section6,
     ];
 
-    this.section = this.sections[0];
+    this.gotoSection(1);
 
     window.addEventListener("wheel", this.handleScroll, { passive: false });
     window.addEventListener("resize", this.handleResize);
@@ -56,7 +64,7 @@ export default {
     findTargetSection(target) {
       const { sections, section } = this;
       let index = sections.indexOf(section);
-      
+
       if (target === "next") {
         index++;
       } else if (target === "prev") {
@@ -71,10 +79,14 @@ export default {
       return sections[index];
     },
     focus() {
+      this.sections.forEach((section) => {
+        section.$el.classList.remove("active");
+      });
       this.section.$el.scrollIntoView({
         alignToTop: true,
         block: "start",
       });
+      this.section.$el.classList.add("active");
     },
     gotoSection(target) {
       this.section = this.findTargetSection(target);
@@ -84,7 +96,6 @@ export default {
       this.focus();
     }, 300),
     handleKeyDown(e) {
-      
       switch (e.key) {
         case "ArrowUp":
         case "ArrowLeft":
@@ -111,7 +122,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+:root {
+  --primary: #12151f;
+  --accent: #05f4b7;
+  --secondary: #371bb1;
+  --light: #f6f6f6;
+}
+
 body {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
@@ -121,15 +139,35 @@ body {
   scroll-behavior: smooth;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  height: 80px;
+body,
+html {
+  background: var(--primary);
 }
 
-.nav__link {
-  margin-left: 20px;
+.psa {
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 4px 4px -2px rgba(0 0 0 / 60%);
+}
+h2.section-caption {
+  margin: 0;
+  color: var(--light);
+  font-size: calc(3em + 5vw);
+  line-height: 1.15;
+  position: absolute;
+  filter: saturate(1.5);
+
+  padding: 0 1.25em 0.5em 0.5em;
+  transform: translate(-50%, -50%);
+  text-shadow: 2px 3px 2px rgba(0 0 0 / 60%), -1px -1px 0px var(--primary),
+    4px 4px 8px rgba(0 0 0 / 20%);
+
+  i {
+    color: var(--accent);
+
+    &.big {
+      font-size: calc(1.5em);
+    }
+  }
 }
 </style>

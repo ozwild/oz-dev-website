@@ -1,6 +1,6 @@
 <template>
   <ShapeContainer>
-    <WaveBlock class="swsl"></WaveBlock>
+    <WaveBlock class="swsl" :style="`background: ${color}`"></WaveBlock>
   </ShapeContainer>
 </template>
 
@@ -10,6 +10,7 @@ import ShapeContainer from "../../blocks/ShapeContainer.vue";
 
 export default {
   name: "second-wavy-shape",
+  props: { color: { type: String, default: "#fff" } },
   components: { WaveBlock, ShapeContainer },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <ShapeContainer>
-    <WaveBlock class="fwsl"></WaveBlock>
+    <WaveBlock class="fwsl" :style="`background: ${color}`"></WaveBlock>
   </ShapeContainer>
 </template>
 
@@ -10,13 +10,13 @@ import ShapeContainer from "../../blocks/ShapeContainer.vue";
 
 export default {
   name: "first-wavy-shape",
+  props: { color: { type: String, default: "#fff" } },
   components: { WaveBlock, ShapeContainer },
 };
 </script>
 
 <style lang="scss" scoped>
 .fwsl {
-  background: mintcream;
   min-height: 210px;
   height: calc(15.5vw);
 }

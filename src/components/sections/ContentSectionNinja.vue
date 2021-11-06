@@ -1,13 +1,22 @@
 <template>
   <PageSection class="psa">
+    <Layer class="background"></Layer>
     <Layer class="title-layer">
-      <h2>... One <i>badass</i> Code Ninja</h2>
+      <h2 class="section-caption">... One major <i>badass</i> code Ninja?</h2>
     </Layer>
     <Layer class="wcl">
-      <SecondWavyShapeLayer></SecondWavyShapeLayer>
-      <FirstWavyShapeLayer></FirstWavyShapeLayer>
+      <SecondWavyShapeLayer
+        class="background-dune"
+        :color="duneColors.background"
+      ></SecondWavyShapeLayer>
+
+      <g-image class="ninja" src="~/media/ninja.gif"></g-image>
+
+      <FirstWavyShapeLayer
+        class="foreground-dune"
+        :color="duneColors.foreground"
+      ></FirstWavyShapeLayer>
     </Layer>
-    <g-image class="ninja" src="~/media/ninja.gif"></g-image>
     <lottie
       :options="powOptions"
       view-box="1920 1080"
@@ -37,6 +46,10 @@ export default {
   },
   data() {
     return {
+      duneColors: {
+        background: "var(--primary)",
+        foreground: "var(--primary)",
+      },
       powOptions: {
         animationData: animationData.default,
         loop: true,
@@ -48,10 +61,10 @@ export default {
 
 <style lang="scss" scoped>
 .psa {
-  overflow: hidden;
-  box-shadow: inset 0 4px 4px -4px black;
-  background: linear-gradient(0deg, #dadada, transparent);
-  background-color: darkturquoise;
+  .background {
+    background: linear-gradient(25deg, var(--secondary), transparent);
+    filter: none;
+  }
 
   .wcl {
     transform: rotate(180deg);
@@ -61,10 +74,21 @@ export default {
   .ninja {
     width: calc(20em + 10vw);
     position: absolute;
-    bottom: 0.5em;
-    left: calc(10vw - 5em);
-    filter: drop-shadow(0px 4px 2px rgba(0, 0, 0.3));
+    top: 5%;
+    left: 50%;
+    filter: brightness(0) opacity(0.68);
+    z-index: 50;
+    transform: rotate(180deg) translateX(50%) scale(1.5);
+  }
+
+  .background-dune {
+    z-index: 20;
+    filter: saturate(0.7) brightness(1) contrast(1.1);
+  }
+
+  .foreground-dune {
     z-index: 100;
+    filter: saturate(1.2) brightness(0.8);
   }
 
   .pow,
@@ -81,27 +105,17 @@ export default {
   .title-layer {
     z-index: 50;
 
-    h2 {
-      font-size: calc(2.5rem + 1vw);
-      line-height: 1.15;
+    h2.section-caption {
+      background: unset;
+      box-shadow: unset;
+      border: unset;
+      font-size: calc(2.5rem + 4vw);
       position: absolute;
-      top: 25%;
+      top: 32%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      border: 1px solid #999;
-      width: 5em;
-      height: 5em;
-      text-align: center;
-      transform-origin: center;
-      color: white;
-      filter: saturate(1.5);
       padding: 0.5em 1em 0.5em 0.5em;
-      background: #282828;
-      text-shadow: 1px 1px 1px #222, -1px -1px 1px #ddd,
-        4px 4px 8px rgb(0 0 0 / 30%);
-
       i {
-        color: yellow;
+        font-size: 1.5em;
       }
     }
   }

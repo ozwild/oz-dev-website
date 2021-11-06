@@ -78,13 +78,12 @@ export default {
        * to paint over the previous layer of text
        */
 
-    
-      context.fillStyle = "rgba(12,14,12,0.12)";
+      context.fillStyle = "rgba(7,8,12,0.12)";
       context.fillRect(0, 0, width, height);
 
       // Setup font type and color before rendering characters
-      
-      context.fillStyle = "yellowgreen";
+
+      context.fillStyle = "silver";
       context.font = fontSize + "px system-ui";
       context.font =
         (Math.random() > 0.5 ? fontSize + 3 : fontSize - 3) + "px monospace";

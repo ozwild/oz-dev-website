@@ -21,7 +21,7 @@ export default {
   position: absolute;
   overflow: hidden;
   .bcl {
-    background: silver;
+    background: #12151f;
     opacity: 0.12;
     z-index: 20;
   }
@@ -29,12 +29,12 @@ export default {
   .bgcl {
     background: linear-gradient(
         45deg,
-        rgba(0, 255, 25, 0.05),
+        rgba(55 27 177 / 5%),
         transparent,
-        rgba(255, 255, 255, 0.05),
+        rgba(255 255 255 / 5%),
         transparent
       ),
-      radial-gradient(rgba(0,0,0, 0.3), transparent);
+      radial-gradient(rgba(0 0 0 / 30%), transparent);
     z-index: 21;
   }
 }
