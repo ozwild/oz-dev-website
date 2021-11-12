@@ -4,15 +4,14 @@
     <div class="pfc">
       <Cube class="cube-object"></Cube>
     </div>
-    
   </div>
 </template>
 
 <script>
-import Layer from "../../blocks/Layer.vue";
-import Cube from "../../blocks/Cube.vue";
+import Layer from "./Layer.vue";
+import Cube from "./Cube.vue";
 export default {
-  name: "photo-frame",
+  name: "cube-frame",
   components: {
     Layer,
     Cube,
@@ -22,7 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  perspective: 800px;
+  perspective: 25em;
   perspective-origin: top right;
 
   &::before {
@@ -46,7 +45,7 @@ export default {
     width: 125%;
     height: 60%;
     border-radius: 50%;
-    border: 2px solid var(--accent);
+    border: 2px solid var(--light);
     filter: drop-shadow(2px 4px 6px var(--accent));
     z-index: -1;
     position: absolute;
@@ -64,18 +63,11 @@ export default {
   z-index: 10;
   width: 50%;
   height: 50%;
-  transform: scale(0.75);
+  transform: scale(0.85);
+  filter: blur(0.5px);
 }
 
 .animation-container {
-  .code {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    filter: hue-rotate(-200deg) blur(0px) invert(1) opacity(0.55);
-  }
 }
 
 .pfc {
@@ -85,24 +77,11 @@ export default {
   border-radius: 50%;
   color: var(--accent);
   z-index: 1;
-  border: 1em solid var(--primary);
   top: -1em;
   left: -1em;
-  animation: shadow-rotation 0.8s ease-out infinite;
-  overflow: hidden;
-
-  /* img {
-    border-radius: 50%;
-    width: 75%;
-    height: 75%;
-    object-fit: cover;
-    object-position: 50% 36%;
-    filter: contrast(10) brightness(5);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  } */
+  animation: shadow-rotation 8s ease-out infinite;
+  perspective: var(--prespective);
+  perspective-origin: var(--originHorizontal) var(--originVertical);
 }
 
 @keyframes rotate {
@@ -120,6 +99,7 @@ export default {
   }
   50% {
     box-shadow: 0px 8px 10px -8px;
+    transform: rotateZ(0deg);
   }
   56.25% {
     box-shadow: -8px 8px 10px -8px;
@@ -147,6 +127,7 @@ export default {
   }
   100% {
     box-shadow: none;
+    transform: rotateZ(360deg);
   }
 }
 </style>

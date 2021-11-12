@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .psa {
-  background-color: var(--secondary);
+  background-color: var(--accent);
   .mask-layer {
     z-index: 20;
     .mask {
@@ -35,20 +35,19 @@ export default {
       width: calc(26.5em + 5vw);
       height: calc(26.5em + 5vw);
       background: transparent;
-      border: 150em solid var(--primary);
+      border: 150em solid var(--dark);
       box-shadow: inset 1px 1px 6px -3px black, inset -1px -1px 4px -1px black;
     }
   }
   .animation-layer {
     z-index: 10;
+    mix-blend-mode: screen;
     .hello {
-      //width: calc(30em + 25vw);
       position: absolute;
       left: 50%;
       top: 23%;
       transform: translate(-50%, -50%);
       z-index: 5;
-      //filter: saturate(1.5) hue-rotate(300deg) contrast(2);
     }
   }
   .title-layer {
@@ -63,15 +62,6 @@ export default {
       z-index: 100;
       font-size: calc(4em + 3vw);
       max-width: 6em;
-      /* border: 0.2em solid var(--accent);
-      background: #181818;
-      background: linear-gradient(
-        to bottom,
-        rgba(0 0 0 / 60%) 0%,
-        rgba(0 0 0 / 60%) 100%
-      );
-      box-shadow: 3px 12px 8px -3px rgba(0 0 0 / 60%),
-        6px 6px 8px -3px rgba(0 0 0 / 20%), -3px 6px 8px -3px rgba(0 0 0 / 20%); */
     }
   }
 }

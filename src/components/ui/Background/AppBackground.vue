@@ -1,6 +1,6 @@
 <template>
   <Layer class="container">
-    <BackgroundCanvas></BackgroundCanvas>
+    <BackgroundCanvas class="canvas"></BackgroundCanvas>
     <Layer class="bcl"></Layer>
     <Layer class="bgcl"></Layer>
   </Layer>
@@ -20,21 +20,19 @@ export default {
 .container {
   position: absolute;
   overflow: hidden;
+
+  .canvas {
+    
+  }
   .bcl {
-    background: #12151f;
-    opacity: 0.12;
+    background: var(--primary);
+    mix-blend-mode: lighten;
     z-index: 20;
   }
 
   .bgcl {
-    background: linear-gradient(
-        45deg,
-        rgba(55 27 177 / 5%),
-        transparent,
-        rgba(255 255 255 / 5%),
-        transparent
-      ),
-      radial-gradient(rgba(0 0 0 / 30%), transparent);
+    background: linear-gradient(0deg, var(--dark), transparent), var(--primary);
+    mix-blend-mode: hard-light;
     z-index: 21;
   }
 }

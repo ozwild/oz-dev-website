@@ -1,5 +1,6 @@
 <template>
   <PageSection class="psa">
+    <Layer class="background"></Layer>
     <Layer class="title-layer">
       <h2 class="section-caption">I <i>am</i><br />your guy</h2>
     </Layer>
@@ -9,10 +10,10 @@
 <script>
 import Layer from "../blocks/Layer.vue";
 import PageSection from "../blocks/PageSection.vue";
-import PhotoFrame from "../ui/AppContent/PhotoFrame.vue";
+
 export default {
   name: "content-section-ozwild",
-  components: { Layer, PageSection, PhotoFrame },
+  components: { Layer, PageSection },
 };
 </script>
 
@@ -34,7 +35,6 @@ export default {
       font-size: calc(4em + 4vw);
       bottom: calc(1em + 2vw);
       margin: 0 auto;
-      //transform: translateX(-50%);
       padding: 0;
       position: relative;
       top: 30vh;
@@ -71,7 +71,7 @@ export default {
     }
     100% {
       transform: translateZ(12px);
-      filter: blur(0);
+      filter: blur(0.5px);
       opacity: 1;
     }
   }

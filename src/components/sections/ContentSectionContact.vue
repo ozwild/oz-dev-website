@@ -46,6 +46,7 @@ export default {
   .background {
     .canvas {
       z-index: 1;
+      filter: blur(4 px) saturate(2) hue-rotate(15deg);
     }
 
     .color-overlay {

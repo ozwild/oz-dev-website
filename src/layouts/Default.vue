@@ -23,7 +23,6 @@ import { debounce } from "lodash";
 import ContentSectionMatrix from "../components/sections/ContentSectionMatrix.vue";
 import ContentSectionAlpha from "../components/sections/ContentSectionAlpha.vue";
 import ContentSectionBeta from "../components/sections/ContentSectionBeta.vue";
-import ContentSectionPow from "../components/sections/ContentSectionPow.vue";
 import ContentSectionNinja from "../components/sections/ContentSectionNinja.vue";
 import ContentSectionPower from "../components/sections/ContentSectionPower.vue";
 import ContentSectionIAm from "../components/sections/ContentSectionIAm.vue";
@@ -34,7 +33,6 @@ export default {
     ContentSectionMatrix,
     ContentSectionAlpha,
     ContentSectionBeta,
-    ContentSectionPow,
     ContentSectionNinja,
     ContentSectionIAm,
     ContentSectionPower,
@@ -128,10 +126,22 @@ export default {
 
 <style lang="scss">
 :root {
+  --dark: #12151f;
   --primary: #12151f;
   --accent: #05f4b7;
   --secondary: #371bb1;
   --light: #f6f6f6;
+
+  //--dark: #402E32;
+  --light: #fff6e8;
+  --primary: #af8969;
+  --accent: #f8931d;
+  --secondary: #a67263;
+  --secondary: alabaster;
+
+  --perspective: 1600px;
+  --originHorizontal: 50%;
+  --originVertical: 50%;
 }
 
 body {
@@ -145,13 +155,17 @@ body {
 
 body,
 html {
-  background: var(--primary);
+  background: var(--dark);
 }
 
 .psa {
   overflow: hidden;
   position: relative;
   box-shadow: inset 0 4px 4px -2px rgba(0 0 0 / 60%);
+
+  .background {
+    background: var(--dark);
+  }
 }
 
 h2.section-caption {
@@ -160,7 +174,7 @@ h2.section-caption {
   font-size: calc(3em + 5vw);
   line-height: 1.15;
   position: absolute;
-  filter: saturate(1.5);
+  filter: saturate(1.5) blur(0.5px);
 
   padding: 0 1.25em 0.5em 0.5em;
   transform: translate(-50%, -50%);

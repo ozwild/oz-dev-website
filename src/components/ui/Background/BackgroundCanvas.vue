@@ -79,12 +79,11 @@ export default {
        */
 
       context.fillStyle = "rgba(7,8,12,0.12)";
+      context.fillStyle = "rgba(250,250,250,0.12)";
       context.fillRect(0, 0, width, height);
 
       // Setup font type and color before rendering characters
 
-      context.fillStyle = "silver";
-      context.font = fontSize + "px system-ui";
       context.font =
         (Math.random() > 0.5 ? fontSize + 3 : fontSize - 3) + "px monospace";
 
@@ -99,7 +98,15 @@ export default {
         let character = getRandomCharacter();
 
         if (isRainingCode) {
-          context.fillText(character, x, y);
+          var blur = 3;
+          var w = context.measureText(character).width + blur * 2;
+          context.textBaseline = "top";
+          context.shadowColor = "rgba(0 0 0 / 70%)";
+          context.shadowBlur = blur;
+          context.fillStyle = "orange";
+          context.shadowOffsetX = x + w;
+          context.shadowOffsetY = 0;
+          context.fillText(character, x - w, y);
         }
 
         if (y > height && shouldSkipRowProgress()) {
@@ -165,6 +172,6 @@ canvas {
   top: 0;
   transform: translateX(-50%);
   z-index: -1;
-  filter: blur(1.5px) saturate(2) hue-rotate(15deg);
+  filter: blur(1.5px) saturate(0.5) drop-shadow(2px 4px 6px black);
 }
 </style>

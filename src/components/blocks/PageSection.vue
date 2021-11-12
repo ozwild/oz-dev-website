@@ -14,6 +14,8 @@ export default {
 .ps {
   position: relative;
   min-height: 100vh;
+  mix-blend-mode: screen;
+
   @media screen and (min-height: 0px) and (max-height: 500px) {
     min-height: 175vh;
   }

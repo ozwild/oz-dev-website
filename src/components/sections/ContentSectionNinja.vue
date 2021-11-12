@@ -47,8 +47,8 @@ export default {
   data() {
     return {
       duneColors: {
-        background: "var(--primary)",
-        foreground: "var(--primary)",
+        background: "var(--dark)",
+        foreground: "var(--dark)",
       },
       powOptions: {
         animationData: animationData.default,
@@ -83,12 +83,12 @@ export default {
 
   .background-dune {
     z-index: 20;
-    filter: saturate(0.7) brightness(1) contrast(1.1);
+    filter: saturate(0.7) brightness(1) contrast(0.8);
   }
 
   .foreground-dune {
     z-index: 100;
-    filter: saturate(1.2) brightness(0.8);
+    filter: saturate(1.2) brightness(1.1);
   }
 
   .pow,
