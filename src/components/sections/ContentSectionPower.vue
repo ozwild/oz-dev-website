@@ -7,7 +7,7 @@
     <Layer class="color-overlay"></Layer>
     <Layer class="title-layer">
       <h2 class="section-caption a">
-        <span class="a">I can harness the </span>
+        <span class="a">And get the </span>
         <span class="b"><i class="big">power</i> of </span> 
         <span class="c"><i>&lt;</i>code<i>/&gt;</i></span>
       </h2>
@@ -22,7 +22,7 @@ import Layer from "../blocks/Layer.vue";
 import PageSection from "../blocks/PageSection.vue";
 import PhotoFrame from "../ui/AppContent/PhotoFrame.vue";
 export default {
-  name: "content-section-ozwild",
+  name: "content-section-power",
   components: { Layer, PageSection, PhotoFrame },
 };
 </script>
@@ -30,6 +30,7 @@ export default {
 <style lang="scss" scoped>
 .psa {
   overflow: hidden;
+  
 
   .animation-layer {
     .animation-color-overlay {
@@ -62,7 +63,7 @@ export default {
   }
   .title-layer {
     z-index: 50;
-    background-color: variant(--primary);
+    
 
     h2.section-caption {
       font-size: calc(3.5em + 4vw);

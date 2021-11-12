@@ -11,7 +11,7 @@
     </Layer>
     <Layer class="title-layer">
       <h2 class="section-caption">
-        I am <i>wired</i><br/>to the <i class="big">matrix</i>
+        Come into the <i class="big">matrix</i>
       </h2>
     </Layer>
   </PageSection>

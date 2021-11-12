@@ -10,7 +10,7 @@
         :color="duneColors.background"
       ></SecondWavyShapeLayer>
 
-      <g-image class="ninja" src="~/media/ninja.gif"></g-image>
+      <!-- <g-image class="ninja" src="~/media/ninja.gif"></g-image> -->
 
       <FirstWavyShapeLayer
         class="foreground-dune"
@@ -62,7 +62,7 @@ export default {
 <style lang="scss" scoped>
 .psa {
   .background {
-    background: linear-gradient(25deg, var(--secondary), transparent);
+    background: linear-gradient(0deg, var(--primary), var(--accent), var(--light));
     filter: none;
   }
 

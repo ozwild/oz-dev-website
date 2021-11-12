@@ -4,8 +4,9 @@
     <ContentSectionBeta id="2" ref="section2"></ContentSectionBeta>
     <ContentSectionNinja id="3" ref="section3"></ContentSectionNinja>
     <ContentSectionIAm id="4" ref="section4"></ContentSectionIAm>
-    <ContentSectionPower id="5" ref="section5"></ContentSectionPower>
-    <ContentSectionMatrix id="6" ref="section6"></ContentSectionMatrix>
+    <ContentSectionMatrix id="5" ref="section5"></ContentSectionMatrix>
+    <ContentSectionPower id="6" ref="section6"></ContentSectionPower>
+    <ContentSectionContact id="7" ref="section7"></ContentSectionContact>
   </div>
 </template>
 
@@ -26,6 +27,7 @@ import ContentSectionPow from "../components/sections/ContentSectionPow.vue";
 import ContentSectionNinja from "../components/sections/ContentSectionNinja.vue";
 import ContentSectionPower from "../components/sections/ContentSectionPower.vue";
 import ContentSectionIAm from "../components/sections/ContentSectionIAm.vue";
+import ContentSectionContact from "../components/sections/ContentSectionContact.vue";
 
 export default {
   components: {
@@ -36,6 +38,7 @@ export default {
     ContentSectionNinja,
     ContentSectionIAm,
     ContentSectionPower,
+    ContentSectionContact,
   },
   data() {
     return {
@@ -52,6 +55,7 @@ export default {
       this.$refs.section4,
       this.$refs.section5,
       this.$refs.section6,
+      this.$refs.section7,
     ];
 
     this.gotoSection(1);
@@ -149,6 +153,7 @@ html {
   position: relative;
   box-shadow: inset 0 4px 4px -2px rgba(0 0 0 / 60%);
 }
+
 h2.section-caption {
   margin: 0;
   color: var(--light);
@@ -159,7 +164,7 @@ h2.section-caption {
 
   padding: 0 1.25em 0.5em 0.5em;
   transform: translate(-50%, -50%);
-  text-shadow: 2px 3px 2px rgba(0 0 0 / 60%), -1px -1px 0px var(--primary),
+  text-shadow: 2px 3px 2px rgba(0 0 0 / 60%), -1px -1px 0px var(--light),
     4px 4px 8px rgba(0 0 0 / 20%);
 
   i {
