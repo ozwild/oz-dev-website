@@ -1,13 +1,15 @@
 <template>
-  <div class="layout" id="app-1">
-    <ContentSectionAlpha id="1" ref="section1"></ContentSectionAlpha>
-    <ContentSectionBeta id="2" ref="section2"></ContentSectionBeta>
-    <ContentSectionNinja id="3" ref="section3"></ContentSectionNinja>
-    <ContentSectionIAm id="4" ref="section4"></ContentSectionIAm>
-    <ContentSectionMatrix id="5" ref="section5"></ContentSectionMatrix>
-    <ContentSectionPower id="6" ref="section6"></ContentSectionPower>
-    <ContentSectionContact id="7" ref="section7"></ContentSectionContact>
-  </div>
+  <MediaQueryProvider :queries="$options.queries">
+    <div class="layout" id="app-1">
+      <ContentSectionAlpha id="1" ref="section1"></ContentSectionAlpha>
+      <ContentSectionBeta id="2" ref="section2"></ContentSectionBeta>
+      <ContentSectionNinja id="3" ref="section3"></ContentSectionNinja>
+      <ContentSectionIAm id="4" ref="section4"></ContentSectionIAm>
+      <ContentSectionMatrix id="5" ref="section5"></ContentSectionMatrix>
+      <ContentSectionPower id="6" ref="section6"></ContentSectionPower>
+      <ContentSectionContact id="7" ref="section7"></ContentSectionContact>
+    </div>
+  </MediaQueryProvider>
 </template>
 
 <static-query>
@@ -20,6 +22,8 @@ query {
 
 <script>
 import { debounce } from "lodash";
+import { MediaQueryProvider } from "vue-component-media-queries";
+
 import ContentSectionMatrix from "../components/sections/ContentSectionMatrix.vue";
 import ContentSectionAlpha from "../components/sections/ContentSectionAlpha.vue";
 import ContentSectionBeta from "../components/sections/ContentSectionBeta.vue";
@@ -28,8 +32,13 @@ import ContentSectionPower from "../components/sections/ContentSectionPower.vue"
 import ContentSectionIAm from "../components/sections/ContentSectionIAm.vue";
 import ContentSectionContact from "../components/sections/ContentSectionContact.vue";
 
+const queries = {
+  mobile: "(max-width: 760px)",
+};
+
 export default {
   components: {
+    MediaQueryProvider,
     ContentSectionMatrix,
     ContentSectionAlpha,
     ContentSectionBeta,
@@ -38,6 +47,7 @@ export default {
     ContentSectionPower,
     ContentSectionContact,
   },
+  queries,
   data() {
     return {
       section: null,
@@ -127,17 +137,10 @@ export default {
 <style lang="scss">
 :root {
   --dark: #12151f;
-  --primary: #12151f;
-  --accent: #05f4b7;
-  --secondary: #371bb1;
-  --light: #f6f6f6;
-
-  //--dark: #402E32;
   --light: #fff6e8;
   --primary: #af8969;
   --accent: #f8931d;
   --secondary: #a67263;
-  --secondary: alabaster;
 
   --perspective: 1600px;
   --originHorizontal: 50%;
@@ -186,6 +189,34 @@ h2.section-caption {
 
     &.big {
       font-size: calc(1.5em);
+    }
+  }
+}
+
+$spaceamounts: (
+  1,
+  2,
+  3,
+  4
+); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  .m-#{$space} {
+    margin: #{$space * 0.5}em;
+  }
+
+  .p-#{$space} {
+    padding: #{$space * 0.5}em;
+  }
+
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space * 0.5}em;
+    }
+
+    .p#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space * 0.5}em;
     }
   }
 }

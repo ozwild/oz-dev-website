@@ -69,7 +69,7 @@ export default {
       width: 100%;
       height: 100%;
       overflow: hidden;
-      filter: blur(0.8px) grayscale(0.3);
+      filter: blur(2.5px) grayscale(0.3);
       mix-blend-mode: lighten;
       background: linear-gradient(
           0deg,
@@ -83,8 +83,8 @@ export default {
     }
 
     .animation-color-overlay {
-      background: var(--light);
-      mix-blend-mode: exclusion;
+      background: var(--dark);
+      mix-blend-mode: lighten;
     }
 
     .lightning {

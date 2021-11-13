@@ -1,10 +1,7 @@
 <template>
   <PageSection class="psa">
     <AppBackground class="matrix-background"></AppBackground>
-    <Layer class="wclt">
-      <SecondWavyShapeLayer color="var(--dark)"></SecondWavyShapeLayer>
-      <FirstWavyShapeLayer color="var(--dark)"></FirstWavyShapeLayer>
-    </Layer>
+    
     <Layer class="wclb">
       <SecondWavyShapeLayer color="var(--accent)"></SecondWavyShapeLayer>
       <FirstWavyShapeLayer color="var(--dark)"></FirstWavyShapeLayer>
