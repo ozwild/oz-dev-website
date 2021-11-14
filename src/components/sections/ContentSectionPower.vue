@@ -1,34 +1,38 @@
 <template>
-  <PageSection class="psa">
-    <Layer class="background"></Layer>
-    <Layer class="animation-layer">
-      <Layer class="gateway">
-        <Layer class="beyond-gateway">
-          <g-image class="lightning" src="~/media/lightning.gif"></g-image>
-          <CubeFrame class="photo-frame"></CubeFrame>
-          <Layer class="animation-color-overlay"></Layer>
+  <MatchMedia v-slot="{ mobile }">
+    <PageSection class="psa" :class="{ mobile }">
+      <Layer class="background"></Layer>
+      <Layer class="animation-layer">
+        <Layer class="gateway">
+          <Layer class="beyond-gateway">
+            <g-image class="lightning" src="~/media/lightning.gif"></g-image>
+            <CubeFrame class="photo-frame"></CubeFrame>
+            <Layer class="animation-color-overlay"></Layer>
+          </Layer>
         </Layer>
       </Layer>
-    </Layer>
-    <Layer class="color-overlay"></Layer>
-    <Layer class="title-layer">
-      <h2 class="section-caption a">
-        <span class="a">Discover the </span>
-        <span class="b"><i>&lt;</i>POWER<i>/&gt;</i> to </span>
-        <br />
-        <span class="c"><i class="big">create</i></span>
-      </h2>
-    </Layer>
-  </PageSection>
+      <Layer class="color-overlay"></Layer>
+      <Layer class="title-layer">
+        <h2 class="section-caption a">
+          <span class="a">Discover the </span>
+          <span class="b"><i>&lt;</i>POWER<i>/&gt;</i> to </span>
+          <br />
+          <span class="c"><i class="big">create</i></span>
+        </h2>
+      </Layer>
+    </PageSection>
+  </MatchMedia>
 </template>
 
 <script>
+import { MatchMedia } from "vue-component-media-queries";
+
 import Layer from "../blocks/Layer.vue";
 import PageSection from "../blocks/PageSection.vue";
 import CubeFrame from "../blocks/CubeFrame.vue";
 export default {
   name: "content-section-power",
-  components: { Layer, PageSection, CubeFrame },
+  components: { Layer, PageSection, CubeFrame, MatchMedia },
 };
 </script>
 
@@ -42,6 +46,7 @@ export default {
     top: 0;
     left: 50%;
     transform: translateX(-50%);
+    transition: transform 1s;
     box-shadow: inset 2px 0 2px 0px black, inset -2px 0 2px 0px black,
       0 0 12px 0 var(--light);
 
@@ -80,6 +85,7 @@ export default {
           black
         ),
         deeppink;
+      background: var(--accent);
     }
 
     .animation-color-overlay {
@@ -100,7 +106,6 @@ export default {
   .color-overlay {
     background-color: var(--dark);
     mix-blend-mode: lighten;
-    mix-blend-mode: color;
   }
 
   .photo-frame {
@@ -115,7 +120,7 @@ export default {
     z-index: 50;
 
     h2.section-caption {
-      font-size: calc(3.5em + 4vw);
+      font-size: calc(2.5em + 5vw);
       bottom: calc(1em + 2vw);
       left: 50%;
       transform: translateX(-50%);
@@ -139,6 +144,12 @@ export default {
         bottom: calc(0.5em + 2vw);
         z-index: 20;
       }
+    }
+  }
+
+  &.mobile {
+    .animation-layer {
+      transform: translateX(-100%);
     }
   }
 }

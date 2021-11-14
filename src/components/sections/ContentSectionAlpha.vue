@@ -32,8 +32,8 @@ export default {
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      width: calc(26.5em + 5vw);
-      height: calc(26.5em + 5vw);
+      width: calc(22.5em + 5vw);
+      height: calc(22.5em + 5vw);
       background: transparent;
       border: 150em solid var(--dark);
       box-shadow: inset 1px 1px 6px -3px black, inset -1px -1px 4px -1px black;
@@ -43,6 +43,7 @@ export default {
     z-index: 10;
     mix-blend-mode: screen;
     .hello {
+      width: calc(22.5em + 5vw);
       position: absolute;
       left: 50%;
       top: 23%;
@@ -55,10 +56,10 @@ export default {
 
     h2.section-caption {
       top: unset;
-      bottom: calc(0.5em + 1vw);
+      bottom: calc(0.125em + 3vw);
       left: 50%;
       transform: translateX(-50%);
-      padding: 1em 0 0.5em 0;
+      padding: 1em 0 0.25em 0;
       z-index: 100;
       font-size: calc(4em + 3vw);
       max-width: 6em;
