@@ -42,6 +42,7 @@ export default {
       color: var(--light);
       font-size: calc(3em + 5vw);
       line-height: 1.15;
+      max-width: 100%;
       filter: saturate(1.5) blur(0.5px);
       position: absolute;
       transform: translate(-50%, -50%);

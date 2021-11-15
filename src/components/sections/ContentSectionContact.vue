@@ -74,7 +74,7 @@ import { MatchMedia } from "vue-component-media-queries";
 
 import Layer from "../blocks/Layer.vue";
 import PageSection from "../blocks/PageSection.vue";
-import BackgroundCanvas from "../ui/Background/BackgroundCanvas.vue";
+import BackgroundCanvas from "@components/blocks/BackgroundCanvas.vue";
 import FlexBox from "../blocks/FlexBox.vue";
 import Typography from "../blocks/Typography.vue";
 import {

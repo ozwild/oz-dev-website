@@ -1,70 +1,97 @@
 <template>
-  <PageSection class="psa">
-    <AppBackground class="matrix-background"></AppBackground>
-    
-    <Layer class="wclb">
-      <SecondWavyShapeLayer color="var(--accent)"></SecondWavyShapeLayer>
-      <FirstWavyShapeLayer color="var(--dark)"></FirstWavyShapeLayer>
-    </Layer>
-    <Layer class="title-layer">
-      <h2 class="section-caption">
-        Come into the <i class="big">matrix</i>
-      </h2>
-    </Layer>
-  </PageSection>
+  <MatchMedia v-slot="{ mobile }">
+    <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
+      <template v-slot:background>
+        <BackgroundCanvas :mobile="mobile"></BackgroundCanvas>
+        <Layer class="bcl"></Layer>
+        <Layer class="bgcl"></Layer>
+      </template>
+
+      <template v-slot:animation>
+        <Layer class="wclb">
+          <SecondWavyShapeLayer color="var(--accent)"></SecondWavyShapeLayer>
+          <FirstWavyShapeLayer color="var(--dark)"></FirstWavyShapeLayer>
+        </Layer>
+      </template>
+
+      <template v-slot:title>
+        <TypeWriter component="h2">
+          Come into the <i class="big">matrix</i>
+        </TypeWriter>
+      </template>
+    </PageSection>
+  </MatchMedia>
 </template>
 
 <script>
-import AppBackground from "../ui/Background/AppBackground.vue";
+import { MatchMedia } from "vue-component-media-queries";
+
+import BackgroundCanvas from "@components/blocks/BackgroundCanvas.vue";
 import PageSection from "../blocks/PageSection.vue";
 import AppHeaderFooter from "../ui/AppHeader/AppHeaderFooter.vue";
 import AppHeaderTop from "../ui/AppHeader/AppHeaderTop.vue";
 import Layer from "../blocks/Layer.vue";
 import FirstWavyShapeLayer from "../ui/AppHeader/FirstWavyShapeLayer.vue";
 import SecondWavyShapeLayer from "../ui/AppHeader/SecondWavyShapeLayer.vue";
+import TypeWriter from "@components/blocks/TypeWriter.vue";
 
 export default {
   name: "content-section-matrix",
   components: {
+    MatchMedia,
     Layer,
-    AppBackground,
+    BackgroundCanvas,
     PageSection,
     AppHeaderFooter,
     AppHeaderTop,
     FirstWavyShapeLayer,
     SecondWavyShapeLayer,
+    TypeWriter,
   },
 };
 </script>
 
 <style lang="scss" scoped>
 .psa {
-  overflow: hidden;
+  &.mobile {
+    .title-layer {
+      h2 {
+        top: 40%;
+        left: 5%;
+        text-align: start;
+        transform: translateY(-50%);
+        font-size: 4.75em;
+      }
+    }
+  }
+  &.desktop {
+    .title-layer {
+      h2 {
+        top: 40%;
+        left: 50%;
+        text-align: start;
+        font-size: calc(5rem + 3vw);
+      }
+    }
+  }
 
-  .matrix-background {
-    z-index: 1;
+  .bcl {
+    background: var(--primary);
+    mix-blend-mode: lighten;
+    z-index: 20;
   }
-  .wclt {
-    z-index: 70;
+
+  .bgcl {
+    background: linear-gradient(0deg, var(--dark), transparent), var(--primary);
+    mix-blend-mode: hard-light;
+    z-index: 21;
   }
+
   .wclb {
     transform: rotate(180deg) rotateX(45deg);
     z-index: 70;
     top: unset;
     bottom: -131px;
-  }
-
-  .title-layer {
-    z-index: 100;
-    h2 {
-      background: unset;
-      box-shadow: unset;
-      border: unset;
-      top: 45%;
-      left: 50%;
-      font-size: calc(3rem + 3vw);
-      
-    }
   }
 }
 </style>

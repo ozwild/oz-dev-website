@@ -23,7 +23,7 @@ export default {
   data() {
     return {
       typing: false,
-      typingSpeed: 65,
+      typingSpeed: 70,
       words: [],
       nodeSections: [],
       htmlBlocks: [],
@@ -117,9 +117,12 @@ export default {
   &:after {
     content: "";
     position: absolute;
-    bottom: 1px;
-    margin-right: -4px;
-    background: var(--accent);
+    bottom: 0.125em;
+    margin-left: 0.2em;
+    background: var(--light);
+    box-shadow: 2px 3px 2px rgba(0 0 0 / 30%), -1px -1px 0px var(--light),
+      4px 4px 8px rgba(0 0 0 / 20%);
+
     display: inline-block;
     width: 4px;
     height: 1em;

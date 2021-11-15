@@ -6,6 +6,10 @@
 export default {
   name: "background-canvas",
   props: {
+    mobile: {
+      type: Boolean,
+      default: false,
+    },
     drawSpeed: {
       type: Number,
       default: 128,
@@ -43,9 +47,13 @@ export default {
     recalculateBoundaries() {
       const { canvas, fontSize } = this;
 
-      // Setting and storing canvas box sizes
-      this.width = canvas.width = 1920;
-      this.height = canvas.height = 1080;
+      if (this.mobile) {
+        this.width = canvas.width = 640;
+        this.height = canvas.height = 800;
+      } else {
+        this.width = canvas.width = 1920;
+        this.height = canvas.height = 1080;
+      }
 
       const numberOfColumns = this.width / fontSize;
 
@@ -78,7 +86,6 @@ export default {
        * to paint over the previous layer of text
        */
 
-      context.fillStyle = "rgba(7,8,12,0.12)";
       context.fillStyle = "rgba(250,250,250,0.12)";
       context.fillRect(0, 0, width, height);
 

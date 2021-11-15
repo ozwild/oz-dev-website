@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Layer class="animation-container"> </Layer>
+    <!-- <Layer class="animation-container"> </Layer> -->
     <div class="pfc">
       <Cube class="cube-object"></Cube>
     </div>
@@ -21,7 +21,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  perspective: 25em;
+  perspective: 16em;
   perspective-origin: top right;
 
   &::before {
@@ -67,9 +67,6 @@ export default {
   filter: blur(0.5px);
 }
 
-.animation-container {
-}
-
 .pfc {
   position: relative;
   width: 100%;
@@ -80,7 +77,7 @@ export default {
   top: -1em;
   left: -1em;
   animation: shadow-rotation 8s ease-out infinite;
-  perspective: var(--prespective);
+  perspective: var(--perspective);
   perspective-origin: var(--originHorizontal) var(--originVertical);
 }
 

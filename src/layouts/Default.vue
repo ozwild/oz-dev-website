@@ -64,7 +64,7 @@ export default {
   mounted() {
     this.sections = [1, 2, 3, 4, 5, 6, 7, 8];
 
-    this.gotoSection(1);
+    this.gotoDefault();
 
     window.addEventListener("wheel", this.handleScroll, { passive: false });
     window.addEventListener("keydown", this.handleKeyDown);
@@ -80,12 +80,35 @@ export default {
 
       return newId;
     },
+    matchHashedSection(hash) {
+      const { sections } = this;
+      const hashString = hash.replace("#", "");
+      switch (true) {
+        case Number(hashString) > 0 && Number(hashString) < sections.length:
+          return Number(hashString);
+        case hashString === "contact":
+          return sections.length;
+        default:
+          return;
+      }
+    },
     gotoSection(target) {
       const { sections, sectionId } = this;
       if (target < 1 || target > sections.length || target === sectionId) {
         return;
       }
       this.sectionId = target;
+    },
+    gotoDefault() {
+      const { gotoSection, matchHashedSection } = this;
+      const hash = this.$route.hash;
+      const hashMatch = matchHashedSection(hash);
+      console.log(hashMatch);
+      if (hashMatch) {
+        gotoSection(hashMatch);
+      } else {
+        gotoSection(1);
+      }
     },
     handleKeyDown(e) {
       const { sectionId } = this;
