@@ -1,48 +1,61 @@
 <template>
-  <PageSection class="psa">
-    <Layer class="background"></Layer>
-    <Layer class="title-layer">
-      <h2 class="section-caption">... One major <i>badass</i> code Ninja?</h2>
-    </Layer>
-    <Layer class="wcl">
-      <SecondWavyShapeLayer
-        class="background-dune"
-        :color="duneColors.background"
-      ></SecondWavyShapeLayer>
+  <MatchMedia v-slot="{ mobile }">
+    <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
+      <template v-slot:background>
+        <Layer class="gradient-overlay"></Layer>
+      </template>
 
-      <!-- <g-image class="ninja" src="~/media/ninja.gif"></g-image> -->
+      <template v-slot:animation>
+        <Layer class="wcl">
+          <SecondWavyShapeLayer
+            class="background-dune"
+            :color="duneColors.background"
+          ></SecondWavyShapeLayer>
 
-      <FirstWavyShapeLayer
-        class="foreground-dune"
-        :color="duneColors.foreground"
-      ></FirstWavyShapeLayer>
-    </Layer>
-    <lottie
-      :options="powOptions"
-      view-box="1920 1080"
-      :width="1920"
-      :height="1080"
-      class="pow-lottie"
-    ></lottie>
-  </PageSection>
+          <FirstWavyShapeLayer
+            class="foreground-dune"
+            :color="duneColors.foreground"
+          ></FirstWavyShapeLayer>
+        </Layer>
+        <lottie
+          :options="powOptions"
+          view-box="1920 1080"
+          :width="1920"
+          :height="1080"
+          class="pow-lottie"
+        ></lottie>
+      </template>
+      <template v-slot:title>
+        <TypeWriter component="h2">
+          ... One major <i>badass</i> code Ninja?
+        </TypeWriter>
+      </template>
+    </PageSection>
+  </MatchMedia>
 </template>
 
 <script>
 import Lottie from "vue-lottie";
+import { MatchMedia } from "vue-component-media-queries";
+
 import PageSection from "@/components/blocks/PageSection.vue";
 import Layer from "@components/blocks/Layer.vue";
 import FirstWavyShapeLayer from "@/components/ui/AppHeader/FirstWavyShapeLayer.vue";
 import SecondWavyShapeLayer from "@/components/ui/AppHeader/SecondWavyShapeLayer.vue";
+import TypeWriter from "@components/blocks/TypeWriter.vue";
+
 import * as animationData from "~/media/pow.json";
 
 export default {
   name: "content-section-ninja",
   components: {
+    MatchMedia,
     PageSection,
     Layer,
     FirstWavyShapeLayer,
     SecondWavyShapeLayer,
     lottie: Lottie,
+    TypeWriter,
   },
   data() {
     return {
@@ -61,24 +74,31 @@ export default {
 
 <style lang="scss" scoped>
 .psa {
+  &.mobile {
+    .title-layer {
+      h2 {
+        font-size: 4.5em;
+        top: 40%;
+        left: 50%;
+      }
+    }
+  }
+
   .background {
-    background: linear-gradient(0deg, var(--primary), var(--accent), var(--light));
+    .gradient-overlay {
+      background: linear-gradient(
+        0deg,
+        var(--primary),
+        var(--accent),
+        var(--light)
+      );
+    }
     filter: none;
   }
 
   .wcl {
     transform: rotate(180deg);
     z-index: 10;
-  }
-
-  .ninja {
-    width: calc(20em + 10vw);
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    filter: brightness(0) opacity(0.68);
-    z-index: 50;
-    transform: rotate(180deg) translateX(50%) scale(1.5);
   }
 
   .background-dune {
@@ -100,23 +120,15 @@ export default {
     transform: translate(-50%, -50%) scale(2);
     opacity: 0.6;
     z-index: 1;
+    filter: blur(2px);
   }
 
   .title-layer {
-    z-index: 50;
-
-    h2.section-caption {
-      background: unset;
-      box-shadow: unset;
-      border: unset;
+    h2 {
       font-size: calc(2.5rem + 4vw);
       position: absolute;
       top: 32%;
       left: 50%;
-      padding: 0.5em 1em 0.5em 0.5em;
-      i {
-        font-size: 1.5em;
-      }
     }
   }
 }
