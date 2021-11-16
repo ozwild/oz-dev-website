@@ -1,8 +1,8 @@
 export default {
   "trailingSlash": true,
-  "pathPrefix": "",
+  "pathPrefix": "/oz-dev-website",
   "titleTemplate": "%s - Ozworks",
-  "siteUrl": "",
+  "siteUrl": "https://ozwild.github.io",
   "version": "0.7.23",
   "catchLinks": true
 }
