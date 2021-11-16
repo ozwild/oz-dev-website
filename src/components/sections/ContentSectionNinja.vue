@@ -27,7 +27,7 @@
       </template>
       <template v-slot:title>
         <TypeWriter component="h2">
-          ... One major <i>badass</i> code Ninja?
+          ... One major <i>badass</i> code Ninja
         </TypeWriter>
       </template>
     </PageSection>

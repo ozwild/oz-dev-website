@@ -84,7 +84,7 @@ export default {
       const { sections } = this;
       const hashString = hash.replace("#", "");
       switch (true) {
-        case Number(hashString) > 0 && Number(hashString) < sections.length:
+        case Number(hashString) > 0 && Number(hashString) <= sections.length:
           return Number(hashString);
         case hashString === "contact":
           return sections.length;
@@ -103,7 +103,7 @@ export default {
       const { gotoSection, matchHashedSection } = this;
       const hash = this.$route.hash;
       const hashMatch = matchHashedSection(hash);
-      console.log(hashMatch);
+
       if (hashMatch) {
         gotoSection(hashMatch);
       } else {

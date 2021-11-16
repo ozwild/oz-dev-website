@@ -76,14 +76,14 @@ export default {
   }
 
   .bcl {
-    background: var(--primary);
-    mix-blend-mode: lighten;
+    background: var(--accent);
+    mix-blend-mode: overlay;
     z-index: 20;
   }
 
   .bgcl {
-    background: linear-gradient(0deg, var(--dark), transparent), var(--primary);
-    mix-blend-mode: hard-light;
+    background: linear-gradient(0deg, var(--dark), var(--light));
+    mix-blend-mode: exclusion;
     z-index: 21;
   }
 

@@ -72,32 +72,9 @@ export default {
   }
 
   .animation-layer {
-    /* width: 15em;
-    height: 65vh;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: transform 1s;
-    box-shadow: inset 2px 0 2px 0px black, inset -2px 0 2px 0px black,
-      0 0 12px 0 var(--light); */
-
     .gateway {
-      /* &:before {
-        content: "";
-        position: absolute;
-        width: 550%;
-        height: 40vh;
-        bottom: -60vh;
-        left: 50%;
-        z-index: 5;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(
-          180deg,
-          var(--dark),
-          rgba(255 255 255 / 20%)
-        );
-        clip-path: polygon(40% 0, 60% 0, 100% 100%, 0% 100%);
-      } */
+      opacity: 0;
+      animation: fade-in 2.5s ease-in-out forwards;
     }
 
     .beyond-gateway {
@@ -107,29 +84,9 @@ export default {
       overflow: hidden;
       filter: blur(3.5px) grayscale(0.3);
       mix-blend-mode: lighten;
-      //transition: background 1.5s;
-      /* background: linear-gradient(
-        0deg,
-        white,
-        var(--light) 16%,
-        pink,
-        transparent 50%,
-        black
-      );
-      background: linear-gradient(
-        0deg,
-        white,
-        var(--light) 2%,
-        pink 3%,
-        transparent 4%,
-        black
-      ); */
-      //background: var(--accent);
     }
 
     .animation-color-overlay {
-      /* background: var(--dark);
-      mix-blend-mode: lighten; */
       mix-blend-mode: color-burn;
       .far-land {
         z-index: 5;

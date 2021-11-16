@@ -119,8 +119,8 @@ export default {
     position: absolute;
     bottom: 0.125em;
     margin-left: 0.2em;
-    background: var(--light);
-    box-shadow: 2px 3px 2px rgba(0 0 0 / 30%), -1px -1px 0px var(--light),
+    background: var(--accent);
+    box-shadow: 2px 3px 2px rgba(0 0 0 / 30%),
       4px 4px 8px rgba(0 0 0 / 20%);
 
     display: inline-block;
