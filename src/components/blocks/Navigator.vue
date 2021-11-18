@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import * as Hammer from "hammerjs";
 import { debounce } from "lodash";
 import { MatchMedia } from "vue-component-media-queries";
 import {
@@ -85,6 +86,14 @@ export default {
     return {
       sectionId: null,
       preventWheel: false,
+      touchStart: {
+        x: 0,
+        y: 0,
+      },
+      touchEnd: {
+        x: 0,
+        y: 0,
+      },
       sections: [
         ContentSectionHello,
         ContentSectionSearch,
@@ -98,8 +107,18 @@ export default {
     };
   },
   mounted() {
-    //window.addEventListener("wheel", this.handleScroll, { passive: false });
-    window.addEventListener("keydown", this.handleKeyDown);
+    document.addEventListener("keydown", this.handleKeyDown);
+
+    document.addEventListener("touchstart", (e) => {
+      this.touchStart.x = e.changedTouches[0].screenX;
+      this.touchStart.y = e.changedTouches[0].screenY;
+    });
+
+    document.addEventListener("touchend", (e) => {
+      this.touchEnd.x = e.changedTouches[0].screenX;
+      this.touchEnd.y = e.changedTouches[0].screenY;
+      this.handleTouchGesture();
+    });
 
     this.gotoDefault();
   },
@@ -110,6 +129,27 @@ export default {
     },
   },
   methods: {
+    handleTouchGesture() {
+      const { touchStart, touchEnd } = this;
+
+      if (touchEnd.x < touchStart.x) {
+        // Swipe left
+      }
+
+      if (touchEnd.x > touchStart.x) {
+        // Swipe right
+      }
+
+      if (touchEnd.y < touchStart.y) {
+        // Swipe up
+        this.gotoNext();
+      }
+
+      if (touchEnd.y > touchStart.y) {
+        // Swipe down
+        this.gotoPrevious();
+      }
+    },
     matchHashedSection(hash) {
       const { sections } = this;
       const hashString = hash.replace("#", "");
@@ -142,7 +182,7 @@ export default {
 
       const hash = this.$route.hash;
       const hashMatch = matchHashedSection(hash);
-      console.log(hashMatch);
+
       if (hashMatch) {
         gotoSection(hashMatch);
       } else {
@@ -220,7 +260,7 @@ export default {
 
   &.mobile {
     bottom: 2em;
-    left: 2em;
+    left: 1em;
     .nav-button {
       border-radius: 50%;
       filter: drop-shadow(2px 4px 6px black);
