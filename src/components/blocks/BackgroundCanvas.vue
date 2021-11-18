@@ -187,7 +187,8 @@ canvas {
   position: absolute;
   left: 50%;
   top: 0;
-  width: 100%;
+  min-width: 100%;
+  min-height: 100vh;
   transform: translateX(-50%);
   z-index: 0;
   filter: opacity(0.5) contrast(0.7);
