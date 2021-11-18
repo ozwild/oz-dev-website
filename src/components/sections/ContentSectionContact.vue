@@ -1,15 +1,11 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
-      <template v-slot:background>
-        <Layer v-if="!mobile">
-          <BackgroundCanvas :mobile="mobile" class="canvas"></BackgroundCanvas>
-        </Layer>
-        <Layer class="bcl"></Layer>
-        <Layer class="bgcl"></Layer>
+      <template v-slot:animation>
+        <Layer v-if="!mobile" class="bgcl"></Layer>
       </template>
 
-      <template>
+      <template v-slot:foreground>
         <Layer class="foreground">
           <div v-if="withCallout" class="call-me-section">
             <Layer class="call-me-callout-container">
@@ -47,7 +43,10 @@
               <FlexBox class="bottom-frame">
                 <FlexBox class="contact-section" column>
                   <FlexBox y="center">
-                    <a :href="documents.resume" class="contact-link"
+                    <a
+                      :href="documents.resume"
+                      target="_blank"
+                      class="contact-link"
                       ><PaperclipIcon />Get my Resume
                     </a>
                   </FlexBox>
@@ -56,6 +55,7 @@
                       label="Email"
                       icon="mail"
                       :href="`mailto:${contact.email}`"
+                      target="_blank"
                       class="contact-link"
                     >
                       <MailIcon />
@@ -67,6 +67,7 @@
                       label="Phone"
                       icon="phone"
                       :href="`tel:${contact.phone}`"
+                      target="_blank"
                       class="contact-link"
                       ><PhoneIcon />
                       <span>{{ contact.phone }}</span>
@@ -74,10 +75,16 @@
                   </FlexBox>
                 </FlexBox>
                 <FlexBox class="social-section" x="between" y="center" column>
-                  <a :href="`${contact.linkedin}`" class="social-link"
+                  <a
+                    :href="`${contact.linkedin}`"
+                    target="_blank"
+                    class="social-link"
                     ><LinkedinIcon size="32" />
                   </a>
-                  <a :href="`${contact.github}`" class="social-link"
+                  <a
+                    :href="`${contact.github}`"
+                    target="_blank"
+                    class="social-link"
                     ><GithubIcon size="32" />
                   </a>
                 </FlexBox>
@@ -92,12 +99,6 @@
 
 <script>
 import { MatchMedia } from "vue-component-media-queries";
-
-import Layer from "@components/blocks/Layer.vue";
-import PageSection from "@components/blocks/PageSection.vue";
-import BackgroundCanvas from "@components/blocks/BackgroundCanvas.vue";
-import FlexBox from "@components/blocks/FlexBox.vue";
-import Typography from "@components/blocks/Typography.vue";
 import {
   MailIcon,
   PhoneIcon,
@@ -105,6 +106,12 @@ import {
   PaperclipIcon,
   GithubIcon,
 } from "vue-feather-icons";
+
+import Layer from "@components/blocks/Layer.vue";
+import PageSection from "@components/blocks/PageSection.vue";
+import BackgroundCanvas from "@components/blocks/BackgroundCanvas.vue";
+import FlexBox from "@components/blocks/FlexBox.vue";
+import Typography from "@components/blocks/Typography.vue";
 
 export default {
   name: "content-section-contact",
@@ -147,19 +154,29 @@ export default {
       position: relative;
       top: 0;
       left: 0;
-      height: 100%;
+      height: 90%;
       color: var(--dark);
       background: var(--light);
       z-index: 10;
       width: 100%;
 
+      background: repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 10px,
+          #fff 10px,
+          #fff 20px
+        ),
+        linear-gradient(to bottom, #fff, #ddd);
+
       .avatar-section {
+        margin-top: 2em;
         padding: 0.5em;
       }
 
       .bottom-frame {
-        margin: 0 15vw 2em 10vw;
-        width: calc(100% - 30vw);
+        margin: 0 1em 2em 5.5em;
+        width: calc(100% - 7em) !important;
       }
     }
   }
@@ -172,7 +189,7 @@ export default {
       left: calc(50% + 6em);
       perspective: 200px;
       z-index: 60;
-      filter: drop-shadow(2px 4px 6px black);
+      filter: drop-shadow(2px 4px 6px black) grayscale(1);
 
       .callout-bubble {
         width: calc(5em + 4vw);
@@ -241,20 +258,20 @@ export default {
       min-width: 35em;
       max-width: 50vw;
       position: relative;
-      top: 50%;
+      top: 54%;
       left: 50%;
       transform: translate(-50%, -50%);
-      min-height: 50%;
-      max-height: 35em;
+      min-height: 40%;
+      max-height: 32em;
       color: var(--dark);
       background: var(--light);
       z-index: 10;
       opacity: 0;
-      animation: fade-in 0.4s 1.6s cubic-bezier(0.55, 0.085, 0.68, 0.53)
-        forwards;
+      box-shadow: 2px 2px 8px 0px black;
+      animation: fade-in 0.4s 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
 
       .avatar-section {
-        height: 7.5em;
+        height: 6em;
       }
 
       .avatar-container {
@@ -272,11 +289,11 @@ export default {
         height: calc(7em + 5vw);
         &.back-shadow {
           top: calc((7em + 5vw) / -2);
-          left: 26%;
+          left: 45%;
         }
         &.fore-shadow {
           top: calc((5em + 5vw) / -2);
-          right: 27%;
+          left: 55%;
         }
       }
 
@@ -299,19 +316,32 @@ export default {
       }
     }
   }
-  .canvas {
-    z-index: 1;
-    filter: blur(2px) hue-rotate(125deg) scale(1.1) translate(-5px, -5px);
-  }
-
-  .bcl {
-    background: var(--accent);
-    mix-blend-mode: overlay;
-  }
 
   .bgcl {
-    background: linear-gradient(0deg, var(--dark), var(--light));
-    mix-blend-mode: exclusion;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 10px,
+        #ccc 10px,
+        #ccc 20px
+      ),
+      linear-gradient(to bottom, #eee, #999);
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 10px,
+        #fff 10px,
+        #fff 20px
+      ),
+      linear-gradient(to bottom, var(--light), rgba(255, 255, 255, 0.6));
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 10px,
+        var(--dark) 10px,
+        var(--dark) 20px
+      ),
+      linear-gradient(to bottom, var(--primary), var(--dark));
     z-index: 5;
   }
 
@@ -349,22 +379,25 @@ export default {
     height: 9em;
     border-radius: 50%;
     mix-blend-mode: multiply;
+    mix-blend-mode: screen;
     opacity: 0.5;
     animation: fade-in 1.2s 5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    transform: translateX(-50%);
 
     &.fore-shadow {
       top: 1.25em;
-      left: unset;
-      right: 3.5em;
+      left: 50%;
       z-index: 2;
       background: var(--accent);
+      filter: contrast(0.5) opacity(0.5);
     }
 
     &.back-shadow {
       top: 0.75em;
-      left: 4.5em;
+      left: 50%;
       z-index: 1;
-      background: var(--dark);
+      background: var(--primary);
+      filter: contrast(0.5) opacity(0.5);
     }
   }
 
@@ -409,11 +442,12 @@ export default {
 
       a {
         &.contact-link {
+          font-size: 1.25em;
           display: flex;
           padding-left: 3em;
           position: relative;
           margin-bottom: 1em;
-          margin-left: 3em;
+          //margin-left: 3em;
           svg {
             fill: var(--light);
             stroke: var(--dark);

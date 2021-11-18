@@ -126,7 +126,7 @@ export default {
     display: inline-block;
     width: 4px;
     height: 1em;
-    animation: caret-smooth 0.5s ease-in-out 0s infinite alternate;
+    animation: caret-smooth 0.25s ease-in-out 0s infinite alternate;
   }
   &.typing {
     &:after {

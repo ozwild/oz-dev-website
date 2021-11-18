@@ -16,7 +16,7 @@ export default {
     },
     fontSize: {
       type: Number,
-      default: 13,
+      default: 15,
     },
   },
   setup() {},
@@ -34,6 +34,8 @@ export default {
       characters: characters.split(""),
       width: null,
       height: null,
+      fontFamily:
+        '-apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
       columns: [],
     };
   },
@@ -58,7 +60,7 @@ export default {
       const numberOfColumns = this.width / fontSize;
 
       this.columns = this.getArrayOfSize(numberOfColumns);
-      this.initialSkip = Math.ceil(this.height / this.fontSize);
+      this.initialSkip = Math.ceil((this.height * 1.15) / (fontSize - 3));
       this.runs = 0;
       this.isRainingCode = false;
     },
@@ -68,6 +70,7 @@ export default {
         width,
         height,
         fontSize,
+        fontFamily,
         context,
         getRandomCharacter,
         increaseColumnPosition,
@@ -86,13 +89,15 @@ export default {
        * to paint over the previous layer of text
        */
 
-      context.fillStyle = "rgba(250,250,250,0.12)";
+      context.fillStyle = "rgba(18, 21, 31, 0.12)";
       context.fillRect(0, 0, width, height);
 
       // Setup font type and color before rendering characters
+      const blur = 3;
+      const size = (Math.random() > 0.5 ? fontSize - 5 : fontSize - 3) + "px";
 
-      context.font =
-        (Math.random() > 0.5 ? fontSize + 3 : fontSize - 3) + "px monospace";
+      context.font = `bold ${size} ${fontFamily}`;
+      context.textBaseline = "top";
 
       // with a loop for maximum performance
       for (let columnIndex = 0; columnIndex < columns.length; columnIndex++) {
@@ -100,20 +105,25 @@ export default {
           continue;
         }
         const x = columnIndex * fontSize,
-          y = columns[columnIndex] * fontSize;
+          y = columns[columnIndex] * (fontSize - 3);
 
         let character = getRandomCharacter();
 
         if (isRainingCode) {
-          var blur = 3;
           var w = context.measureText(character).width + blur * 2;
-          context.textBaseline = "top";
           context.shadowColor = "rgba(0 0 0 / 70%)";
           context.shadowBlur = blur;
-          context.fillStyle = "orange";
-          context.shadowOffsetX = x + w;
           context.shadowOffsetY = 0;
+          context.shadowOffsetX = x + w;
+
+          context.fillStyle = "darkgray";
+          context.fillText(character, x - w - 1, y - 1);
+
+          context.fillStyle = "gray";
           context.fillText(character, x - w, y);
+
+          context.fillStyle = "lightgray";
+          context.fillText(character, x - w + 1, y + 1);
         }
 
         if (y > height && shouldSkipRowProgress()) {
@@ -178,7 +188,7 @@ canvas {
   left: 50%;
   top: 0;
   transform: translateX(-50%);
-  z-index: -1;
-  filter: blur(1.5px) saturate(0.5) drop-shadow(2px 4px 6px black);
+  z-index: 0;
+  filter: opacity(0.5) contrast(0.7);
 }
 </style>

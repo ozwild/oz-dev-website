@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-box" :class="classList">
+  <div class="flex-box" :class="classList" :style="{ width }">
     <slot></slot>
   </div>
 </template>
@@ -8,6 +8,11 @@
 export default {
   name: "flex-box",
   props: {
+    width: {
+      type: String,
+      default: "100%",
+      enum: ["100%", "auto"],
+    },
     column: {
       type: Boolean,
       default: false,
@@ -54,7 +59,6 @@ export default {
 .flex-box {
   display: flex;
   flex-direction: row;
-  width: 100%;
 
   &.flex-box--column {
     flex-direction: column;

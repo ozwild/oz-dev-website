@@ -1,25 +1,19 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
-      <template v-slot:background>
-        <Layer class="scene-background"></Layer>
-      </template>
-
       <template v-slot:animation>
         <Layer class="gateway">
           <Layer class="beyond-gateway">
             <g-image class="lightning" src="~/media/lightning.gif"></g-image>
             <CubeFrame class="cube-frame"></CubeFrame>
-            <Layer class="animation-color-overlay">
-              <Layer class="far-land"></Layer>
-              <Layer class="air"></Layer>
-              <Layer class="near-land"></Layer>
-            </Layer>
           </Layer>
         </Layer>
+        
       </template>
 
-      <Layer class="color-overlay"></Layer>
+      <template v-slot:foreground>
+        <Layer class="near-land"></Layer>
+      </template>
 
       <template v-slot:title>
         <TypeWriter component="h2">
@@ -34,9 +28,9 @@
 <script>
 import { MatchMedia } from "vue-component-media-queries";
 
-import Layer from "../blocks/Layer.vue";
-import PageSection from "../blocks/PageSection.vue";
-import CubeFrame from "../blocks/CubeFrame.vue";
+import Layer from "@components/blocks/Layer.vue";
+import PageSection from "@components/blocks/PageSection.vue";
+import CubeFrame from "@components/blocks/CubeFrame.vue";
 import TypeWriter from "@components/blocks/TypeWriter.vue";
 
 export default {
@@ -67,53 +61,17 @@ export default {
     }
   }
 
-  .scene-background {
-    background: white;
+  .near-land {
+    z-index: 10;
+    background: linear-gradient(0deg, white, var(--light) 40%, transparent 40%);
   }
 
   .animation-layer {
-    .gateway {
-      opacity: 0;
-      animation: fade-in 2.5s ease-in-out forwards;
-    }
-
     .beyond-gateway {
       position: relative;
       width: 100%;
       height: 100%;
       overflow: hidden;
-      filter: blur(3.5px) grayscale(0.3);
-      mix-blend-mode: lighten;
-    }
-
-    .animation-color-overlay {
-      mix-blend-mode: color-burn;
-      .far-land {
-        z-index: 5;
-        background: linear-gradient(
-          45deg,
-          var(--dark),
-          var(--accent),
-          var(--light)
-        );
-      }
-
-      .air {
-        z-index: 7;
-        background: var(--accent);
-        mix-blend-mode: color-dodge;
-        animation: sky 3.65s linear infinite alternate both;
-      }
-
-      .near-land {
-        z-index: 10;
-        background: linear-gradient(
-          0deg,
-          white,
-          var(--light) 40%,
-          transparent 40%
-        );
-      }
     }
 
     .lightning {
@@ -122,13 +80,7 @@ export default {
       left: 48%;
       width: 42em;
       transform: translate(-50%, -50%);
-      //filter: saturate(0.4) blur(1px);
     }
-  }
-
-  .color-overlay {
-    /* background-color: var(--dark);
-    mix-blend-mode: lighten; */
   }
 
   .cube-frame {

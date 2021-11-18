@@ -1,13 +1,13 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
-      <template v-slot:background>
+      <template v-slot:animation>
         <BackgroundCanvas :mobile="mobile"></BackgroundCanvas>
         <Layer class="bcl"></Layer>
         <Layer class="bgcl"></Layer>
       </template>
 
-      <template v-slot:animation>
+      <template v-slot:foreground>
         <Layer class="wclb">
           <SecondWavyShapeLayer color="var(--accent)"></SecondWavyShapeLayer>
           <FirstWavyShapeLayer color="var(--dark)"></FirstWavyShapeLayer>
@@ -77,13 +77,18 @@ export default {
 
   .bcl {
     background: var(--accent);
+    filter: opacity(0.5);
     mix-blend-mode: overlay;
     z-index: 20;
+    animation: fade-in 1.5s ease-in forwards;
   }
 
   .bgcl {
-    background: linear-gradient(0deg, var(--dark), var(--light));
+    //background: linear-gradient(0deg, var(--dark), var(--light));
+    background: linear-gradient(45deg, var(--primary), var(--light));
     mix-blend-mode: exclusion;
+    mix-blend-mode: hard-light;
+    animation: fade-in 1.5s ease-in forwards;
     z-index: 21;
   }
 

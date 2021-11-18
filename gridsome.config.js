@@ -7,8 +7,8 @@ const path = require("path");
 
 module.exports = {
   siteName: "Ozworks",
-  siteUrl: 'https://ozwild.github.io',
-  pathPrefix: '/oz-dev-website',
+  siteUrl: "https://ozwild.github.io",
+  pathPrefix: "/oz-dev-website",
   plugins: [],
   configureWebpack: {
     resolve: {

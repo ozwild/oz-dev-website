@@ -75,7 +75,7 @@ export default {
 
   .animation-layer {
     .searching {
-      filter: blur(2.5px) drop-shadow(0.5em 1em 2px rgba(0 0 0 / 60%))
+      filter:  drop-shadow(0.5em 1em 2px rgba(0 0 0 / 60%))
         brightness(0.75);
     }
   }

@@ -1,12 +1,15 @@
 <template>
-  <div class="ps">
+  <div class="ps" :class="`mode-${mode}`">
     <Layer class="background">
       <slot name="background"></slot>
     </Layer>
     <Layer class="animation-layer">
       <slot name="animation"></slot>
     </Layer>
-    <Layer class="title-layer">
+    <Layer class="foreground">
+      <slot name="foreground"></slot>
+    </Layer>
+    <Layer class="title-layer" v-if="$slots.title">
       <slot name="title"></slot>
     </Layer>
     <slot></slot>
@@ -17,6 +20,13 @@
 import Layer from "@components/blocks/Layer.vue";
 export default {
   name: "page-section",
+  props: {
+    mode: {
+      type: String,
+      default: "normal",
+      enum: ["previous", "next", "normal"],
+    },
+  },
   components: {
     Layer,
   },
@@ -26,16 +36,25 @@ export default {
 <style lang="scss">
 .ps {
   position: relative;
-  min-height: 100vh;
-  mix-blend-mode: screen;
+  height: 100vh;
+  min-height: 50em;
+  width: 100%;
+  //mix-blend-mode: screen;
   overflow: hidden;
-  box-shadow: inset 0 4px 4px -2px rgba(0 0 0 / 60%);
 
-  @media screen and (min-height: 0px) and (max-height: 500px) {
+  /* @media screen and (min-height: 0px) and (max-height: 700px) {
     min-height: 175vh;
-  }
+  } */
 
+  &.mode-previous {
+    position: absolute;
+    top: -100vh;
+  }
+  &.mode-next {
+    top: 100vh;
+  }
   .title-layer {
+    position: fixed;
     z-index: 50;
 
     h2 {
@@ -43,7 +62,7 @@ export default {
       font-size: calc(3em + 5vw);
       line-height: 1.15;
       max-width: 100%;
-      filter: saturate(1.5) blur(0.5px);
+      filter: saturate(1.5);
       position: absolute;
       transform: translate(-50%, -50%);
       margin: 0;
@@ -52,19 +71,27 @@ export default {
 
       i {
         color: var(--accent);
-        font-size: calc(1.25em);
+        font-size: calc(1.1em);
       }
     }
   }
 
   .animation-layer {
     z-index: 10;
-    filter: blur(1.5px);
+    left: 0;
+    //transform: translate(50%, -50%);
+
+    //animation: kenburns-top 8s ease-in forwards;
   }
 
   .background {
     z-index: 0;
     background: var(--dark);
+    //background: var(--primary);
+  }
+
+  .foreground {
+    z-index: 20;
   }
 }
 </style>

@@ -72,29 +72,7 @@ export default {
     height: 15em;
     top: 4em;
     left: 50%;
-    animation: star-animation 5s ease-in forwards;
-  }
-}
-
-@keyframes star-animation {
-  0% {
-    background: rgb(248 147 29 / 0%);
-    clip-path: polygon(
-      50% 0%,
-      100% 0,
-      100% 35%,
-      100% 57%,
-      100% 100%,
-      49% 100%,
-      0 100%,
-      0 59%,
-      0 35%,
-      0 0
-    );
-  }
-
-  10% {
-    background: rgb(248 147 29 / 1000%);
+    background: var(--light);
     clip-path: polygon(
       50% 0%,
       61% 35%,
@@ -107,23 +85,7 @@ export default {
       2% 35%,
       39% 35%
     );
-  }
-
-  85%,
-  100% {
-    background: rgb(248 147 29 / 100%);
-    clip-path: polygon(
-      50% 0%,
-      61% 35%,
-      98% 35%,
-      68% 57%,
-      79% 91%,
-      50% 70%,
-      21% 91%,
-      32% 57%,
-      2% 35%,
-      39% 35%
-    );
+    animation: fade-in 5s ease-in forwards;
   }
 }
 </style>

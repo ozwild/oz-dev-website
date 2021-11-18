@@ -94,11 +94,14 @@ export default {
       background: transparent;
       border: 150em solid var(--dark);
       box-shadow: inset 1px 1px 6px -3px black, inset -1px -1px 4px -1px black;
+      mix-blend-mode: multiply;
     }
   }
   .animation-layer {
     .hello-container {
       background-color: var(--accent);
+      background-color: var(--dark);
+      background-color: var(--primary);
     }
 
     .hello {
@@ -113,11 +116,8 @@ export default {
 
     .caption {
       left: 50%;
-      //transform: translateX(-50%);
-      //padding: 1em 0 0.25em 0;
       z-index: 100;
       font-size: calc(4em + 3vw);
-      //max-width: 6em;
     }
   }
 }

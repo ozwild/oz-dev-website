@@ -1,11 +1,17 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
-      <template v-slot:background>
-        <Layer class="gradient-overlay"></Layer>
+      <template v-slot:animation>
+        <lottie
+          :options="powOptions"
+          view-box="1920 1080"
+          :width="1920"
+          :height="1080"
+          class="pow-lottie"
+        ></lottie>
       </template>
 
-      <template v-slot:animation>
+      <template v-slot:foreground>
         <Layer class="wcl">
           <SecondWavyShapeLayer
             class="background-dune"
@@ -17,14 +23,8 @@
             :color="duneColors.foreground"
           ></FirstWavyShapeLayer>
         </Layer>
-        <lottie
-          :options="powOptions"
-          view-box="1920 1080"
-          :width="1920"
-          :height="1080"
-          class="pow-lottie"
-        ></lottie>
       </template>
+
       <template v-slot:title>
         <TypeWriter component="h2">
           ... One major <i>badass</i> code Ninja
@@ -120,7 +120,6 @@ export default {
     transform: translate(-50%, -50%) scale(2);
     opacity: 0.6;
     z-index: 1;
-    filter: blur(2px);
   }
 
   .title-layer {
