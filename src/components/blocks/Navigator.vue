@@ -43,7 +43,6 @@
 </template>
 
 <script>
-import * as Hammer from "hammerjs";
 import { debounce } from "lodash";
 import { MatchMedia } from "vue-component-media-queries";
 import {
