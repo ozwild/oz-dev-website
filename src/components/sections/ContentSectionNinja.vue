@@ -2,7 +2,8 @@
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
       <template v-slot:animation>
-        <g-image src="~/media/pow.gif" class="pow"></g-image>
+        <g-image v-if="mobile" src="~/media/pow-mobile.gif" class="pow"></g-image>
+        <g-image v-else src="~/media/pow.gif" class="pow"></g-image>
       </template>
 
       <template v-slot:foreground>
