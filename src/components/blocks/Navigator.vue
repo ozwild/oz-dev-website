@@ -90,6 +90,8 @@ export default {
     return {
       sectionId: null,
       loaded: false,
+      swipeTimeout: 250,
+      swipeThreshold: 100,
       touchStart: {
         x: 0,
         y: 0,
@@ -125,7 +127,11 @@ export default {
       this.touchEnd.x = e.changedTouches[0].screenX;
       this.touchEnd.y = e.changedTouches[0].screenY;
       this.touchEnd.timestamp = Date.now();
-      if (this.touchEnd.timestamp - this.touchStart.timestamp < 500) {
+
+      const timeDelta = this.touchEnd.timestamp - this.touchStart.timestamp;
+      const yDelta = this.touchEnd.y - this.touchStart.y;
+
+      if (timeDelta < this.swipeTimeout && yDelta > this.swipeThreshold) {
         this.handleTouchGesture();
       }
     });
