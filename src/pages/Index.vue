@@ -17,7 +17,7 @@
 <script>
 export default {
   metaInfo: {
-    title: 'Ozwild DEV'
+    title: 'Ozwild Sr. Full Stack Developer'
   }
 }
 </script>
