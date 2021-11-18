@@ -1,24 +1,12 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
-      <template v-slot:animation>
-        <Layer v-if="!mobile" class="bgcl"></Layer>
+      <template v-slot:background>
+        <Layer class="background"></Layer>
       </template>
 
       <template v-slot:foreground>
         <Layer class="foreground">
-          <div v-if="withCallout" class="call-me-section">
-            <Layer class="call-me-callout-container">
-              <g-image
-                class="call-me-callout-image"
-                src="~/media/call-me.gif"
-              ></g-image>
-            </Layer>
-            <Layer class="callout-bubble">
-              <h3>Call me ;)</h3>
-            </Layer>
-          </div>
-
           <Layer
             class="main-container acrylic-material"
             :class="{ mobile, desktop: !mobile }"
@@ -99,6 +87,18 @@
                 </FlexBox>
               </FlexBox>
             </FlexBox>
+
+            <div v-if="!mobile && withCallout" class="call-me-section">
+              <Layer class="call-me-callout-container">
+                <g-image
+                  class="call-me-callout-image"
+                  src="~/media/call-me.gif"
+                ></g-image>
+              </Layer>
+              <Layer class="callout-bubble">
+                <h3>Call me ;)</h3>
+              </Layer>
+            </div>
           </Layer>
         </Layer>
       </template>
@@ -157,35 +157,39 @@ export default {
 
 <style lang="scss" scoped>
 .psa {
-  box-shadow: none;
-  &.mobile {
-    .main-container {
-      position: relative;
-      top: 0;
-      left: 0;
-      height: 90%;
-      color: var(--dark);
-      color: var(--light);
-      background: var(--light);
-      z-index: 10;
-      width: 100%;
-
-      background: repeating-linear-gradient(
+  .background {
+    // Saving this gradient in case I decide
+    // to add a light version of the site
+    /* background: repeating-linear-gradient(
           90deg,
           transparent,
           transparent 10px,
           #fff 10px,
           #fff 20px
         ),
-        linear-gradient(to bottom, #fff, #ddd);
-      background: repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 10px,
-          var(--dark) 10px,
-          var(--dark) 20px
-        ),
-        linear-gradient(to bottom, var(--primary), var(--dark));
+        linear-gradient(to bottom, #fff, #ddd); */
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 10px,
+        var(--dark) 10px,
+        var(--dark) 20px
+      ),
+      linear-gradient(to bottom, var(--primary), var(--dark));
+  }
+
+  &.mobile {
+    .background {
+      filter: grayscale(0.3) brightness(2.2);
+    }
+    .main-container {
+      position: relative;
+      top: 0;
+      left: 0;
+      height: 90%;
+      color: var(--light);
+      z-index: 10;
+      width: 100%;
 
       .avatar-section {
         margin-top: 2em;
@@ -206,12 +210,11 @@ export default {
   &.desktop {
     .call-me-section {
       position: absolute;
-      transform: translate(-50%, -50%);
-      top: 74%;
-      left: calc(50% + 6em);
+      top: 8em;
+      right: -3em;
       perspective: 200px;
       z-index: 60;
-      filter: drop-shadow(2px 4px 6px black) grayscale(1);
+      filter: drop-shadow(2px 4px 6px black) grayscale(0);
 
       .callout-bubble {
         width: calc(5em + 4vw);
@@ -219,6 +222,7 @@ export default {
         top: calc(((3.5em + 3vw) * -1) + (0.5em + 1vw));
         left: -7em;
         background: var(--light);
+        background: white;
         box-shadow: 2px 5px;
         z-index: 10;
         filter: drop-shadow(2px 4px 6px black);
@@ -238,11 +242,12 @@ export default {
         h3 {
           position: relative;
           margin: 0;
-          top: calc(0.2em + 0.5vw);
-          left: calc(0.25vw);
-          font-size: calc(1.25em + 0.5vw);
+          top: calc(0.2em + 1vw);
+          left: calc(0.5vw);
+          font-size: calc(1.2em + 0.5vw);
           color: var(--dark);
-          transform: rotateZ(-4deg);
+          color: black;
+          transform: rotateZ(-3deg);
         }
       }
 
@@ -337,34 +342,6 @@ export default {
         width: calc(100% - 5vw);
       }
     }
-  }
-
-  .bgcl {
-    background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 10px,
-        #ccc 10px,
-        #ccc 20px
-      ),
-      linear-gradient(to bottom, #eee, #999);
-    background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 10px,
-        #fff 10px,
-        #fff 20px
-      ),
-      linear-gradient(to bottom, var(--light), rgba(255, 255, 255, 0.6));
-    background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 10px,
-        var(--dark) 10px,
-        var(--dark) 20px
-      ),
-      linear-gradient(to bottom, var(--primary), var(--dark));
-    z-index: 5;
   }
 
   .avatar-container {
