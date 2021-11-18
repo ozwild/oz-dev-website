@@ -9,7 +9,7 @@
 
       <template v-slot:title>
         <TypeWriter component="h2">
-          Are you on the look for...
+          Are you on the <i>look</i> for...
         </TypeWriter>
       </template>
     </PageSection>
@@ -45,7 +45,7 @@ export default {
       right: 1em;
       top: 50%;
       left: 50%;
-      transform: translate(-45%, 10%);
+      transform: translate(-40%, -40%);
     }
   }
 
@@ -55,7 +55,7 @@ export default {
       height: 150vh;
       top: 50%;
       left: 50%;
-      transform: translate(-40%, -10%);
+      transform: translate(-40%, -45%);
     }
 
     .title-layer {
@@ -67,16 +67,10 @@ export default {
   }
 
   .searching-container {
-    animation: puff-in-center 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+    animation: fade-in 0.7s 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) both;
     .searching {
       position: absolute;
-    }
-  }
-
-  .animation-layer {
-    .searching {
-      filter:  drop-shadow(0.5em 1em 2px rgba(0 0 0 / 60%))
-        brightness(0.75);
+      filter: drop-shadow(0.5em 1em 2px rgba(0 0 0 / 60%)) brightness(0.75);
     }
   }
 }
