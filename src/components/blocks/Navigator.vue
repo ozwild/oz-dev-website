@@ -88,10 +88,12 @@ export default {
       touchStart: {
         x: 0,
         y: 0,
+        timestamp: null,
       },
       touchEnd: {
         x: 0,
         y: 0,
+        timestamp: null,
       },
       sections: [
         ContentSectionHello,
@@ -111,12 +113,16 @@ export default {
     document.addEventListener("touchstart", (e) => {
       this.touchStart.x = e.changedTouches[0].screenX;
       this.touchStart.y = e.changedTouches[0].screenY;
+      this.touchStart.timestamp = Date.now();
     });
 
     document.addEventListener("touchend", (e) => {
       this.touchEnd.x = e.changedTouches[0].screenX;
       this.touchEnd.y = e.changedTouches[0].screenY;
-      this.handleTouchGesture();
+      this.touchEnd.timestamp = Date.now();
+      if (this.touchEnd.timestamp - this.touchStart.timestamp < 500) {
+        this.handleTouchGesture();
+      }
     });
 
     this.gotoDefault();
