@@ -258,14 +258,15 @@ export default {
     background-color: var(--primary);
     color: var(--light);
     z-index: 1;
-    transition: color 125ms ease-out, transform 90ms ease-in;
+    transition: box-shadow 250ms ease-out, transform 90ms ease-in;
     cursor: pointer;
     border: 2px solid var(--dark);
     padding: 0;
     transform: translateY(-50%);
 
     &:hover:not(:disabled) {
-      color: var(--accent);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 0 32px -2px var(--light);
     }
 
     &:active:not(:disabled) {
