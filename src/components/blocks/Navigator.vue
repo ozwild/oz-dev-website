@@ -8,6 +8,7 @@
     >
       <button
         v-if="sectionId > 0"
+        ref="btnGoToFirst"
         :disabled="sectionId === 0"
         class="nav-button previous"
         @click="gotoFirst"
@@ -16,6 +17,7 @@
       </button>
       <button
         v-if="sectionId > 0"
+        ref="btnGoToPrevious"
         :disabled="sectionId === 0"
         class="nav-button previous"
         @click="gotoPrevious"
@@ -24,6 +26,7 @@
       </button>
       <button
         v-if="sectionId < sections.length - 1"
+        ref="btnGoToNext"
         :disabled="sectionId >= sections.length"
         class="nav-button next"
         @click="gotoNext"
@@ -32,6 +35,7 @@
       </button>
       <button
         v-if="sectionId < sections.length - 1"
+        ref="btnGoToLast"
         :disabled="sectionId >= sections.length"
         class="nav-button next"
         @click="gotoLast"
@@ -195,17 +199,22 @@ export default {
       }
     },
     gotoPrevious() {
+      this.$refs.btnGoToPrevious.blur();
       this.gotoSection(this.sectionId - 1);
       this.$emit("prev");
     },
     gotoNext() {
+      console.log(this.$refs.btnGoToNext);
+      this.$refs.btnGoToNext.blur();
       this.gotoSection(this.sectionId + 1);
       this.$emit("next");
     },
     gotoFirst() {
+      this.$refs.btnGoToFirst.blur();
       this.gotoSection(0);
     },
     gotoLast() {
+      this.$refs.btnGoToLast.blur();
       this.gotoSection(this.sections.length - 1);
     },
     handleKeyDown(e) {
