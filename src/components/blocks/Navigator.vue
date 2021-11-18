@@ -171,7 +171,7 @@ export default {
         case Number(hashString) > 0 && Number(hashString) <= sections.length:
           return Number(hashString) - 1;
         case hashString === "contact":
-          return sections.length;
+          return sections.length - 1;
         default:
           return;
       }
