@@ -95,7 +95,6 @@ export default {
     transform: rotate(180deg);
     z-index: 70;
     top: unset;
-    bottom: -131px;
   }
 }
 </style>
