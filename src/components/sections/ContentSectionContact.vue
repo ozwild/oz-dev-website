@@ -32,7 +32,16 @@
                 <Layer class="avatar-shadow-circle fore-shadow"></Layer>
               </FlexBox>
               <FlexBox x="center">
-                <g-image class="my-name" src="~/media/my-name.png"></g-image>
+                <g-image
+                  v-if="mobile"
+                  class="my-name"
+                  src="~/media/Ozwild - Oscar Palencia-alt.png"
+                ></g-image>
+                <g-image
+                  v-else
+                  class="my-name"
+                  src="~/media/Ozwild - Oscar Palencia.png"
+                ></g-image>
               </FlexBox>
               <FlexBox x="around">
                 <div class="featured-skill">VUE</div>
