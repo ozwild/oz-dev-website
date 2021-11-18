@@ -45,7 +45,6 @@ export default {
     Layer,
     FirstWavyShapeLayer,
     SecondWavyShapeLayer,
-    lottie: Lottie,
     TypeWriter,
   },
   data() {
@@ -53,10 +52,6 @@ export default {
       duneColors: {
         background: "var(--dark)",
         foreground: "var(--dark)",
-      },
-      powOptions: {
-        animationData: animationData.default,
-        loop: true,
       },
     };
   },
