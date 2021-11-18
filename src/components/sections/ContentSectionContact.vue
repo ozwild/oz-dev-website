@@ -156,6 +156,7 @@ export default {
       left: 0;
       height: 90%;
       color: var(--dark);
+      color: var(--light);
       background: var(--light);
       z-index: 10;
       width: 100%;
@@ -168,6 +169,14 @@ export default {
           #fff 20px
         ),
         linear-gradient(to bottom, #fff, #ddd);
+      background: repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 10px,
+          var(--dark) 10px,
+          var(--dark) 20px
+        ),
+        linear-gradient(to bottom, var(--primary), var(--dark));
 
       .avatar-section {
         margin-top: 2em;
@@ -177,6 +186,10 @@ export default {
       .bottom-frame {
         margin: 0 1em 2em 5.5em;
         width: calc(100% - 7em) !important;
+
+        a {
+          color: var(--light);
+        }
       }
     }
   }
@@ -388,7 +401,7 @@ export default {
       top: 1.25em;
       left: 50%;
       z-index: 2;
-      background: var(--accent);
+      background: var(--primary);
       filter: contrast(0.5) opacity(0.5);
     }
 
