@@ -84,7 +84,6 @@ export default {
   }
 
   .bgcl {
-    //background: linear-gradient(0deg, var(--dark), var(--light));
     background: linear-gradient(45deg, var(--primary), var(--light));
     mix-blend-mode: exclusion;
     mix-blend-mode: hard-light;
@@ -93,7 +92,7 @@ export default {
   }
 
   .wclb {
-    transform: rotate(180deg) rotateX(45deg);
+    transform: rotate(180deg);
     z-index: 70;
     top: unset;
     bottom: -131px;
