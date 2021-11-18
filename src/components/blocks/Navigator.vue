@@ -255,8 +255,8 @@ export default {
     width: 3em;
     height: 3em;
     margin-top: 1em;
-    background-color: var(--dark);
-    color: var(--accent);
+    background-color: var(--primary);
+    color: var(--light);
     z-index: 1;
     transition: color 125ms ease-out, transform 90ms ease-in;
     cursor: pointer;
@@ -265,7 +265,7 @@ export default {
     transform: translateY(-50%);
 
     &:hover:not(:disabled) {
-      color: var(--light);
+      color: var(--accent);
     }
 
     &:active:not(:disabled) {
