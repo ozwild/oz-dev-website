@@ -2,13 +2,7 @@
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
       <template v-slot:animation>
-        <lottie
-          :options="powOptions"
-          view-box="1920 1080"
-          :width="1920"
-          :height="1080"
-          class="pow-lottie"
-        ></lottie>
+        <g-image src="~/media/pow.gif" class="pow"></g-image>
       </template>
 
       <template v-slot:foreground>
@@ -35,7 +29,6 @@
 </template>
 
 <script>
-import Lottie from "vue-lottie";
 import { MatchMedia } from "vue-component-media-queries";
 
 import PageSection from "@/components/blocks/PageSection.vue";
@@ -43,8 +36,6 @@ import Layer from "@components/blocks/Layer.vue";
 import FirstWavyShapeLayer from "@/components/ui/AppHeader/FirstWavyShapeLayer.vue";
 import SecondWavyShapeLayer from "@/components/ui/AppHeader/SecondWavyShapeLayer.vue";
 import TypeWriter from "@components/blocks/TypeWriter.vue";
-
-import * as animationData from "~/media/pow.json";
 
 export default {
   name: "content-section-ninja",
@@ -75,6 +66,9 @@ export default {
 <style lang="scss" scoped>
 .psa {
   &.mobile {
+    .pow {
+      transform: translate(-50%, -50%) scale(2) rotate(90deg);
+    }
     .title-layer {
       h2 {
         font-size: 4.5em;
@@ -111,14 +105,13 @@ export default {
     filter: saturate(1.2) brightness(1.1);
   }
 
-  .pow,
-  .pow-lottie {
+  .pow {
     width: 100%;
     position: absolute;
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%) scale(2);
-    opacity: 0.6;
+    opacity: 0.85;
     z-index: 1;
   }
 
