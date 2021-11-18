@@ -1,8 +1,10 @@
 <template>
   <MediaQueryProvider :queries="$options.queries">
     <div class="layout" id="app-1">
-      <component :is="section"></component>
-      <Navigator @change="setSection"></Navigator>
+      <main>
+        <Navigator @change="setSection" @loaded="loadedHandler"></Navigator>
+        <component :is="section"></component>
+      </main>
     </div>
   </MediaQueryProvider>
 </template>
@@ -33,11 +35,15 @@ export default {
   data() {
     return {
       section: null,
+      ready: false,
     };
   },
   methods: {
     setSection(section) {
       this.section = section;
+    },
+    loadedHandler() {
+      this.ready = true;
     },
   },
 };

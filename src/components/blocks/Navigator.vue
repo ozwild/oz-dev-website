@@ -1,6 +1,7 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <FlexBox
+      v-if="loaded"
       class="navigator"
       :class="{ mobile, desktop: !mobile }"
       width="auto"
@@ -88,7 +89,7 @@ export default {
   data() {
     return {
       sectionId: null,
-      preventWheel: false,
+      loaded: false,
       touchStart: {
         x: 0,
         y: 0,
@@ -134,6 +135,10 @@ export default {
   watch: {
     sectionId(newSectionId) {
       const section = this.sections[newSectionId];
+      if (!this.loaded) {
+        this.loaded = true;
+        this.$emit("loaded");
+      }
       this.$emit("change", section);
     },
   },
