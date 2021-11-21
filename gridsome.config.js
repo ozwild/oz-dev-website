@@ -8,8 +8,19 @@ const path = require("path");
 module.exports = {
   siteName: "Ozworks",
   siteUrl: "https://ozwild.github.io",
+  author: "Ozwild",
+  siteDescription:
+    "Ozworks is a production umbrella that comprises software development, music production and music recording",
   pathPrefix: "/oz-dev-website",
-  plugins: [],
+  metadata: {},
+  plugins: [
+    {
+      use: "@gridsome/plugin-sitemap",
+      options: {
+        exclude: ["/privacy", "/legal"],
+      },
+    },
+  ],
   configureWebpack: {
     resolve: {
       alias: {
