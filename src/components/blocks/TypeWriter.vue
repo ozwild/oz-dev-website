@@ -82,7 +82,7 @@ export default {
     },
     printHTMLBlock(block) {
       const { typingSpeed } = this;
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         setTimeout(() => {
           this.html += block;
           resolve();
@@ -118,7 +118,7 @@ export default {
     content: "";
     position: absolute;
     bottom: 0.125em;
-    margin-left: 0.2em;
+    margin-left: 3px;
     background: var(--accent);
     box-shadow: 2px 3px 2px rgba(0 0 0 / 30%),
       4px 4px 8px rgba(0 0 0 / 20%);
