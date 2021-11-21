@@ -7,41 +7,58 @@
       width="auto"
       column
     >
+      <transition name="nav-menu-fade">
+        <FlexBox
+          v-if="shouldDisplayNavMenu"
+          class="nav-menu"
+          :class="{ open: shouldDisplayNavMenu }"
+          column
+        >
+          <button
+            v-if="sectionId > 0"
+            ref="btnGoToFirst"
+            :disabled="sectionId === 0"
+            class="nav-button first"
+            @click="gotoFirst"
+          >
+            <CornerRightUpIcon />
+          </button>
+          <button
+            v-if="sectionId > 0"
+            ref="btnGoToPrevious"
+            :disabled="sectionId === 0"
+            class="nav-button previous"
+            @click="gotoPrevious"
+          >
+            <ArrowUpIcon />
+          </button>
+          <button
+            v-if="sectionId < sections.length - 1"
+            ref="btnGoToNext"
+            :disabled="sectionId >= sections.length"
+            class="nav-button next"
+            @click="gotoNext"
+          >
+            <ArrowDownIcon />
+          </button>
+          <button
+            v-if="sectionId < sections.length - 1"
+            ref="btnGoToLast"
+            :disabled="sectionId >= sections.length"
+            class="nav-button last"
+            @click="gotoLast"
+          >
+            <CornerRightDownIcon />
+          </button>
+        </FlexBox>
+      </transition>
+
       <button
-        v-if="sectionId > 0"
-        ref="btnGoToFirst"
-        :disabled="sectionId === 0"
-        class="nav-button previous"
-        @click="gotoFirst"
+        ref="toggleNavMenu"
+        class="nav-button burguer"
+        @click="toggleNavMenu"
       >
-        <CornerRightUpIcon />
-      </button>
-      <button
-        v-if="sectionId > 0"
-        ref="btnGoToPrevious"
-        :disabled="sectionId === 0"
-        class="nav-button previous"
-        @click="gotoPrevious"
-      >
-        <ArrowUpIcon />
-      </button>
-      <button
-        v-if="sectionId < sections.length - 1"
-        ref="btnGoToNext"
-        :disabled="sectionId >= sections.length"
-        class="nav-button next"
-        @click="gotoNext"
-      >
-        <ArrowDownIcon />
-      </button>
-      <button
-        v-if="sectionId < sections.length - 1"
-        ref="btnGoToLast"
-        :disabled="sectionId >= sections.length"
-        class="nav-button next"
-        @click="gotoLast"
-      >
-        <CornerRightDownIcon />
+        <MenuIcon />
       </button>
     </FlexBox>
   </MatchMedia>
@@ -55,6 +72,7 @@ import {
   ArrowDownIcon,
   CornerRightUpIcon,
   CornerRightDownIcon,
+  MenuIcon,
 } from "vue-feather-icons";
 
 import FlexBox from "@components/blocks/FlexBox.vue";
@@ -77,6 +95,7 @@ export default {
     ArrowDownIcon,
     CornerRightUpIcon,
     CornerRightDownIcon,
+    MenuIcon,
     FlexBox,
     ContentSectionMatrix,
     ContentSectionHello,
@@ -104,6 +123,7 @@ export default {
         y: 0,
         timestamp: null,
       },
+      shouldDisplayNavMenu: false,
       sections: [
         ContentSectionHello,
         ContentSectionSearch,
@@ -155,6 +175,9 @@ export default {
     },
   },
   methods: {
+    toggleNavMenu() {
+      this.shouldDisplayNavMenu = !this.shouldDisplayNavMenu;
+    },
     handleTouchGesture() {
       const { touchStart, touchEnd } = this;
 
@@ -218,7 +241,6 @@ export default {
       }
     },
     gotoPrevious() {
-      console.log(this.$refs.btnGoToPrevious);
       if (this.$refs.btnGoToPrevious) {
         this.$refs.btnGoToPrevious.blur();
       }
@@ -227,11 +249,10 @@ export default {
       this.$emit("prev");
     },
     gotoNext() {
-      console.log(this.$refs.btnGoToNext);
       if (this.$refs.btnGoToNext) {
         this.$refs.btnGoToNext.blur();
       }
-      this.$refs.btnGoToNext.blur();
+
       this.gotoSection(this.sectionId + 1);
       this.$emit("next");
     },
@@ -268,9 +289,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@keyframes nav-menu-out {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 .navigator {
   position: fixed;
   z-index: 150;
+  overflow: hidden;
 
   .nav-button {
     width: 3em;
@@ -279,7 +309,8 @@ export default {
     background-color: var(--dark);
     color: var(--light);
     z-index: 1;
-    transition: box-shadow 250ms ease-out, transform 90ms ease-in;
+    transition: box-shadow 250ms ease-out, transform 90ms ease-in,
+      opacity 90ms ease-in-out;
     cursor: pointer;
     border: 2px solid var(--dark);
     padding: 0;
@@ -298,37 +329,32 @@ export default {
     &:disabled {
       filter: grayscale(1);
     }
-  }
 
-  &.mobile {
-    bottom: 2em;
-    left: 1em;
-    .nav-button {
-      border-radius: 50%;
-      filter: drop-shadow(2px 4px 6px black);
-
-      &.previous {
-        bottom: calc(3em + 6em);
-      }
-      &.next {
-        bottom: 3em;
+    &.burguer {
+      color: var(--accent);
+      opacity: 0.5;
+      &:hover {
+        opacity: 1;
       }
     }
   }
 
+  &.mobile {
+    bottom: 0.5em;
+    left: 1em;
+    .nav-button {
+      border-radius: 50%;
+      filter: drop-shadow(2px 4px 6px black);
+    }
+  }
+
   &.desktop {
-    bottom: 2em;
-    right: 2em;
+    bottom: 1em;
+    right: 1em;
     display: flex;
     .nav-button {
       width: 4em;
       height: 4em;
-      &.previous {
-        bottom: calc(3em + 6em);
-      }
-      &.next {
-        bottom: 3em;
-      }
     }
   }
 }

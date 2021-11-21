@@ -95,3 +95,15 @@
     filter: hue-rotate(360deg);
   }
 }
+
+.nav-menu-fade-enter-active {
+  transition: all 0.2s ease;
+}
+.nav-menu-fade-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.nav-menu-fade-enter,
+.nav-menu-fade-leave-to {
+  transform: translateY(100px);
+  opacity: 0;
+}
