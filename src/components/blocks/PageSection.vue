@@ -37,14 +37,8 @@ export default {
 .ps {
   position: relative;
   height: 100vh;
-  min-height: 50em;
   width: 100%;
-  //mix-blend-mode: screen;
   overflow: hidden;
-
-  /* @media screen and (min-height: 0px) and (max-height: 700px) {
-    min-height: 175vh;
-  } */
 
   &.mode-previous {
     position: absolute;
@@ -66,12 +60,17 @@ export default {
       position: absolute;
       transform: translate(-50%, -50%);
       margin: 0;
-      text-shadow: 2px 3px 2px rgba(0 0 0 / 60%), -1px -1px 0px var(--light),
-        4px 4px 8px rgba(0 0 0 / 20%);
+      text-shadow: 2px 3px 2px rgba(0 0 0 / 60%),
+        -1px -1px 0px rgba(255 255 255 / 60%), 4px 4px 8px rgba(0 0 0 / 20%);
 
       i {
         color: var(--accent);
-        font-size: calc(1.1em);
+        font-size: 1.1em;
+      }
+
+      small {
+        font-size: 0.5em;
+        line-height: 1;
       }
     }
   }
@@ -79,15 +78,11 @@ export default {
   .animation-layer {
     z-index: 10;
     left: 0;
-    //transform: translate(50%, -50%);
-
-    //animation: kenburns-top 8s ease-in forwards;
   }
 
   .background {
     z-index: 0;
     background: var(--dark);
-    //background: var(--primary);
   }
 
   .foreground {
