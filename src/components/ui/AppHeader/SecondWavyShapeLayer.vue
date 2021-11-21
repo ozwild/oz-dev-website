@@ -20,5 +20,6 @@ export default {
   background: #282828;
   min-height: 225px;
   height: calc(22.5vw + 15px);
+  filter: contrast(0.5);
 }
 </style>
