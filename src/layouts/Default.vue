@@ -3,19 +3,14 @@
     <div class="layout" id="app-1">
       <main>
         <Navigator @change="setSection" @loaded="loadedHandler"></Navigator>
-        <component :is="section"></component>
+
+        <transition name="fade" mode="out-in">
+          <component :is="section"></component>
+        </transition>
       </main>
     </div>
   </MediaQueryProvider>
 </template>
-
-<static-query>
-query {
-  metadata {
-    siteName
-  }
-}
-</static-query>
 
 <script>
 import { MediaQueryProvider } from "vue-component-media-queries";
