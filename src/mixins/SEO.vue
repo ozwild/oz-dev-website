@@ -15,7 +15,7 @@ export default {
     const siteUrl = this.$static.metadata.siteUrl;
     const description = this.$static.metadata.description;
     const image = "seo.png";
-    const imagePath = (image && `${siteUrl}${image}`) || "";
+    const imagePath = (image && `${siteUrl}/${image}`) || "";
     const title = "Ozwild - Sr Full Stack Developer";
 
     return {
