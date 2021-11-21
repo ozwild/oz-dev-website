@@ -13,11 +13,17 @@
           >
             <FlexBox column>
               <FlexBox x="center" class="avatar-section">
-                <Layer class="avatar-shadow-circle back-shadow"></Layer>
+                <Layer
+                  v-if="!mobile"
+                  class="avatar-shadow-circle back-shadow"
+                ></Layer>
                 <div class="avatar-container">
                   <g-image class="avatar" src="~/media/me.jpg"></g-image>
                 </div>
-                <Layer class="avatar-shadow-circle fore-shadow"></Layer>
+                <Layer
+                  v-if="!mobile"
+                  class="avatar-shadow-circle fore-shadow"
+                ></Layer>
               </FlexBox>
               <FlexBox x="center">
                 <g-image
@@ -160,14 +166,15 @@ export default {
   .background {
     // Saving this gradient in case I decide
     // to add a light version of the site
+    background: var(--dark);
     /* background: repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 10px,
-          #fff 10px,
-          #fff 20px
-        ),
-        linear-gradient(to bottom, #fff, #ddd); */
+        90deg,
+        transparent,
+        transparent 10px,
+        #fff 10px,
+        #fff 20px
+      ),
+      linear-gradient(to bottom, #fff, #ddd); */
     background: repeating-linear-gradient(
         90deg,
         transparent,
@@ -180,14 +187,15 @@ export default {
 
   &.mobile {
     .background {
-      filter: grayscale(0.3) brightness(2.2);
+      //filter: grayscale(0.3) brightness(2.2);
     }
     .main-container {
       position: relative;
       top: 0;
       left: 0;
-      height: 90%;
+      height: 95%;
       color: var(--light);
+      //color: var(--dark);
       z-index: 10;
       width: 100%;
 
@@ -197,17 +205,20 @@ export default {
       }
 
       .bottom-frame {
-        margin: 0 1em 2em 5.5em;
+        margin: 0 1em 0em 5.5em;
         width: calc(100% - 7em) !important;
 
         a {
           color: var(--light);
+          //color: var(--dark);
         }
       }
     }
   }
 
   &.desktop {
+    min-height: 50em;
+
     .call-me-section {
       position: absolute;
       top: 8em;
@@ -359,7 +370,7 @@ export default {
       background: var(--dark);
       mix-blend-mode: color;
       animation: bounce-in-bottom 1.1s both;
-      animation-delay: 1.5s;
+      animation-delay: 1s;
     }
 
     .avatar {
