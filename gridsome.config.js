@@ -11,7 +11,8 @@ module.exports = {
   author: "Ozwild",
   siteDescription:
     "Ozworks is a production umbrella that comprises software development, music production and music recording",
-  pathPrefix: "/oz-dev-website",
+  // Toggle between the production and development environment.
+  //pathPrefix: "/oz-dev-website",
   metadata: {},
   plugins: [
     {

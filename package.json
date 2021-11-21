@@ -14,7 +14,7 @@
     "develop": "gridsome develop",
     "explore": "gridsome explore",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist --repo git@github.com:ozwild/ozwild.github.io.git"
   },
   "dependencies": {
     "@gridsome/plugin-sitemap": "^0.4.0",
