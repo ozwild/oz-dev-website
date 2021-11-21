@@ -8,14 +8,11 @@
       </template>
 
       <template v-slot:foreground>
-        <Layer class="wclb">
-          <SecondWavyShapeLayer color="var(--accent)"></SecondWavyShapeLayer>
-          <FirstWavyShapeLayer color="var(--dark)"></FirstWavyShapeLayer>
-        </Layer>
+        
       </template>
 
       <template v-slot:title>
-        <TypeWriter component="h2"> Enter the <i>Matrix</i>! </TypeWriter>
+        <TypeWriter component="h2"> Enter the <i>Matrix</i></TypeWriter>
       </template>
     </PageSection>
   </MatchMedia>
@@ -73,16 +70,23 @@ export default {
     }
   }
 
+  .animation-layer {
+    filter: opacity(0.5);
+  }
+
   .bcl {
     background: var(--dark);
     mix-blend-mode: overlay;
+    mix-blend-mode: multiply;
     z-index: 20;
     animation: fade-in 1.5s ease-in forwards;
   }
 
   .bgcl {
     background: linear-gradient(170deg, var(--light), black);
+    background: linear-gradient(170deg, orange, var(--accent));
     mix-blend-mode: overlay;
+    mix-blend-mode: soft-light;
     animation: fade-in 1.5s ease-in forwards;
     z-index: 21;
   }

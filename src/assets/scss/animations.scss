@@ -96,6 +96,17 @@
   }
 }
 
+@keyframes curtain-drop {
+  0% {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .nav-menu-fade-enter-active {
   transition: all 0.2s ease;
 }
@@ -105,5 +116,15 @@
 .nav-menu-fade-enter,
 .nav-menu-fade-leave-to {
   transform: translateY(100px);
+  opacity: 0;
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.component-fade-enter-from,
+.component-fade-leave-to {
   opacity: 0;
 }

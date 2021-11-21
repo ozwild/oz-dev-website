@@ -1,6 +1,10 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
+      <template v-slot:background>
+        <Layer class="background"></Layer>
+      </template>
+
       <template v-slot:animation>
         <Layer class="gateway">
           <Layer class="beyond-gateway">
@@ -8,17 +12,14 @@
             <CubeFrame class="cube-frame"></CubeFrame>
           </Layer>
         </Layer>
-        
       </template>
 
       <template v-slot:foreground>
-        <Layer class="near-land"></Layer>
+        <!-- <Layer class="near-land"></Layer> -->
       </template>
 
       <template v-slot:title>
-        <TypeWriter component="h2">
-          Come and get the <i>POWER</i>
-        </TypeWriter>
+        <TypeWriter component="h2"> Do you want the <i>POWER</i>??? </TypeWriter>
       </template>
     </PageSection>
   </MatchMedia>
@@ -40,6 +41,9 @@ export default {
 
 <style lang="scss" scoped>
 .psa {
+  .background {
+    background: linear-gradient(180deg, var(--dark), black 60%, var(--dark));
+  }
   &.mobile {
     .title-layer {
       h2 {

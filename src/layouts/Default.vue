@@ -4,7 +4,7 @@
       <main>
         <Navigator @change="setSection" @loaded="loadedHandler"></Navigator>
 
-        <transition name="fade" mode="out-in">
+        <transition name="component-fade" mode="out-in">
           <component :is="section"></component>
         </transition>
       </main>

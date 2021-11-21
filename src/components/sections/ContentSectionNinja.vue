@@ -1,6 +1,10 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
+      <template v-slot:background>
+        <div class="gradient-overlay"></div>
+      </template>
+
       <template v-slot:animation>
         <g-image
           v-if="mobile"
@@ -8,6 +12,7 @@
           class="pow"
         ></g-image>
         <g-image v-else src="~/media/pow.gif" class="pow"></g-image>
+        <Layer class="power-overlay"></Layer>
       </template>
 
       <template v-slot:foreground>
@@ -78,16 +83,13 @@ export default {
     }
   }
 
-  .background {
-    .gradient-overlay {
-      background: linear-gradient(
-        0deg,
-        var(--primary),
-        var(--accent),
-        var(--light)
-      );
-    }
-    filter: none;
+  .gradient-overlay {
+    background: linear-gradient(
+      0deg,
+      var(--primary),
+      var(--accent),
+      var(--light)
+    );
   }
 
   .wcl {
@@ -97,12 +99,12 @@ export default {
 
   .background-dune {
     z-index: 20;
-    filter: saturate(0.7) brightness(1) contrast(0.8);
+    //filter: saturate(0.7) brightness(1) contrast(0.8);
   }
 
   .foreground-dune {
     z-index: 100;
-    filter: saturate(1.2) brightness(1.1);
+    //filter: saturate(1.2) brightness(1.1);
   }
 
   .pow {
@@ -111,7 +113,7 @@ export default {
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%) scale(2);
-    opacity: 0.85;
+    opacity: 0.3;
     z-index: 1;
   }
 

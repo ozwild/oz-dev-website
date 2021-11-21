@@ -26,7 +26,7 @@
       <template v-slot:title>
         <TypeWriter component="h2">
           with lots of
-          <i>skills</i>
+          <i>skills</i>?
         </TypeWriter>
       </template>
     </PageSection>

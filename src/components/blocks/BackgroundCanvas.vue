@@ -191,6 +191,7 @@ canvas {
   min-height: 100vh;
   transform: translateX(-50%);
   z-index: 0;
-  filter: opacity(0.5) contrast(0.7);
+  //filter: opacity(0.5) contrast(0.7);
+
 }
 </style>

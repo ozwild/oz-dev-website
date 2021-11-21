@@ -289,37 +289,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@keyframes nav-menu-out {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
 .navigator {
   position: fixed;
   z-index: 150;
-  overflow: hidden;
+  padding: 7px 4px;
+
+  .nav-menu {
+    &:not(.open) {
+      .nav-button {
+        z-index: -1;
+      }
+    }
+  }
 
   .nav-button {
     width: 3em;
     height: 3em;
     margin-top: 1em;
+    padding-top: 1em;
     background-color: var(--dark);
-    color: var(--light);
+    background: rgba(18 21 31 / 80%);
+    color: var(--accent);
     z-index: 1;
-    transition: box-shadow 250ms ease-out, transform 90ms ease-in,
+    transition: box-shadow 150ms ease-out, transform 90ms ease-in,
       opacity 90ms ease-in-out;
     cursor: pointer;
-    border: 2px solid var(--dark);
+    border: 2px solid;
     padding: 0;
     transform: translateY(-50%);
     box-shadow: 0 0 2px -1px var(--primary);
+    border-radius: 50%;
 
     &:hover:not(:disabled) {
-      transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 0 4px 0px var(--primary);
+      transform: translateY(-50%) scale(1);
+      box-shadow: 0 0 8px -2px var(--primary);
     }
 
     &:active:not(:disabled) {
@@ -332,7 +335,9 @@ export default {
 
     &.burguer {
       color: var(--accent);
-      opacity: 0.5;
+      background: transparent;
+      border-color: transparent;
+      z-index: 10;
       &:hover {
         opacity: 1;
       }
@@ -340,11 +345,10 @@ export default {
   }
 
   &.mobile {
-    bottom: 0.5em;
-    left: 1em;
+    bottom: 0em;
+    left: 0.5em;
     .nav-button {
       border-radius: 50%;
-      filter: drop-shadow(2px 4px 6px black);
     }
   }
 

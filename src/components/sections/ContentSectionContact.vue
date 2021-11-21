@@ -34,7 +34,7 @@
                 <g-image
                   v-else
                   class="my-name"
-                  src="~/media/Ozwild - Oscar Palencia.png"
+                  src="~/media/Ozwild - Oscar Palencia-alt.png"
                 ></g-image>
               </FlexBox>
               <FlexBox x="around">
@@ -166,7 +166,7 @@ export default {
   .background {
     // Saving this gradient in case I decide
     // to add a light version of the site
-    background: var(--dark);
+
     /* background: repeating-linear-gradient(
         90deg,
         transparent,
@@ -183,12 +183,10 @@ export default {
         var(--dark) 20px
       ),
       linear-gradient(to bottom, var(--primary), var(--dark));
+    animation: curtain-drop 1s ease-in-out forwards;
   }
 
   &.mobile {
-    .background {
-      //filter: grayscale(0.3) brightness(2.2);
-    }
     .main-container {
       position: relative;
       top: 0;
@@ -299,13 +297,13 @@ export default {
       top: 54%;
       left: 50%;
       transform: translate(-50%, -50%);
-      min-height: 40%;
-      max-height: 32em;
-      color: var(--dark);
-      background: var(--light);
+      height: 65%;
+      min-height: 32em;
+      color: var(--light);
+      background: var(--dark);
       z-index: 10;
       opacity: 0;
-      box-shadow: 2px 2px 8px 0px black;
+      box-shadow: 2px 2px 8px 0px rgba(0 0 0 / 40%);
       animation: fade-in 0.4s 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
 
       .avatar-section {
@@ -319,6 +317,7 @@ export default {
         .avatar {
           width: calc(7em + 5vw);
           height: calc(7em + 5vw);
+          filter: drop-shadow(2px 4px 6px black) brightness(0.7);
         }
       }
 
@@ -328,10 +327,12 @@ export default {
         &.back-shadow {
           top: calc((7em + 5vw) / -2);
           left: 45%;
+          filter: opacity(0.5);
         }
         &.fore-shadow {
           top: calc((5em + 5vw) / -2);
           left: 55%;
+          filter: opacity(0.5);
         }
       }
 
@@ -341,16 +342,17 @@ export default {
 
       .featured-skill {
         font-weight: bold;
-        border: 2px solid var(--light);
         padding: 4px 8px;
         min-width: 4em;
         text-align: center;
-        box-shadow: 0px 4px 3px -2px rgb(0 0 0 / 20%);
       }
 
       .bottom-frame {
         margin: 0 15vw 2em 5vw;
         width: calc(100% - 5vw);
+        a {
+          color: var(--light);
+        }
       }
     }
   }

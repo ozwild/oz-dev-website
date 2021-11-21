@@ -3,8 +3,6 @@
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
       <template v-slot:title>
         <h2 component="h2">
-          Well,
-          <br />
           <i>I'm</i>
           <br />your <br />
           guy
@@ -42,7 +40,7 @@ export default {
   }
 
   h2 {
-    top: 10%;
+    top: 15%;
     text-align: center;
     text-transform: none;
     display: block;
