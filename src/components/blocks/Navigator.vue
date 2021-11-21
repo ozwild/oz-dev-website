@@ -133,8 +133,11 @@ export default {
 
       const timeDelta = this.touchEnd.timestamp - this.touchStart.timestamp;
       const yDelta = this.touchEnd.y - this.touchStart.y;
-
-      if (timeDelta < this.swipeTimeout && yDelta > this.swipeThreshold) {
+      console.log(yDelta);
+      if (
+        timeDelta < this.swipeTimeout &&
+        Math.abs(yDelta) > this.swipeThreshold
+      ) {
         this.handleTouchGesture();
       }
     });
@@ -165,11 +168,13 @@ export default {
 
       if (touchEnd.y < touchStart.y) {
         // Swipe up
+        console.log("swipe up");
         this.gotoNext();
       }
 
       if (touchEnd.y > touchStart.y) {
         // Swipe down
+        console.log("swipe down");
         this.gotoPrevious();
       }
     },
@@ -213,12 +218,19 @@ export default {
       }
     },
     gotoPrevious() {
-      this.$refs.btnGoToPrevious.blur();
+      console.log(this.$refs.btnGoToPrevious);
+      if (this.$refs.btnGoToPrevious) {
+        this.$refs.btnGoToPrevious.blur();
+      }
+
       this.gotoSection(this.sectionId - 1);
       this.$emit("prev");
     },
     gotoNext() {
       console.log(this.$refs.btnGoToNext);
+      if (this.$refs.btnGoToNext) {
+        this.$refs.btnGoToNext.blur();
+      }
       this.$refs.btnGoToNext.blur();
       this.gotoSection(this.sectionId + 1);
       this.$emit("next");
