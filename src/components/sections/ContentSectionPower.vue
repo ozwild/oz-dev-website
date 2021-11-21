@@ -17,8 +17,7 @@
 
       <template v-slot:title>
         <TypeWriter component="h2">
-          <span class="a">Tap on the </span>
-          <span class="b"><i>POWER</i></span>
+          Come and get the <i>POWER</i>
         </TypeWriter>
       </template>
     </PageSection>
@@ -46,7 +45,7 @@ export default {
       h2 {
         font-size: 4.75em;
         top: 50%;
-        left: 5%;
+        left: 0.4em;
         transform: translateY(-50%);
       }
     }

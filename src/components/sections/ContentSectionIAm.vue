@@ -3,8 +3,10 @@
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
       <template v-slot:title>
         <h2 component="h2">
-          I
-          <i>am</i><br />your <br />
+          Well,
+          <br />
+          <i>I'm</i>
+          <br />your <br />
           guy
         </h2>
       </template>
@@ -30,35 +32,29 @@ export default {
   &.mobile {
     .title-layer {
       h2 {
+        width: calc(100% - 1em);
+        max-width: 80%;
         font-size: 6.5rem;
-        top: 15%;
+        top: 10%;
+        transform: translateY(-50%);
       }
     }
   }
 
-  .title-layer {
-    z-index: 50;
-    width: 300vw;
-    left: 50%;
-    transform: translateX(-50%);
+  h2 {
+    top: 10%;
+    text-align: center;
+    text-transform: none;
+    display: block;
+    transform: translate3d(0, 0, 0);
+    font-size: calc(4em + 4vw);
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    opacity: 0;
 
-    h2 {
-      text-align: center;
-      text-transform: none;
-      display: block;
-      transform: translate3d(0, 0, 0);
-      font-size: calc(4em + 4vw);
-      bottom: calc(1em + 2vw);
-      margin: 0 auto;
-      padding: 0;
-      position: relative;
-      top: 15%;
-      white-space: nowrap;
-      opacity: 0;
-
-      animation: puff-in-center 2s 0.5s
-        cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-    }
+    animation: puff-in-center 2s 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      forwards;
   }
 }
 </style>

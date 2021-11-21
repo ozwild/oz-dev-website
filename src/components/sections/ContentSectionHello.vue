@@ -12,7 +12,7 @@
 
       <template v-slot:title>
         <TypeWriter component="h2" class="caption">
-          Hello <i>jolly</i> visitor!
+          Hi there!
         </TypeWriter>
       </template>
     </PageSection>
@@ -29,11 +29,6 @@ import TypeWriter from "@components/blocks/TypeWriter.vue";
 export default {
   name: "content-section-hello",
   components: { PageSection, Layer, MatchMedia, TypeWriter },
-  data() {
-    return {
-      caption: "Hello there\njolly visitor",
-    };
-  },
 };
 </script>
 
@@ -55,9 +50,10 @@ export default {
     }
     .title-layer {
       h2 {
-        font-size: 4.5em;
+        font-size: 5.5em;
         top: 55%;
-        left: 10%;
+        left: 0.5em;
+        width: calc(100% - 1em);
         transform: translateY(-50%);
       }
     }

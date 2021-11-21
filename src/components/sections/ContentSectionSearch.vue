@@ -9,7 +9,7 @@
 
       <template v-slot:title>
         <TypeWriter component="h2">
-          Are you on the <i>look</i> for...
+          Looking for a <i>full stack</i> dev?
         </TypeWriter>
       </template>
     </PageSection>
@@ -34,17 +34,19 @@ export default {
   &.mobile {
     .title-layer {
       h2 {
-        font-size: 4.5em;
+        font-size: 5em;
         top: 45%;
-        left: 10%;
+        left: 0.5em;
+        text-align: end;
+        width: calc(100% - 1em);
         transform: translateY(-50%);
         max-width: 80%;
       }
     }
     .searching {
       right: 1em;
-      top: 50%;
-      left: 50%;
+      top: 25%;
+      left: 15%;
       transform: translate(-40%, -40%);
     }
   }

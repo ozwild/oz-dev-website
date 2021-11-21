@@ -15,9 +15,7 @@
       </template>
 
       <template v-slot:title>
-        <TypeWriter component="h2">
-          Come into the <i class="big">matrix</i>
-        </TypeWriter>
+        <TypeWriter component="h2"> Enter the <i>Matrix</i>! </TypeWriter>
       </template>
     </PageSection>
   </MatchMedia>
@@ -76,17 +74,15 @@ export default {
   }
 
   .bcl {
-    background: var(--accent);
-    filter: opacity(0.5);
+    background: var(--dark);
     mix-blend-mode: overlay;
     z-index: 20;
     animation: fade-in 1.5s ease-in forwards;
   }
 
   .bgcl {
-    background: linear-gradient(45deg, var(--primary), var(--light));
-    mix-blend-mode: exclusion;
-    mix-blend-mode: hard-light;
+    background: linear-gradient(170deg, var(--light), black);
+    mix-blend-mode: overlay;
     animation: fade-in 1.5s ease-in forwards;
     z-index: 21;
   }

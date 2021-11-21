@@ -2,7 +2,11 @@
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
       <template v-slot:animation>
-        <g-image v-if="mobile" src="~/media/pow-mobile.gif" class="pow"></g-image>
+        <g-image
+          v-if="mobile"
+          src="~/media/pow-mobile.gif"
+          class="pow"
+        ></g-image>
         <g-image v-else src="~/media/pow.gif" class="pow"></g-image>
       </template>
 
@@ -21,9 +25,7 @@
       </template>
 
       <template v-slot:title>
-        <TypeWriter component="h2">
-          ... One major <i>badass</i> code Ninja
-        </TypeWriter>
+        <TypeWriter component="h2"> an agile code <i>ninja</i> </TypeWriter>
       </template>
     </PageSection>
   </MatchMedia>
@@ -67,9 +69,11 @@ export default {
     }
     .title-layer {
       h2 {
-        font-size: 4.5em;
+        font-size: 6em;
         top: 40%;
-        left: 50%;
+        left: 0.6em;
+        width: calc(100% - 1em);
+        transform: translateY(-50%);
       }
     }
   }

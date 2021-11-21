@@ -6,7 +6,7 @@
       </template>
       <template v-slot:title>
         <TypeWriter component="h2">
-          ... a <i>great</i> Full Stack Dev?
+          ... a <i>great</i> one?
         </TypeWriter>
       </template>
     </PageSection>
@@ -39,7 +39,11 @@ export default {
 
     .title-layer {
       h2 {
-        font-size: 5em;
+        left: unset;
+        right: 0.5em;
+        top: 47%;
+        transform: translateY(-50%);
+        font-size: 6.5em;
       }
     }
   }
