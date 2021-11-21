@@ -67,6 +67,7 @@ import ContentSectionNinja from "@components/sections/ContentSectionNinja.vue";
 import ContentSectionPower from "@components/sections/ContentSectionPower.vue";
 import ContentSectionIAm from "@components/sections/ContentSectionIAm.vue";
 import ContentSectionContact from "@components/sections/ContentSectionContact.vue";
+import ContentSectionKeywords from "@components/sections/ContentSectionKeywords.vue";
 
 export default {
   name: "Navigator",
@@ -85,6 +86,7 @@ export default {
     ContentSectionPower,
     ContentSectionContact,
     ContentSectionGreat,
+    ContentSectionKeywords,
   },
   data() {
     return {
@@ -107,9 +109,10 @@ export default {
         ContentSectionSearch,
         ContentSectionGreat,
         ContentSectionNinja,
+        ContentSectionKeywords,
         ContentSectionIAm,
-        ContentSectionMatrix,
         ContentSectionPower,
+        ContentSectionMatrix,
         ContentSectionContact,
       ],
     };
@@ -261,7 +264,7 @@ export default {
     width: 3em;
     height: 3em;
     margin-top: 1em;
-    background-color: var(--primary);
+    background-color: var(--dark);
     color: var(--light);
     z-index: 1;
     transition: box-shadow 250ms ease-out, transform 90ms ease-in;
@@ -269,10 +272,11 @@ export default {
     border: 2px solid var(--dark);
     padding: 0;
     transform: translateY(-50%);
+    box-shadow: 0 0 2px -1px var(--primary);
 
     &:hover:not(:disabled) {
       transform: translateY(-50%) scale(1.1);
-      box-shadow: 0 0 32px -2px var(--light);
+      box-shadow: 0 0 4px 0px var(--primary);
     }
 
     &:active:not(:disabled) {
