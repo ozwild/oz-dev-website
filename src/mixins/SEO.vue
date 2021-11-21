@@ -4,6 +4,8 @@
       siteName
       siteDescription
       siteUrl
+      author
+      keywords
     }
   }
 </static-query>
@@ -12,16 +14,23 @@
 export default {
   name: "seoMixin",
   metaInfo() {
-    const siteUrl = this.$static.metadata.siteUrl;
-    const description = this.$static.metadata.description;
+    const {
+      siteUrl,
+      siteDescription,
+      author,
+      keywords,
+    } = this.$static.metadata;
+
+    const siteName = "I'm a ninja! ";
     const image = "seo.png";
     const imagePath = (image && `${siteUrl}/${image}`) || "";
-    const title = "Ozwild - Sr Full Stack Developer";
 
     return {
-      title,
+      title: siteName,
       meta: [
-        { key: "description", name: "description", content: description },
+        { key: "author", name: "author", content: author },
+        { key: "keywords", name: "keywords", content: keywords },
+        { key: "description", name: "description", content: siteDescription },
         { key: "og:url", property: "og:url", content: `${siteUrl}` },
         {
           key: "og:type",
@@ -31,7 +40,7 @@ export default {
         {
           key: "og:description",
           property: "og:description",
-          content: description,
+          content: siteDescription,
         },
         {
           key: "og:image",
@@ -51,7 +60,7 @@ export default {
         {
           key: "twitter:description",
           name: "twitter:description",
-          content: description,
+          content: siteDescription,
         },
         {
           key: "twitter:image",
@@ -61,7 +70,7 @@ export default {
         {
           key: "twitter:title",
           property: "twitter:title",
-          content: title,
+          content: siteName,
         },
       ],
     };

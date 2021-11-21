@@ -6,14 +6,17 @@ const path = require("path");
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: "Ozworks",
+  siteName: "Ozwild",
   siteUrl: "https://ozwild.github.io",
-  author: "Ozwild",
   siteDescription:
     "Ozworks is a production umbrella that comprises software development, music production and music recording",
   // Toggle between the production and development environment.
   //pathPrefix: "/oz-dev-website",
-  metadata: {},
+  metadata: {
+    author: "Ozworks",
+    keywords:
+      "Ozwild,Ozwildgt,oscar palencia,Full Stack,Software Developer,Software Engineer,Front end,Back end",
+  },
   plugins: [
     {
       use: "@gridsome/plugin-sitemap",
