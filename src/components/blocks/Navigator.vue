@@ -60,6 +60,13 @@
       >
         <MenuIcon />
       </button>
+
+      <div v-if="autoSwitch.counting" class="auto-switch-progress-bar">
+        <div
+          class="progress"
+          :style="{ width: `${autoSwitch.progress}%` }"
+        ></div>
+      </div>
     </FlexBox>
   </MatchMedia>
 </template>
@@ -89,6 +96,11 @@ import ContentSectionKeywords from "@components/sections/ContentSectionKeywords.
 
 export default {
   name: "Navigator",
+  props: {
+    autoSwitchSpeed: { type: Number, default: 5 },
+    pauseAutoSwitch: { type: Boolean, default: false },
+    eventBus: Object,
+  },
   components: {
     MatchMedia,
     ArrowUpIcon,
@@ -123,6 +135,13 @@ export default {
         y: 0,
         timestamp: null,
       },
+      autoSwitch: {
+        counting: false,
+        // 0 to 100
+        progress: 0,
+        timeToSwitch: this.autoSwitchSpeed,
+        iterationsPerSecond: 5,
+      },
       shouldDisplayNavMenu: false,
       sections: [
         ContentSectionHello,
@@ -138,6 +157,7 @@ export default {
     };
   },
   mounted() {
+    this.eventBus.$on("section-loaded", this.abortAutoSwitch);
     document.addEventListener("keydown", this.handleKeyDown);
 
     document.addEventListener("touchstart", (e) => {
@@ -166,12 +186,23 @@ export default {
   },
   watch: {
     sectionId(newSectionId) {
-      const section = this.sections[newSectionId];
+      const { sections, pauseAutoSwitch } = this;
+      const section = sections[newSectionId];
       if (!this.loaded) {
         this.loaded = true;
         this.$emit("loaded");
       }
       this.$emit("change", section);
+
+      if (newSectionId !== sections.length - 1 && !pauseAutoSwitch) {
+        this.triggerAutoSwitch();
+      }
+    },
+    pauseAutoSwitch(newValue) {
+      const { sectionId, sections } = this;
+      if (sectionId !== sections.length - 1 && !newValue) {
+        this.triggerAutoSwitch();
+      }
     },
   },
   methods: {
@@ -287,6 +318,53 @@ export default {
       }
       e.preventDefault();
     },
+    triggerAutoSwitch() {
+      this.autoSwitch.progress = 0;
+      this.autoSwitch.counting = false;
+      setTimeout(() => this.autoSwitchCountDown(), 3e3);
+    },
+    autoSwitchCountDown() {
+      const { timeToSwitch, iterationsPerSecond } = this.autoSwitch;
+      this.autoSwitch.counting = true;
+      let timeReference;
+      let iterations = 0;
+
+      const handler = (timestamp) => {
+        if (!timeReference) timeReference = timestamp;
+        const delta = timestamp - timeReference;
+        if (delta > 1e3 / iterationsPerSecond) {
+          if (!this.pauseAutoSwitch) {
+          }
+          timeReference = timestamp;
+          iterations++;
+          this.updateAutoSwitchProgress(iterations);
+        }
+        if (
+          iterations < timeToSwitch * iterationsPerSecond &&
+          !this.pauseAutoSwitch &&
+          this.autoSwitch.counting
+        ) {
+          requestAnimationFrame(handler);
+        }
+      };
+      requestAnimationFrame(handler);
+    },
+    abortAutoSwitch() {
+      this.autoSwitch.counting = false;
+    },
+    updateAutoSwitchProgress(iterations) {
+      const { timeToSwitch, iterationsPerSecond } = this.autoSwitch;
+      const totalIterations = timeToSwitch * iterationsPerSecond;
+      const progress = (iterations / totalIterations) * 100;
+
+      if (progress >= 100) {
+        this.autoSwitch.counting = false;
+        this.autoSwitch.progress = 0;
+        this.gotoNext();
+      } else {
+        this.autoSwitch.progress = progress;
+      }
+    },
   },
 };
 </script>
@@ -344,6 +422,21 @@ export default {
       &:hover {
         opacity: 1;
       }
+    }
+  }
+
+  .auto-switch-progress-bar {
+    background: var(--primary);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.25em;
+    .progress {
+      height: 0.25em;
+      background: var(--accent);
+      max-width: 100%;
+      transition: width 200ms;
     }
   }
 

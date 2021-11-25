@@ -3,13 +3,21 @@
     <MatchMedia v-slot="{ mobile }">
       <div class="layout" id="app-1">
         <main>
-          <Navigator @change="setSection" @loaded="loadedHandler" />
+          <Navigator
+            :eventBus="eventBus"
+            @change="setSection"
+            @loaded="loadedHandler"
+            :pauseAutoSwitch="presentingInstructions"
+          />
 
           <transition name="component-fade" mode="out-in">
             <component :is="section"></component>
           </transition>
 
-          <PageInstructions :mobile="mobile" />
+          <PageInstructions
+            :mobile="mobile"
+            @change="instructionsChangeHandler"
+          />
         </main>
       </div>
     </MatchMedia>
@@ -17,6 +25,7 @@
 </template>
 
 <script>
+import Vue from "vue";
 import { MediaQueryProvider, MatchMedia } from "vue-component-media-queries";
 
 import Navigator from "@components/blocks/Navigator.vue";
@@ -36,16 +45,22 @@ export default {
   queries,
   data() {
     return {
+      eventBus: new Vue(),
       section: null,
       ready: false,
+      presentingInstructions: false,
     };
   },
   methods: {
     setSection(section) {
       this.section = section;
+      this.eventBus.$emit("section-loaded", section);
     },
     loadedHandler() {
       this.ready = true;
+    },
+    instructionsChangeHandler(presentingInstructions) {
+      this.presentingInstructions = presentingInstructions;
     },
   },
 };

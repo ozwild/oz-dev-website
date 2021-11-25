@@ -27,22 +27,21 @@
                   (<ArrowUpIcon class="icon" />) to navigate.
                 </div>
 
-                <div v-else-if="section === 2">
+                <div v-else-if="mobile && section === 2">
                   Or you can use the menu (<MenuIcon class="icon" />) on your
                   left
+                </div>
+
+                <div v-else-if="!mobile && section === 2">
+                  Or use the menu (<MenuIcon class="icon" />) on your right
                 </div>
 
                 <div v-else-if="section === 3">
-                  Or you can use the menu (<MenuIcon class="icon" />) on your
-                  left
-                </div>
-
-                <div v-else-if="section === 4">
                   Using the 'Home' key (<HomeIcon class="icon" />) will return
                   you to the top of the page.
                 </div>
 
-                <div v-else-if="section === 5">
+                <div v-else-if="section === 4">
                   Using the 'End' key (<ChevronsDownIcon class="icon" />) will
                   take you to the the last section of the page.
                 </div>
@@ -108,6 +107,7 @@ export default {
     };
   },
   mounted() {
+    document.addEventListener("keydown", this.handleKeyDown);
     const shouldNotShow = localStorage.getItem(this.doNotShowStorageKey);
     if (!shouldNotShow) {
       this.show();
@@ -124,30 +124,40 @@ export default {
     },
     showPointer(newValue) {
       if (newValue) {
-        setTimeout(() => (this.showPointer = false), 7e3);
+        setTimeout(() => (this.showPointer = false), 3e3);
       }
     },
   },
   methods: {
+    handleKeyDown(e) {
+      console.log(e.key);
+      switch (e.key) {
+        case "Escape":
+          this.dismiss();
+          break;
+      }
+      e.preventDefault();
+    },
     show() {
       setTimeout(() => {
         this.showLayer = true;
-      }, 1e3);
+        this.$emit("change", true);
+      }, 3e3);
     },
     dismiss() {
       if (this.doNotShowAgain) {
         localStorage.setItem(this.doNotShowStorageKey, true);
       }
       this.showLayer = false;
+      this.$emit("change", false);
     },
     next() {
       const { mobile, section: currentSectionIndex } = this;
-      const ceiling = mobile ? 2 : 5;
+      const ceiling = mobile ? 2 : 4;
 
       const next =
         currentSectionIndex + 1 > ceiling ? 1 : currentSectionIndex + 1;
 
-      console.log("next", ceiling, next);
       this.section = next;
     },
   },
@@ -159,9 +169,9 @@ export default {
   position: fixed;
   background: transparent;
   color: var(--light);
-  opacity: 0;
   border-radius: 50%;
   z-index: 50;
+  opacity: 0;
   transform: translate(-50%, -50%) scale(50);
   animation: pointer-appear 0.65s 0.35s cubic-bezier(0.23, 1, 0.32, 1) forwards,
     pointer-appear 0.8s 2s ease-out reverse forwards;
@@ -170,8 +180,17 @@ export default {
     border: 12em solid;
     width: 3.2em;
     height: 3.2em;
-    bottom: -47.2%;
-    left: 7.5%;
+    bottom: -24.3em;
+    left: 2em;
+  }
+
+  &.desktop {
+    border: 25em solid;
+    width: 5em;
+    height: 5em;
+    bottom: -50em;
+    left: unset;
+    right: -52em;
   }
 }
 .container {
