@@ -1,21 +1,26 @@
 <template>
   <MediaQueryProvider :queries="$options.queries">
-    <div class="layout" id="app-1">
-      <main>
-        <Navigator @change="setSection" @loaded="loadedHandler"></Navigator>
+    <MatchMedia v-slot="{ mobile }">
+      <div class="layout" id="app-1">
+        <main>
+          <Navigator @change="setSection" @loaded="loadedHandler" />
 
-        <transition name="component-fade" mode="out-in">
-          <component :is="section"></component>
-        </transition>
-      </main>
-    </div>
+          <transition name="component-fade" mode="out-in">
+            <component :is="section"></component>
+          </transition>
+
+          <PageInstructions :mobile="mobile" />
+        </main>
+      </div>
+    </MatchMedia>
   </MediaQueryProvider>
 </template>
 
 <script>
-import { MediaQueryProvider } from "vue-component-media-queries";
+import { MediaQueryProvider, MatchMedia } from "vue-component-media-queries";
 
 import Navigator from "@components/blocks/Navigator.vue";
+import PageInstructions from "@components/blocks/PageInstructions.vue";
 
 const queries = {
   mobile: "(max-width: 760px)",
@@ -24,7 +29,9 @@ const queries = {
 export default {
   components: {
     MediaQueryProvider,
+    MatchMedia,
     Navigator,
+    PageInstructions,
   },
   queries,
   data() {

@@ -65,6 +65,19 @@
   }
 }
 
+@keyframes pointer-appear {
+  0% {
+    display: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(50);
+  }
+  100% {
+    display: block;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
 @keyframes slide-in-fwd-center {
   0% {
     transform: translateZ(-1400px);
@@ -126,5 +139,15 @@
 
 .component-fade-enter-from,
 .component-fade-leave-to {
+  opacity: 0;
+}
+
+.instructions-fade-enter-active,
+.instructions-fade-leave-active {
+  transition: opacity 0.6s ease;
+}
+
+.instructions-fade-enter-from,
+.instructions-fade-leave-to {
   opacity: 0;
 }

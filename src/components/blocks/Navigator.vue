@@ -153,7 +153,7 @@ export default {
 
       const timeDelta = this.touchEnd.timestamp - this.touchStart.timestamp;
       const yDelta = this.touchEnd.y - this.touchStart.y;
-      console.log(yDelta);
+
       if (
         timeDelta < this.swipeTimeout &&
         Math.abs(yDelta) > this.swipeThreshold
@@ -191,13 +191,11 @@ export default {
 
       if (touchEnd.y < touchStart.y) {
         // Swipe up
-        console.log("swipe up");
         this.gotoNext();
       }
 
       if (touchEnd.y > touchStart.y) {
         // Swipe down
-        console.log("swipe down");
         this.gotoPrevious();
       }
     },
@@ -257,15 +255,20 @@ export default {
       this.$emit("next");
     },
     gotoFirst() {
-      this.$refs.btnGoToFirst.blur();
+      if (this.$refs.btnGoToFirst) {
+        this.$refs.btnGoToFirst.blur();
+      }
       this.gotoSection(0);
     },
     gotoLast() {
-      this.$refs.btnGoToLast.blur();
+      if (this.$refs.btnGoToLast) {
+        this.$refs.btnGoToLast.blur();
+      }
       this.gotoSection(this.sections.length - 1);
     },
     handleKeyDown(e) {
       const { gotoPrevious, gotoNext, gotoFirst, gotoLast } = this;
+
       switch (e.key) {
         case "Home":
           gotoFirst();
