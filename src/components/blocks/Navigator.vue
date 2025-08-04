@@ -488,12 +488,11 @@ export default {
     left: 0;
     width: 100%;
     height: 0.25em;
-    background: red;
+
     .progress {
       height: 0.25em;
       background: var(--accent);
       max-width: 100%;
-      // transition: width 200ms;
     }
   }
 

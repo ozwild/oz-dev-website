@@ -30,16 +30,6 @@
                   Sr. Full Stack <i>|</i> React
                 </TypeWriter>
               </div>
-              <!-- <g-image
-                v-if="mobile"
-                class="my-name"
-                src="~/media/Ozwild - Oscar Palencia-alt.png"
-              ></g-image>
-              <g-image
-                v-else
-                class="my-name"
-                src="~/media/Ozwild - Oscar Palencia-alt.png"
-              ></g-image> -->
             </FlexBox>
 
             <FlexBox class="bottom-frame">
@@ -158,6 +148,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$avatarSize: 9em;
+$avatarSizeMobile: 6em;
 .background {
   position: fixed;
   background: repeating-linear-gradient(
@@ -175,11 +167,49 @@ export default {
   &.mobile {
     .main-container {
       position: relative;
+      margin-bottom: 3em;
 
       .avatar-section {
-        margin-top: 2em;
+        margin-top: 3em;
         padding: 0.5em;
+
+        .avatar-container {
+          width: $avatarSizeMobile;
+          height: $avatarSizeMobile;
+          top: -$avatarSizeMobile / 4;
+          .avatar {
+            width: $avatarSizeMobile;
+            height: $avatarSizeMobile;
+            filter: drop-shadow(2px 4px 6px black);
+          }
+        }
+        .avatar-shadow-circle {
+          width: $avatarSizeMobile;
+          height: $avatarSizeMobile;
+          &.back-shadow {
+            top: -$avatarSizeMobile / 4;
+            left: 45%;
+            filter: opacity(0.5);
+          }
+          &.fore-shadow {
+            top: -$avatarSizeMobile / 5;
+            left: 55%;
+            filter: opacity(0.5);
+          }
+        }
       }
+    }
+    .animated-name-container {
+      height: 5em;
+      .my-animated-name {
+        font-size: 2.5em;
+      }
+      h2.tagline {
+        font-size: 1em;
+      }
+    }
+    .bottom-frame {
+      margin: 0 auto;
     }
   }
 
@@ -267,30 +297,30 @@ export default {
       animation: fade-in 0.4s 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
 
       .avatar-section {
-        height: 6em;
+        height: calc($avatarSize - 2em);
       }
 
       .avatar-container {
-        width: calc(7em + 5vw);
-        height: calc(7em + 5vw);
-        top: calc((7em + 5vw) / -2);
+        width: $avatarSize;
+        height: $avatarSize;
+        top: -$avatarSize/2;
         .avatar {
-          width: calc(7em + 5vw);
-          height: calc(7em + 5vw);
+          width: $avatarSize;
+          height: $avatarSize;
           filter: drop-shadow(2px 4px 6px black);
         }
       }
 
       .avatar-shadow-circle {
-        width: calc(7em + 5vw);
-        height: calc(7em + 5vw);
+        width: $avatarSize;
+        height: $avatarSize;
         &.back-shadow {
-          top: calc((7em + 5vw) / -2);
+          top: -$avatarSize / 2;
           left: 45%;
           filter: opacity(0.5);
         }
         &.fore-shadow {
-          top: calc((5em + 5vw) / -2);
+          top: -$avatarSize / 3;
           left: 55%;
           filter: opacity(0.5);
         }
@@ -330,8 +360,8 @@ export default {
 
   .avatar {
     border-radius: 50%;
-    width: 9em;
-    height: 9em;
+    width: $avatarSize;
+    height: $avatarSize;
     object-fit: cover;
     object-position: 0% 35%;
     animation: bounce-in-bottom 1.1s both;
@@ -341,8 +371,8 @@ export default {
 }
 
 .avatar-shadow-circle {
-  width: 9em;
-  height: 9em;
+  width: $avatarSize;
+  height: $avatarSize;
   border-radius: 50%;
   mix-blend-mode: multiply;
   mix-blend-mode: screen;
@@ -395,12 +425,6 @@ export default {
 
     > i {
       color: var(--accent) !important;
-      font-size: 1.1em;
-    }
-
-    small {
-      font-size: 0.5em;
-      line-height: 1;
     }
   }
 }
@@ -439,11 +463,13 @@ export default {
     color: var(--typography);
     z-index: 10;
     margin-bottom: 13em;
+    width: fit-content;
   }
 
   .bottom-frame {
     animation: fade-in 1.2s 2.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-    margin-bottom: 1.5em;
+    margin: 1.5em auto;
+    max-width: 27em;
 
     a {
       color: var(--typography);
