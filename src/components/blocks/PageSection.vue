@@ -52,16 +52,16 @@ export default {
     z-index: 50;
 
     h2 {
-      color: var(--light);
+      color: var(--typography);
       font-size: calc(3em + 5vw);
       line-height: 1.15;
       max-width: 100%;
-      filter: saturate(1.5);
+      // filter: saturate(1.5);
       position: absolute;
       transform: translate(-50%, -50%);
       margin: 0;
-      text-shadow: 2px 3px 2px rgba(0 0 0 / 60%),
-        -1px -1px 0px rgba(255 255 255 / 60%), 4px 4px 8px rgba(0 0 0 / 20%);
+      /* text-shadow: 2px 3px 2px rgba(0 0 0 / 60%),
+        -1px -1px 0px rgba(255 255 255 / 60%), 4px 4px 8px rgba(0 0 0 / 20%); */
 
       i {
         color: var(--accent);
@@ -82,7 +82,7 @@ export default {
 
   .background {
     z-index: 0;
-    background: var(--dark);
+    background: var(--background);
   }
 
   .foreground {

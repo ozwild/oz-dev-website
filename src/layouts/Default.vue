@@ -7,17 +7,18 @@
             :eventBus="eventBus"
             @change="setSection"
             @loaded="loadedHandler"
-            :pauseAutoSwitch="presentingInstructions"
+            :presentingInstructions="presentingInstructions"
+            :autoSwitchSpeed="6"
           />
 
           <transition name="component-fade" mode="out-in">
             <component :is="section"></component>
           </transition>
 
-          <PageInstructions
+          <!-- <PageInstructions
             :mobile="mobile"
             @change="instructionsChangeHandler"
-          />
+          /> -->
         </main>
       </div>
     </MatchMedia>
@@ -27,6 +28,16 @@
 <script>
 import Vue from "vue";
 import { MediaQueryProvider, MatchMedia } from "vue-component-media-queries";
+
+const darkMode = true;
+
+if (typeof document !== "undefined") {
+  if (darkMode) {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.add("light");
+  }
+}
 
 import Navigator from "@components/blocks/Navigator.vue";
 import PageInstructions from "@components/blocks/PageInstructions.vue";

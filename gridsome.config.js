@@ -6,16 +6,14 @@ const path = require("path");
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: "Ozwild",
+  siteName: "Oscar Senior Fullstack Developer & Systems Architect",
   siteUrl: "https://ozwild.github.io",
   siteDescription:
-    "Ozworks is a production umbrella that comprises software development, music production and music recording",
-  // Toggle between the production and development environment.
-  //pathPrefix: "/oz-dev-website",
+    "Empowering teams through scalable tech, people-first process, and cross-functional clarity. Available for global projects + U.S. visa-sponsored roles.",
   metadata: {
-    author: "Ozworks",
+    author: "Oscar Palencia (Ozwild)",
     keywords:
-      "Ozwild,Ozwildgt,oscar palencia,Full Stack,Software Developer,Software Engineer,Front end,Back end",
+      "Technical Leadership & Architecture,scalable system design for startups,fullstack architect with business insight,Developer with operations experience,Operational + Engineering Integration,real-world automation pipelines,data-driven process optimization,cross-functional workflow engineer,senior fullstack developer open to sponsorship,remote systems architect for US companies,developer blending empathy with engineering",
   },
   plugins: [
     {

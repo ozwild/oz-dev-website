@@ -1,4 +1,4 @@
-Sitemap: https://ozwild.github.io/oz-dev-website/sitemap.xml
+Sitemap: https://ozwild.github.io/sitemap.xml
 
 User-agent:*
 Disallow: /legal

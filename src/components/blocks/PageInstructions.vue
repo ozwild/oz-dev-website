@@ -254,10 +254,6 @@ export default {
         filter: grayscale(0.8);
       }
     }
-    .close {
-    }
-    .accept {
-    }
   }
 }
 </style>

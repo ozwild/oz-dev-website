@@ -6,7 +6,7 @@
       </template>
       <template v-slot:title>
         <TypeWriter component="h2">
-          ... a <i>great</i> one?
+          ... one <i>seasoned</i> in the craft
         </TypeWriter>
       </template>
     </PageSection>

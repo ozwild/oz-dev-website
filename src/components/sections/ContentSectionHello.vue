@@ -12,7 +12,7 @@
 
       <template v-slot:title>
         <TypeWriter component="h2" class="caption">
-          Hi there!
+          Well, hello there
         </TypeWriter>
       </template>
     </PageSection>

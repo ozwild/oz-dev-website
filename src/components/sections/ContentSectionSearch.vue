@@ -1,15 +1,9 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
-      <template v-slot:animation>
-        <div class="searching-container">
-          <g-image class="searching" src="~/media/searching.gif"></g-image>
-        </div>
-      </template>
-
       <template v-slot:title>
         <TypeWriter component="h2">
-          Looking for a <i>full stack</i> dev?
+          Hunting for a <i>web</i> developer?
         </TypeWriter>
       </template>
     </PageSection>
@@ -53,8 +47,8 @@ export default {
 
   &.desktop {
     .searching {
-      width: auto;
-      height: 150vh;
+      /* width: auto;
+      height: 150vh; */
       top: 50%;
       left: 50%;
       transform: translate(-40%, -45%);
@@ -72,7 +66,7 @@ export default {
     animation: fade-in 0.7s 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) both;
     .searching {
       position: absolute;
-      filter: drop-shadow(0.5em 1em 2px rgba(0 0 0 / 60%)) brightness(0.75);
+      // filter: drop-shadow(0.5em 1em 2px rgba(0 0 0 / 60%)) brightness(0.75);
     }
   }
 }

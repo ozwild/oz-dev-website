@@ -1,15 +1,6 @@
+$mode: "dark"; // Set the theme mode here, can be 'dark' or 'light'
+
 :root {
-  --dark: #12151f;
-  --light: #fff6e8;
-  --primary: #af8969;
-  --accent: #f8931d;
-  --secondary: #a67263;
-
-  --primary: #23283a;
-
-  --accent: lime;
-
-  //--primary: darksalmon;
   --perspective: 1600px;
   --originHorizontal: 50%;
   --originVertical: 50%;
@@ -22,9 +13,34 @@ body {
   padding: 0;
   line-height: 1.5;
   scroll-behavior: smooth;
+
+  &.dark {
+    --light: #fff6e8;
+    --dark: #12151f;
+    --dark-rgb: 18, 21, 31;
+    --background: #151515;
+    --typography: #a5a5a5;
+    --typography-inverse: #343434;
+
+    --primary: #23283a;
+    --secondary: #a67263;
+    --accent: chartreuse;
+  }
+  &.light {
+    --light: #fff6e8;
+    --dark: #22252e;
+    --dark-rgb: 18, 21, 31;
+    --background: smoke;
+    --typography: #343434;
+    --typography-inverse: #a5a5a5;
+
+    --primary: #f5f5f5;
+    --secondary: #6383a6;
+    --accent: orange;
+  }
 }
 
 body,
 html {
-  background: var(--dark);
+  background: var(--background);
 }

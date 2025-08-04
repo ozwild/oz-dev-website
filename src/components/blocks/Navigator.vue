@@ -7,59 +7,60 @@
       width="auto"
       column
     >
-      <transition name="nav-menu-fade">
-        <FlexBox
-          v-if="shouldDisplayNavMenu"
-          class="nav-menu"
-          :class="{ open: shouldDisplayNavMenu }"
-          column
-        >
-          <button
-            v-if="sectionId > 0"
-            ref="btnGoToFirst"
-            :disabled="sectionId === 0"
-            class="nav-button first"
-            @click="gotoFirst"
-          >
-            <CornerRightUpIcon />
-          </button>
-          <button
-            v-if="sectionId > 0"
-            ref="btnGoToPrevious"
-            :disabled="sectionId === 0"
-            class="nav-button previous"
-            @click="gotoPrevious"
-          >
-            <ArrowUpIcon />
-          </button>
-          <button
-            v-if="sectionId < sections.length - 1"
-            ref="btnGoToNext"
-            :disabled="sectionId >= sections.length"
-            class="nav-button next"
-            @click="gotoNext"
-          >
-            <ArrowDownIcon />
-          </button>
-          <button
-            v-if="sectionId < sections.length - 1"
-            ref="btnGoToLast"
-            :disabled="sectionId >= sections.length"
-            class="nav-button last"
-            @click="gotoLast"
-          >
-            <CornerRightDownIcon />
-          </button>
-        </FlexBox>
-      </transition>
-
-      <button
-        ref="toggleNavMenu"
-        class="nav-button burguer"
-        @click="toggleNavMenu"
-      >
-        <MenuIcon />
-      </button>
+      <FlexBox class="nav-menu" :class="{ open: shouldDisplayNavMenu }">
+        <transition name="nav-menu-fade">
+          <div class="nav-menu-container">
+            <button
+              ref="btnGoToFirst"
+              :disabled="sectionId === 0"
+              class="nav-button first"
+              type="button"
+              @click="gotoFirst"
+            >
+              <ChevronsLeftIcon />
+            </button>
+          </div>
+        </transition>
+        <transition name="nav-menu-fade">
+          <div class="nav-menu-container">
+            <button
+              ref="btnGoToPrevious"
+              :disabled="sectionId === 0"
+              class="nav-button previous"
+              type="button"
+              @click="gotoPrevious"
+            >
+              <ChevronLeftIcon />
+            </button>
+          </div>
+        </transition>
+        <transition name="nav-menu-fade">
+          <div class="nav-menu-container">
+            <button
+              ref="btnGoToNext"
+              :disabled="sectionId >= sections.length - 1"
+              class="nav-button next"
+              type="button"
+              @click="gotoNext"
+            >
+              <ChevronRightIcon />
+            </button>
+          </div>
+        </transition>
+        <transition name="nav-menu-fade">
+          <div class="nav-menu-container">
+            <button
+              ref="btnGoToLast"
+              :disabled="sectionId >= sections.length - 1"
+              class="nav-button last"
+              type="button"
+              @click="gotoLast"
+            >
+              <ChevronsRightIcon />
+            </button>
+          </div>
+        </transition>
+      </FlexBox>
 
       <div v-if="autoSwitch.counting" class="auto-switch-progress-bar">
         <div
@@ -79,6 +80,10 @@ import {
   ArrowDownIcon,
   CornerRightUpIcon,
   CornerRightDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  ChevronsLeftIcon,
+  ChevronsRightIcon,
   MenuIcon,
 } from "vue-feather-icons";
 
@@ -97,8 +102,8 @@ import ContentSectionKeywords from "@components/sections/ContentSectionKeywords.
 export default {
   name: "Navigator",
   props: {
-    autoSwitchSpeed: { type: Number, default: 5 },
-    pauseAutoSwitch: { type: Boolean, default: false },
+    autoSwitchSpeed: { type: Number, default: 7 },
+    presentingInstructions: { type: Boolean, default: false },
     eventBus: Object,
   },
   components: {
@@ -107,6 +112,10 @@ export default {
     ArrowDownIcon,
     CornerRightUpIcon,
     CornerRightDownIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    ChevronsLeftIcon,
+    ChevronsRightIcon,
     MenuIcon,
     FlexBox,
     ContentSectionMatrix,
@@ -123,6 +132,7 @@ export default {
     return {
       sectionId: null,
       loaded: false,
+      pauseAutoSwitch: false,
       swipeTimeout: 250,
       swipeThreshold: 100,
       touchStart: {
@@ -140,7 +150,7 @@ export default {
         // 0 to 100
         progress: 0,
         timeToSwitch: this.autoSwitchSpeed,
-        iterationsPerSecond: 5,
+        iterationsPerSecond: 30,
       },
       shouldDisplayNavMenu: false,
       sections: [
@@ -150,8 +160,8 @@ export default {
         ContentSectionNinja,
         ContentSectionKeywords,
         ContentSectionIAm,
-        ContentSectionPower,
         ContentSectionMatrix,
+        ContentSectionPower,
         ContentSectionContact,
       ],
     };
@@ -159,6 +169,11 @@ export default {
   mounted() {
     this.eventBus.$on("section-loaded", this.abortAutoSwitch);
     document.addEventListener("keydown", this.handleKeyDown);
+
+    document.addEventListener("dblclick", (e) => {
+      this.togglePause();
+      e.preventDefault();
+    });
 
     document.addEventListener("touchstart", (e) => {
       this.touchStart.x = e.changedTouches[0].screenX;
@@ -181,6 +196,8 @@ export default {
         this.handleTouchGesture();
       }
     });
+
+    this.pauseAutoSwitch = this.presentingInstructions;
 
     this.gotoDefault();
   },
@@ -214,20 +231,22 @@ export default {
 
       if (touchEnd.x < touchStart.x) {
         // Swipe left
+        this.gotoPrevious();
       }
 
       if (touchEnd.x > touchStart.x) {
         // Swipe right
+        this.gotoNext();
       }
 
       if (touchEnd.y < touchStart.y) {
         // Swipe up
-        this.gotoNext();
+        // this.gotoNext();
       }
 
       if (touchEnd.y > touchStart.y) {
         // Swipe down
-        this.gotoPrevious();
+        // this.gotoPrevious();
       }
     },
     matchHashedSection(hash) {
@@ -297,10 +316,18 @@ export default {
       }
       this.gotoSection(this.sections.length - 1);
     },
+    togglePause() {
+      this.pauseAutoSwitch = !this.pauseAutoSwitch;
+      if (this.pauseAutoSwitch) {
+        this.abortAutoSwitch();
+      } else {
+        this.triggerAutoSwitch();
+      }
+    },
     handleKeyDown(e) {
-      const { gotoPrevious, gotoNext, gotoFirst, gotoLast } = this;
+      const { gotoPrevious, gotoNext, gotoFirst, gotoLast, togglePause } = this;
 
-      switch (e.key) {
+      switch (e.code) {
         case "Home":
           gotoFirst();
           break;
@@ -315,13 +342,16 @@ export default {
         case "ArrowRight":
           gotoNext();
           break;
+        case "Space":
+          togglePause();
+          break;
       }
       e.preventDefault();
     },
     triggerAutoSwitch() {
       this.autoSwitch.progress = 0;
       this.autoSwitch.counting = false;
-      setTimeout(() => this.autoSwitchCountDown(), 3e3);
+      setTimeout(() => this.autoSwitchCountDown(), 0.5e3);
     },
     autoSwitchCountDown() {
       const { timeToSwitch, iterationsPerSecond } = this.autoSwitch;
@@ -334,10 +364,10 @@ export default {
         const delta = timestamp - timeReference;
         if (delta > 1e3 / iterationsPerSecond) {
           if (!this.pauseAutoSwitch) {
+            timeReference = timestamp;
+            iterations++;
+            this.updateAutoSwitchProgress(iterations);
           }
-          timeReference = timestamp;
-          iterations++;
-          this.updateAutoSwitchProgress(iterations);
         }
         if (
           iterations < timeToSwitch * iterationsPerSecond &&
@@ -374,6 +404,8 @@ export default {
   position: fixed;
   z-index: 150;
   padding: 7px 4px;
+  top: 1em;
+  right: 0.5em;
 
   .nav-menu {
     &:not(.open) {
@@ -383,27 +415,50 @@ export default {
     }
   }
 
+  .burguer,
   .nav-button {
     width: 3em;
     height: 3em;
-    margin-top: 1em;
-    padding-top: 1em;
-    background-color: var(--dark);
-    background: rgba(18 21 31 / 80%);
-    color: var(--accent);
     z-index: 1;
+    border: none;
+    color: var(--accent);
+    padding: 0;
+    cursor: pointer;
+
+    transform: translateY(-50%) scale(0.9);
+    box-shadow: 0 0 2px -1px rgba(var(--dark-rgb), 0.4);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .burguer {
+    background: transparent;
+    border-color: transparent;
+    z-index: 10;
+  }
+
+  .nav-button {
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--dark-rgb), 0.2),
+      rgba(var(--dark-rgb), 0.01)
+    );
+
     transition: box-shadow 150ms ease-out, transform 90ms ease-in,
       opacity 90ms ease-in-out;
-    cursor: pointer;
-    border: 2px solid;
-    padding: 0;
-    transform: translateY(-50%);
-    box-shadow: 0 0 2px -1px var(--primary);
-    border-radius: 50%;
+
+    border: none;
+    border-top: 2px solid;
+
+    transform: translateY(-50%) scale(0.9);
+    opacity: 0.9;
+    box-shadow: 0 0 2px -1px rgba(var(--dark-rgb), 0.4);
 
     &:hover:not(:disabled) {
       transform: translateY(-50%) scale(1);
-      box-shadow: 0 0 8px -2px var(--primary);
+      box-shadow: 0 0 8px -2px rgba(var(--dark-rgb), 0.4);
     }
 
     &:active:not(:disabled) {
@@ -411,7 +466,9 @@ export default {
     }
 
     &:disabled {
+      opacity: 0.5;
       filter: grayscale(1);
+      pointer-events: none;
     }
 
     &.burguer {
@@ -426,36 +483,30 @@ export default {
   }
 
   .auto-switch-progress-bar {
-    background: var(--primary);
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 0.25em;
+    background: red;
     .progress {
       height: 0.25em;
       background: var(--accent);
       max-width: 100%;
-      transition: width 200ms;
+      // transition: width 200ms;
     }
   }
 
   &.mobile {
-    bottom: 0em;
-    left: 0.5em;
     .nav-button {
-      border-radius: 50%;
+      width: 2.5em;
+      height: 2.5em;
+      margin-right: 0.25em;
     }
   }
 
   &.desktop {
-    bottom: 1em;
-    right: 1em;
     display: flex;
-    .nav-button {
-      width: 4em;
-      height: 4em;
-    }
   }
 }
 </style>

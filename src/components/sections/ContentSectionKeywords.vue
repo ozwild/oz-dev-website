@@ -25,8 +25,8 @@
 
       <template v-slot:title>
         <TypeWriter component="h2">
-          with lots of
-          <i>skills</i>?
+          with a
+          <i>skillset</i> that builds
         </TypeWriter>
       </template>
     </PageSection>
@@ -48,8 +48,18 @@ export default {
     return {
       lines: [],
       keywords: [
+        "Fullstack Development",
+        "Systems Architecture",
+        "Excel + VBA Automation",
+        "Business Intelligence",
+        "Data Pipeline Design",
+        "Process Optimization",
+        "Dashboard Engineering",
+        "Contentful Integration",
+        "Twilio Flex Development",
         "Vue.js",
         "React",
+        "React Native",
         "JavaScript",
         "CSS",
         "HTML",
@@ -62,7 +72,6 @@ export default {
         "Vuex",
         "Ubuntu",
         "Bash",
-        "WSL2",
         "Linux",
         "Apache",
         "npm",
@@ -71,7 +80,6 @@ export default {
         "API",
         "GraphQL",
         "XML",
-        "JSON",
         "PHP",
         "Laravel",
         "AWS",
@@ -92,10 +100,22 @@ export default {
         "Express",
         ".NET",
         "C#",
-        "Programming",
         "VBA",
-        "VB",
-        "Visual Basic",
+        "PostgreSQL",
+        "MongoDB",
+        "MySQL",
+        "Redis",
+        "CI/CD Pipelines",
+        "Docker",
+        "Kubernetes",
+        "DevOps Strategy",
+        "Git Subversion",
+        "Unit Testing",
+        "Chromatic",
+        "Storybook",
+        "Accessibility Standards",
+        "Technical Documentation",
+        "Systems Integration",
       ],
     };
   },

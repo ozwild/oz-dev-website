@@ -19,7 +19,7 @@
       </template>
 
       <template v-slot:title>
-        <TypeWriter component="h2"> Do you want the <i>POWER</i>??? </TypeWriter>
+        <TypeWriter component="h2"> unlock the <i>POWER</i> to create </TypeWriter>
       </template>
     </PageSection>
   </MatchMedia>

@@ -21,7 +21,7 @@ export default {
       keywords,
     } = this.$static.metadata;
 
-    const siteName = "I'm a ninja! ";
+    const siteName = "Oscar Senior Fullstack Developer & Systems Architect”";
     const image = "seo.png";
     const imagePath = (image && `${siteUrl}/${image}`) || "";
 
@@ -43,29 +43,9 @@ export default {
           content: siteDescription,
         },
         {
-          key: "og:image",
-          property: "og:image",
-          content: imagePath,
-        },
-        {
-          key: "og:image:width",
-          property: "og:image:width",
-          content: (image && 640) || "",
-        },
-        {
-          key: "og:image:height",
-          property: "og:image:height",
-          content: (image && 480) || "",
-        },
-        {
           key: "twitter:description",
           name: "twitter:description",
           content: siteDescription,
-        },
-        {
-          key: "twitter:image",
-          property: "twitter:image",
-          content: imagePath,
         },
         {
           key: "twitter:title",

@@ -1,114 +1,103 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
-    <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
-      <template v-slot:background>
-        <Layer class="background"></Layer>
-      </template>
+    <div class="contact-section-wrapper" :class="{ mobile, desktop: !mobile }">
+      <Layer class="background"></Layer>
+      <Layer class="foreground">
+        <Layer class="main-container" :class="{ mobile, desktop: !mobile }">
+          <FlexBox column>
+            <FlexBox x="center" class="avatar-section">
+              <Layer
+                v-if="!mobile"
+                class="avatar-shadow-circle back-shadow"
+              ></Layer>
+              <div class="avatar-container">
+                <g-image class="avatar" src="~/media/me.jpg"></g-image>
+              </div>
+              <Layer
+                v-if="!mobile"
+                class="avatar-shadow-circle fore-shadow"
+              ></Layer>
+            </FlexBox>
+            <FlexBox x="center">
+              <div class="animated-name-container">
+                <AnimatedText
+                  text="Oscar Palencia"
+                  :delay="2500"
+                  class="my-animated-name"
+                />
 
-      <template v-slot:foreground>
-        <Layer class="foreground">
-          <Layer
-            class="main-container acrylic-material"
-            :class="{ mobile, desktop: !mobile }"
-          >
-            <FlexBox column>
-              <FlexBox x="center" class="avatar-section">
-                <Layer
-                  v-if="!mobile"
-                  class="avatar-shadow-circle back-shadow"
-                ></Layer>
-                <div class="avatar-container">
-                  <g-image class="avatar" src="~/media/me.jpg"></g-image>
-                </div>
-                <Layer
-                  v-if="!mobile"
-                  class="avatar-shadow-circle fore-shadow"
-                ></Layer>
-              </FlexBox>
-              <FlexBox x="center">
-                <g-image
-                  v-if="mobile"
-                  class="my-name"
-                  src="~/media/Ozwild - Oscar Palencia-alt.png"
-                ></g-image>
-                <g-image
-                  v-else
-                  class="my-name"
-                  src="~/media/Ozwild - Oscar Palencia-alt.png"
-                ></g-image>
-              </FlexBox>
-              <FlexBox x="around">
-                <div class="featured-skill">VUE</div>
-                <div class="featured-skill">REACT</div>
-                <div class="featured-skill">LARAVEL</div>
-              </FlexBox>
-
-              <FlexBox class="bottom-frame">
-                <FlexBox class="contact-section" column>
-                  <FlexBox y="center">
-                    <a
-                      :href="documents.resume"
-                      target="_blank"
-                      class="contact-link"
-                      ><PaperclipIcon />Get my Resume
-                    </a>
-                  </FlexBox>
-                  <FlexBox y="center">
-                    <a
-                      label="Email"
-                      icon="mail"
-                      :href="`mailto:${contact.email}`"
-                      target="_blank"
-                      class="contact-link"
-                    >
-                      <MailIcon />
-                      <span>{{ contact.email }}</span>
-                    </a>
-                  </FlexBox>
-                  <FlexBox y="center">
-                    <a
-                      label="Phone"
-                      icon="phone"
-                      :href="`tel:${contact.phone}`"
-                      target="_blank"
-                      class="contact-link"
-                      ><PhoneIcon />
-                      <span>{{ contact.phone }}</span>
-                    </a>
-                  </FlexBox>
-                </FlexBox>
-                <FlexBox class="social-section" x="between" y="center" column>
-                  <a
-                    :href="`${contact.linkedin}`"
-                    target="_blank"
-                    class="social-link"
-                    ><LinkedinIcon size="32" />
-                  </a>
-                  <a
-                    :href="`${contact.github}`"
-                    target="_blank"
-                    class="social-link"
-                    ><GithubIcon size="32" />
-                  </a>
-                </FlexBox>
-              </FlexBox>
+                <TypeWriter component="h2" class="tagline" :delay="4500">
+                  Sr. Full Stack <i>|</i> React
+                </TypeWriter>
+              </div>
+              <!-- <g-image
+                v-if="mobile"
+                class="my-name"
+                src="~/media/Ozwild - Oscar Palencia-alt.png"
+              ></g-image>
+              <g-image
+                v-else
+                class="my-name"
+                src="~/media/Ozwild - Oscar Palencia-alt.png"
+              ></g-image> -->
             </FlexBox>
 
-            <div v-if="!mobile && withCallout" class="call-me-section">
-              <Layer class="call-me-callout-container">
-                <g-image
-                  class="call-me-callout-image"
-                  src="~/media/call-me.gif"
-                ></g-image>
-              </Layer>
-              <Layer class="callout-bubble">
-                <h3>Call me ;)</h3>
-              </Layer>
-            </div>
-          </Layer>
+            <FlexBox class="bottom-frame">
+              <FlexBox class="contact-section" column>
+                <a :href="documents.resume" target="_blank" class="contact-link"
+                  ><PaperclipIcon />Resume
+                </a>
+                <a
+                  label="Email"
+                  icon="mail"
+                  :href="`mailto:${contact.email}`"
+                  target="_blank"
+                  class="contact-link"
+                >
+                  <MailIcon />
+                  <span>{{ contact.email }}</span>
+                </a>
+                <a
+                  label="Phone"
+                  icon="phone"
+                  :href="`tel:${contact.phone}`"
+                  target="_blank"
+                  class="contact-link"
+                  ><PhoneIcon />
+                  <span>{{ contact.phone }}</span>
+                </a>
+              </FlexBox>
+              <FlexBox class="social-section" column>
+                <a
+                  :href="`${contact.linkedin}`"
+                  target="_blank"
+                  class="social-link"
+                  ><LinkedinIcon size="32" />
+                </a>
+                <a
+                  :href="`${contact.github}`"
+                  target="_blank"
+                  class="social-link"
+                  ><GithubIcon size="32" />
+                </a>
+              </FlexBox>
+            </FlexBox>
+          </FlexBox>
+
+          <!-- <div v-if="!mobile" class="call-me-section">
+            <Layer class="call-me-callout-container">
+              <g-image
+                class="call-me-callout-image"
+                src="~/media/call-me.gif"
+              ></g-image>
+            </Layer>
+            <Layer class="callout-bubble">
+              <h3>Call me ;)</h3>
+            </Layer>
+          </div> -->
         </Layer>
-      </template>
-    </PageSection>
+      </Layer>
+    </div>
   </MatchMedia>
 </template>
 
@@ -127,6 +116,12 @@ import PageSection from "@components/blocks/PageSection.vue";
 import BackgroundCanvas from "@components/blocks/BackgroundCanvas.vue";
 import FlexBox from "@components/blocks/FlexBox.vue";
 import Typography from "@components/blocks/Typography.vue";
+import AnimatedText from "../blocks/AnimatedText.vue";
+import TypeWriter from "../blocks/TypeWriter.vue";
+
+import contact from "@/data/contact.js";
+import { computed } from "vue";
+import { del } from "vue";
 
 export default {
   name: "content-section-contact",
@@ -142,19 +137,20 @@ export default {
     GithubIcon,
     PhoneIcon,
     PaperclipIcon,
+    AnimatedText,
+    TypeWriter,
   },
   data() {
-    const withCallout = Math.random() > 0.65;
+    const { phone, email, linkedin, github, resume } = contact;
     return {
-      withCallout,
       contact: {
-        phone: "+50258858515",
-        email: "aozikuma@gmail.com",
-        linkedin: "https://www.linkedin.com/in/ozwild/",
-        github: "https://github.com/ozwild",
+        phone,
+        email,
+        linkedin,
+        github,
       },
       documents: {
-        resume: "https://1drv.ms/b/s!AhNEwBINRYMhmhNgnq8SaFlWrIjQ",
+        resume,
       },
     };
   },
@@ -162,61 +158,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.psa {
-  .background {
-    // Saving this gradient in case I decide
-    // to add a light version of the site
+.background {
+  position: fixed;
+  background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 10px,
+      var(--dark) 10px,
+      var(--dark) 20px
+    ),
+    linear-gradient(to bottom, var(--primary), var(--dark));
+  animation: curtain-drop 1s ease-in-out forwards;
+}
 
-    /* background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 10px,
-        #fff 10px,
-        #fff 20px
-      ),
-      linear-gradient(to bottom, #fff, #ddd); */
-    background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 10px,
-        var(--dark) 10px,
-        var(--dark) 20px
-      ),
-      linear-gradient(to bottom, var(--primary), var(--dark));
-    animation: curtain-drop 1s ease-in-out forwards;
-  }
-
+.contact-section-wrapper {
   &.mobile {
     .main-container {
       position: relative;
-      top: 0;
-      left: 0;
-      height: 95%;
-      color: var(--light);
-      //color: var(--dark);
-      z-index: 10;
-      width: 100%;
 
       .avatar-section {
         margin-top: 2em;
         padding: 0.5em;
       }
-
-      .bottom-frame {
-        margin: 0 1em 0em 5.5em;
-        width: calc(100% - 7em) !important;
-
-        a {
-          color: var(--light);
-          //color: var(--dark);
-        }
-      }
     }
   }
 
   &.desktop {
-    min-height: 50em;
-
     .call-me-section {
       position: absolute;
       top: 8em;
@@ -290,20 +257,13 @@ export default {
     }
 
     .main-container {
-      width: 100%;
-      min-width: 35em;
       max-width: 50vw;
       position: relative;
-      top: 54%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      height: 65%;
-      min-height: 32em;
-      color: var(--light);
-      background: var(--dark);
+      top: calc(5em + 15vh);
+      background: rgba(var(--dark-rgb), 0.8);
       z-index: 10;
       opacity: 0;
-      box-shadow: 2px 2px 8px 0px rgba(0 0 0 / 40%);
+
       animation: fade-in 0.4s 1s cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
 
       .avatar-section {
@@ -317,7 +277,7 @@ export default {
         .avatar {
           width: calc(7em + 5vw);
           height: calc(7em + 5vw);
-          filter: drop-shadow(2px 4px 6px black) brightness(0.7);
+          filter: drop-shadow(2px 4px 6px black);
         }
       }
 
@@ -346,143 +306,181 @@ export default {
         min-width: 4em;
         text-align: center;
       }
-
-      .bottom-frame {
-        margin: 0 15vw 2em 5vw;
-        width: calc(100% - 5vw);
-        a {
-          color: var(--light);
-        }
-      }
     }
   }
+}
 
-  .avatar-container {
-    position: relative;
-    z-index: 3;
+.avatar-container {
+  position: relative;
+  z-index: 3;
 
-    &:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: var(--dark);
-      mix-blend-mode: color;
-      animation: bounce-in-bottom 1.1s both;
-      animation-delay: 1s;
-    }
-
-    .avatar {
-      border-radius: 50%;
-      width: 9em;
-      height: 9em;
-      object-fit: cover;
-      object-position: 0% 35%;
-      animation: bounce-in-bottom 1.1s both;
-      animation-delay: 1.5s;
-    }
-  }
-
-  .avatar-shadow-circle {
-    width: 9em;
-    height: 9em;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     border-radius: 50%;
-    mix-blend-mode: multiply;
-    mix-blend-mode: screen;
-    opacity: 0.5;
-    animation: fade-in 1.2s 5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-    transform: translateX(-50%);
-
-    &.fore-shadow {
-      top: 1.25em;
-      left: 50%;
-      z-index: 2;
-      background: var(--primary);
-      filter: contrast(0.5) opacity(0.5);
-    }
-
-    &.back-shadow {
-      top: 0.75em;
-      left: 50%;
-      z-index: 1;
-      background: var(--primary);
-      filter: contrast(0.5) opacity(0.5);
-    }
-  }
-
-  .my-name {
+    background: linear-gradient(to bottom, transparent, var(--dark));
+    mix-blend-mode: plus-lighter;
     animation: bounce-in-bottom 1.1s both;
     animation-delay: 1s;
   }
 
-  .featured-skill {
-    animation: puff-in-center 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+  .avatar {
+    border-radius: 50%;
+    width: 9em;
+    height: 9em;
+    object-fit: cover;
+    object-position: 0% 35%;
+    animation: bounce-in-bottom 1.1s both;
+    animation-delay: 1.5s;
+    border: 4px solid var(--light);
+  }
+}
 
-    &:nth-child(1) {
-      animation-delay: 2.5s;
-    }
-    &:nth-child(2) {
-      animation-delay: 3.25s;
-    }
-    &:nth-child(3) {
-      animation-delay: 4s;
-    }
+.avatar-shadow-circle {
+  width: 9em;
+  height: 9em;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  mix-blend-mode: screen;
+  opacity: 0.5;
+  animation: fade-in 1.2s 3s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  transform: translateX(-50%);
+
+  &.fore-shadow {
+    top: 1.25em;
+    left: 50%;
+    z-index: 2;
+    background: var(--primary);
+    filter: contrast(0.5) opacity(0.5);
   }
 
-  .striked-text {
-    text-decoration: line-through;
-    opacity: 0.2;
+  &.back-shadow {
+    top: 0.75em;
+    left: 50%;
+    z-index: 1;
+    background: var(--primary);
+    filter: contrast(0.5) opacity(0.5);
+  }
+}
+.animated-name-container {
+  position: relative;
+  height: 7em;
+  width: 100%;
+
+  .my-animated-name {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--accent);
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: -0.5em;
   }
 
-  .foreground {
-    color: var(--light);
-    z-index: 50;
+  h2.tagline {
+    margin: 0;
+    font-size: 1.25em;
+    position: relative;
+    text-align: center;
+    /// top: 2.5em;
 
-    .main-container {
-      a {
-        color: var(--dark);
+    > span {
+      color: var(--light);
+      font-weight: bold;
+    }
+
+    > i {
+      color: var(--accent) !important;
+      font-size: 1.1em;
+    }
+
+    small {
+      font-size: 0.5em;
+      line-height: 1;
+    }
+  }
+}
+
+.my-name {
+  animation: bounce-in-bottom 1.1s both;
+  animation-delay: 1s;
+}
+
+.featured-skill {
+  animation: puff-in-center 0.7s cubic-bezier(0.47, 0, 0.745, 0.715) both;
+
+  &:nth-child(1) {
+    animation-delay: 2.5s;
+  }
+  &:nth-child(2) {
+    animation-delay: 3.25s;
+  }
+  &:nth-child(3) {
+    animation-delay: 4s;
+  }
+}
+
+.striked-text {
+  text-decoration: line-through;
+  opacity: 0.2;
+}
+
+.foreground {
+  z-index: 50;
+  height: auto;
+  position: relative;
+
+  .main-container {
+    margin: 0 auto;
+    color: var(--typography);
+    z-index: 10;
+    margin-bottom: 13em;
+  }
+
+  .bottom-frame {
+    animation: fade-in 1.2s 2.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+    margin-bottom: 1.5em;
+
+    a {
+      color: var(--typography);
+      opacity: 0.8;
+      transition: opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      &:hover {
+        opacity: 1;
       }
-    }
+      &.contact-link {
+        font-size: 1.25em;
+        padding-left: 3em;
+        position: relative;
+        margin-bottom: 0.5em;
 
-    .bottom-frame {
-      position: absolute;
-      bottom: 0;
-      animation: fade-in 1.2s 5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-
-      a {
-        &.contact-link {
-          font-size: 1.25em;
-          display: flex;
-          padding-left: 3em;
-          position: relative;
-          margin-bottom: 1em;
-          //margin-left: 3em;
-          svg {
-            fill: var(--light);
-            stroke: var(--dark);
-            position: absolute;
-            left: 0;
-          }
+        svg {
+          fill: var(--typography);
+          stroke: var(--typography-inverse);
+          position: absolute;
+          left: 0;
         }
       }
+    }
 
-      h2 {
-        position: absolute;
-        top: -2.5em;
-        left: 50%;
-        transform: translateX(-50%);
-      }
+    h2 {
+      position: absolute;
+      top: -2.5em;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
-      .contact-section {
-        font-size: 0.75rem;
-      }
+    .contact-section {
+      font-size: 0.75rem;
+      padding: 2.5em;
+    }
 
-      .social-section {
-        margin-left: 2em;
-      }
+    .social-section {
+      padding: 2.5em;
     }
   }
 }

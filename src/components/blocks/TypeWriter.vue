@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { del } from "vue";
+
 export default {
   name: "TypeWriter2",
   props: {
@@ -19,11 +21,15 @@ export default {
       type: String,
       default: "div",
     },
+    delay: {
+      type: Number,
+      default: 0, // Delay in milliseconds for each character
+    },
   },
   data() {
     return {
       typing: false,
-      typingSpeed: 70,
+      typingSpeed: 40,
       words: [],
       nodeSections: [],
       htmlBlocks: [],
@@ -31,7 +37,10 @@ export default {
     };
   },
   mounted() {
-    this.run();
+    setTimeout(() => {
+      this.typing = true;
+      this.run();
+    }, this.$props.delay);
   },
   methods: {
     parseNode(node, tag) {
@@ -120,12 +129,12 @@ export default {
     bottom: 0.125em;
     margin-left: 3px;
     background: var(--accent);
-    box-shadow: 2px 3px 2px rgba(0 0 0 / 30%),
-      4px 4px 8px rgba(0 0 0 / 20%);
+    box-shadow: 2px 3px 2px rgba(0 0 0 / 30%), 4px 4px 8px rgba(0 0 0 / 20%);
 
     display: inline-block;
     width: 4px;
-    height: 1em;
+    height: 75%;
+    max-height: 1em;
     animation: caret-smooth 0.25s ease-in-out 0s infinite alternate;
   }
   &.typing {

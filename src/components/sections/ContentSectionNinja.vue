@@ -30,7 +30,9 @@
       </template>
 
       <template v-slot:title>
-        <TypeWriter component="h2"> an agile code <i>ninja</i> </TypeWriter>
+        <TypeWriter component="h2">
+          a <i>full-stack</i> force to be reckoned with
+        </TypeWriter>
       </template>
     </PageSection>
   </MatchMedia>
@@ -99,12 +101,12 @@ export default {
 
   .background-dune {
     z-index: 20;
-    //filter: saturate(0.7) brightness(1) contrast(0.8);
+    filter: saturate(0.7) brightness(1) contrast(0.8);
   }
 
   .foreground-dune {
     z-index: 100;
-    //filter: saturate(1.2) brightness(1.1);
+    filter: saturate(1.2) brightness(1.1);
   }
 
   .pow {
@@ -112,8 +114,8 @@ export default {
     position: absolute;
     top: 45%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(2);
-    opacity: 0.3;
+    transform: translate(-50%, -50%);
+    // opacity: 0.3;
     z-index: 1;
   }
 
