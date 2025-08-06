@@ -30,10 +30,9 @@ export default {
   &.mobile {
     .title-layer {
       h2 {
-        width: calc(100% - 1em);
         max-width: 80%;
-        font-size: 6.5rem;
-        top: 10%;
+        font-size: 6rem;
+        top: 20%;
         transform: translateY(-50%);
       }
     }

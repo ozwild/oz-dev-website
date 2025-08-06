@@ -132,7 +132,7 @@ export default {
     box-shadow: 2px 3px 2px rgba(0 0 0 / 30%), 4px 4px 8px rgba(0 0 0 / 20%);
 
     display: inline-block;
-    width: 0.15em;
+    width: 0.2rem;
     height: 75%;
     max-height: 1em;
     animation: caret-smooth 0.25s ease-in-out 0s infinite alternate;

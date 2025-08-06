@@ -1,10 +1,6 @@
 <template>
   <MatchMedia v-slot="{ mobile }">
     <PageSection class="psa" :class="{ mobile, desktop: !mobile }">
-      <template v-slot:background>
-        <div class="gradient-overlay"></div>
-      </template>
-
       <template v-slot:animation>
         <g-image
           v-if="mobile"
@@ -61,7 +57,7 @@ export default {
     return {
       duneColors: {
         background: "var(--dark)",
-        foreground: "var(--dark)",
+        foreground: "var(--accent)",
       },
     };
   },
@@ -76,7 +72,6 @@ export default {
     }
     .title-layer {
       h2 {
-        font-size: 6em;
         top: 40%;
         left: 0.6em;
         width: calc(100% - 1em);
@@ -115,7 +110,7 @@ export default {
     top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // opacity: 0.3;
+    filter: opacity(0.8) blur(2px) contrast(1.2);
     z-index: 1;
   }
 

@@ -52,10 +52,9 @@ export default {
     .title-layer {
       h2 {
         top: 40%;
-        left: 5%;
+        left: 0.5em;
         text-align: start;
         transform: translateY(-50%);
-        font-size: 4.75em;
       }
     }
   }
@@ -77,7 +76,7 @@ export default {
   .bcl {
     background: var(--dark);
     mix-blend-mode: overlay;
-    mix-blend-mode: multiply;
+    mix-blend-mode: soft-light;
     z-index: 20;
     animation: fade-in 1.5s ease-in forwards;
   }

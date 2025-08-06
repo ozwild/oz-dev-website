@@ -28,7 +28,7 @@ export default {
   &.mobile {
     .title-layer {
       h2 {
-        font-size: 5em;
+        font-size: 3.5em;
         top: 45%;
         left: 0.5em;
         text-align: end;
@@ -47,8 +47,6 @@ export default {
 
   &.desktop {
     .searching {
-      /* width: auto;
-      height: 150vh; */
       top: 50%;
       left: 50%;
       transform: translate(-40%, -45%);
@@ -66,7 +64,6 @@ export default {
     animation: fade-in 0.7s 1.5s cubic-bezier(0.47, 0, 0.745, 0.715) both;
     .searching {
       position: absolute;
-      // filter: drop-shadow(0.5em 1em 2px rgba(0 0 0 / 60%)) brightness(0.75);
     }
   }
 }

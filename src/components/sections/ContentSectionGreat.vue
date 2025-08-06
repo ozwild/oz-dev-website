@@ -43,7 +43,6 @@ export default {
         right: 0.5em;
         top: 47%;
         transform: translateY(-50%);
-        font-size: 6.5em;
       }
     }
   }

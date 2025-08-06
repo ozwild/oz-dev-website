@@ -73,18 +73,6 @@
               </FlexBox>
             </FlexBox>
           </FlexBox>
-
-          <!-- <div v-if="!mobile" class="call-me-section">
-            <Layer class="call-me-callout-container">
-              <g-image
-                class="call-me-callout-image"
-                src="~/media/call-me.gif"
-              ></g-image>
-            </Layer>
-            <Layer class="callout-bubble">
-              <h3>Call me ;)</h3>
-            </Layer>
-          </div> -->
         </Layer>
       </Layer>
     </div>
@@ -170,6 +158,7 @@ $avatarSizeMobile: 6em;
     .main-container {
       position: relative;
       margin-bottom: 3em;
+      margin-top: 3em;
 
       .avatar-section {
         margin-top: 3em;
@@ -202,92 +191,32 @@ $avatarSizeMobile: 6em;
       }
     }
     .animated-name-container {
-      height: 5em;
+      height: 4em;
       .my-animated-name {
-        font-size: 2.5em;
+        font-size: 2em;
       }
       h2.tagline {
+        left: 0;
+        top: 0;
         font-size: 1em;
       }
     }
     .bottom-frame {
       margin: 0 auto;
+      flex-direction: column;
+
+      .contact-section {
+        padding: 3em 0;
+      }
+
+      .social-section {
+        flex-direction: row;
+        padding: 0;
+      }
     }
   }
 
   &.desktop {
-    .call-me-section {
-      position: absolute;
-      top: 8em;
-      right: -3em;
-      perspective: 200px;
-      z-index: 60;
-      filter: drop-shadow(2px 4px 6px black) grayscale(0);
-
-      .callout-bubble {
-        width: calc(5em + 4vw);
-        height: calc(3.5em + 3vw);
-        top: calc(((3.5em + 3vw) * -1) + (0.5em + 1vw));
-        left: -7em;
-        background: var(--light);
-        background: white;
-        box-shadow: 2px 5px;
-        z-index: 10;
-        filter: drop-shadow(2px 4px 6px black);
-        clip-path: polygon(
-          0 18%,
-          100% 7%,
-          100% 71%,
-          75% 75%,
-          38% 100%,
-          50% 75%,
-          0 78%
-        );
-        opacity: 0;
-        animation: fade-in 0.4s 10.6s cubic-bezier(0.55, 0.085, 0.68, 0.53)
-          forwards;
-
-        h3 {
-          position: relative;
-          margin: 0;
-          top: calc(0.2em + 1vw);
-          left: calc(0.5vw);
-          font-size: calc(1.2em + 0.5vw);
-          color: var(--dark);
-          color: black;
-          transform: rotateZ(-3deg);
-        }
-      }
-
-      .call-me-callout-container {
-        top: 17%;
-        left: unset;
-        right: 22%;
-        width: calc(7em + 5vw);
-        height: calc(5em + 4vw);
-        border-radius: 50%;
-        background: var(--dark);
-        overflow: hidden;
-        z-index: 5;
-        box-shadow: -1px 8px 2px rgba(0 0 0 / 50%);
-        opacity: 0;
-        transform: translateZ(-1400px);
-        animation: slide-in-fwd-center 0.6s 10s
-          cubic-bezier(0.55, 0.085, 0.68, 0.53) forwards;
-
-        .call-me-callout-image {
-          width: calc(4em + 3vw);
-          height: calc(4em + 3vw);
-          border-radius: 50%;
-          position: relative;
-          top: 1.5em;
-          left: 1.5em;
-          object-fit: cover;
-          object-position: center;
-        }
-      }
-    }
-
     .main-container {
       max-width: 50vw;
       position: relative;
@@ -407,7 +336,6 @@ $avatarSizeMobile: 6em;
     font-size: 2.5em;
     font-weight: bold;
     color: var(--accent);
-    position: absolute;
     width: 100%;
     text-align: center;
     top: -0.5em;
@@ -416,9 +344,10 @@ $avatarSizeMobile: 6em;
   h2.tagline {
     margin: 0;
     font-size: 1.25em;
-    position: relative;
+    position: absolute;
     text-align: center;
-    /// top: 2.5em;
+    left: 2em;
+    top: 0.6em;
 
     > span {
       color: var(--light);
@@ -509,6 +438,7 @@ $avatarSizeMobile: 6em;
 
     .social-section {
       padding: 2.5em;
+      justify-content: space-around;
     }
   }
 }

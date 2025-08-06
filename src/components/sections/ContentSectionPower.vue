@@ -19,7 +19,9 @@
       </template>
 
       <template v-slot:title>
-        <TypeWriter component="h2"> unlock the <i>POWER</i> to create </TypeWriter>
+        <TypeWriter component="h2">
+          unlock the <i>POWER</i> to create
+        </TypeWriter>
       </template>
     </PageSection>
   </MatchMedia>
@@ -47,12 +49,17 @@ export default {
   &.mobile {
     .title-layer {
       h2 {
-        font-size: 4.75em;
-        top: 50%;
-        left: 0.4em;
+        top: 40%;
+        left: 0.3em;
         transform: translateY(-50%);
+        width: 90%;
       }
     }
+
+    /* .cube-frame {
+      width: 5em;
+      height: 5em;
+    } */
   }
 
   &.desktop {
@@ -83,6 +90,7 @@ export default {
       left: 48%;
       width: 42em;
       transform: translate(-50%, -50%);
+      filter: contrast(2);
     }
   }
 
@@ -91,8 +99,9 @@ export default {
     top: 28%;
     left: 47%;
     transform: translate(-50%, -50%);
-    width: calc(11em + 5vw);
-    height: calc(11em + 5vw);
+    width: 13em;
+    height: 13em;
+    filter: contrast(1.5) grayscale(1) opacity(0.7);
   }
 }
 </style>

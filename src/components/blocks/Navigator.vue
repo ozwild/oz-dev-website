@@ -34,6 +34,18 @@
             </button>
           </div>
         </transition>
+        <div class="nav-menu-container">
+          <button
+            v-if="sectionId < sections.length - 1"
+            ref="btnPlayPause"
+            class="nav-button play-pause"
+            type="button"
+            @click="togglePause"
+          >
+            <PauseIcon v-if="!pauseAutoSwitch" />
+            <PlayIcon v-else />
+          </button>
+        </div>
         <transition name="nav-menu-fade">
           <div class="nav-menu-container">
             <button
@@ -84,6 +96,8 @@ import {
   ChevronRightIcon,
   ChevronsLeftIcon,
   ChevronsRightIcon,
+  PlayIcon,
+  PauseIcon,
   MenuIcon,
 } from "vue-feather-icons";
 
@@ -116,6 +130,8 @@ export default {
     ChevronRightIcon,
     ChevronsLeftIcon,
     ChevronsRightIcon,
+    PlayIcon,
+    PauseIcon,
     MenuIcon,
     FlexBox,
     ContentSectionMatrix,
@@ -187,17 +203,20 @@ export default {
       this.touchEnd.timestamp = Date.now();
 
       const timeDelta = this.touchEnd.timestamp - this.touchStart.timestamp;
-      const yDelta = this.touchEnd.y - this.touchStart.y;
+
+      const xDelta = this.touchEnd.x - this.touchStart.x;
 
       if (
         timeDelta < this.swipeTimeout &&
-        Math.abs(yDelta) > this.swipeThreshold
+        Math.abs(xDelta) > this.swipeThreshold
       ) {
-        this.handleTouchGesture();
+        if (xDelta > 0) {
+          this.gotoPrevious();
+        } else {
+          this.gotoNext();
+        }
       }
     });
-
-    this.pauseAutoSwitch = this.presentingInstructions;
 
     this.gotoDefault();
   },
@@ -225,29 +244,6 @@ export default {
   methods: {
     toggleNavMenu() {
       this.shouldDisplayNavMenu = !this.shouldDisplayNavMenu;
-    },
-    handleTouchGesture() {
-      const { touchStart, touchEnd } = this;
-
-      if (touchEnd.x < touchStart.x) {
-        // Swipe left
-        this.gotoPrevious();
-      }
-
-      if (touchEnd.x > touchStart.x) {
-        // Swipe right
-        this.gotoNext();
-      }
-
-      if (touchEnd.y < touchStart.y) {
-        // Swipe up
-        // this.gotoNext();
-      }
-
-      if (touchEnd.y > touchStart.y) {
-        // Swipe down
-        // this.gotoPrevious();
-      }
     },
     matchHashedSection(hash) {
       const { sections } = this;
@@ -317,6 +313,9 @@ export default {
       this.gotoSection(this.sections.length - 1);
     },
     togglePause() {
+      if (this.$refs.btnPlayPause) {
+        this.$refs.btnPlayPause.blur();
+      }
       this.pauseAutoSwitch = !this.pauseAutoSwitch;
       if (this.pauseAutoSwitch) {
         this.abortAutoSwitch();

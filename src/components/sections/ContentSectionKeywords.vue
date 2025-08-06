@@ -160,12 +160,13 @@ export default {
       return keywords;
     },
     getRandomFontSize() {
-      return Math.floor(Math.random() * (60 - 20 + 1)) + 20 + "px";
+      const a = 20
+      return Math.floor(Math.random() * (60 - a + 1)) + a + "px";
     },
     getRandomSpeed() {
       return {
         type: "pps",
-        number: Math.floor(Math.random() * (300 - 75 + 1)) + 75,
+        number: Math.floor(Math.random() * (700 - 75 + 1)) + 75,
       };
     },
     getRandomColor() {
@@ -205,10 +206,8 @@ export default {
 .psa {
   &.mobile {
     h2 {
-      font-size: 6em;
-      top: 50%;
-      left: 0.8em;
-      width: calc(100% - 1em);
+      top: 40%;
+      left: 0.5em;
       transform: translateY(-50%);
     }
   }
@@ -225,7 +224,7 @@ export default {
   .keyword-lines {
     position: absolute;
     top: 10vh;
-    filter: contrast(0.5) brightness(0.5);
+    filter: contrast(0.5) brightness(0.5) grayscale(0.5) opacity(0.5);
     .keyword-line {
       width: 100vw;
       font-size: 1rem;

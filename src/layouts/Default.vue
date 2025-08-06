@@ -7,7 +7,6 @@
             :eventBus="eventBus"
             @change="setSection"
             @loaded="loadedHandler"
-            :presentingInstructions="presentingInstructions"
             :autoSwitchSpeed="6"
           />
 
@@ -15,10 +14,7 @@
             <component :is="section"></component>
           </transition>
 
-          <!-- <PageInstructions
-            :mobile="mobile"
-            @change="instructionsChangeHandler"
-          /> -->
+          <PageInstructions :mobile="mobile" />
         </main>
       </div>
     </MatchMedia>
