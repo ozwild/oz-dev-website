@@ -148,6 +148,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:math";
+
 $avatarSize: 9em;
 $avatarSizeMobile: 6em;
 .background {
@@ -176,7 +178,7 @@ $avatarSizeMobile: 6em;
         .avatar-container {
           width: $avatarSizeMobile;
           height: $avatarSizeMobile;
-          top: -$avatarSizeMobile / 4;
+          top: math.div(-$avatarSizeMobile, 4);
           .avatar {
             width: $avatarSizeMobile;
             height: $avatarSizeMobile;
@@ -187,12 +189,12 @@ $avatarSizeMobile: 6em;
           width: $avatarSizeMobile;
           height: $avatarSizeMobile;
           &.back-shadow {
-            top: -$avatarSizeMobile / 4;
+            top: math.div(-$avatarSizeMobile, 4);
             left: 45%;
             filter: opacity(0.5);
           }
           &.fore-shadow {
-            top: -$avatarSizeMobile / 5;
+            top: math.div(-$avatarSizeMobile, 5);
             left: 55%;
             filter: opacity(0.5);
           }
@@ -303,7 +305,7 @@ $avatarSizeMobile: 6em;
       .avatar-container {
         width: $avatarSize;
         height: $avatarSize;
-        top: -$avatarSize/2;
+        top: math.div(-$avatarSize, 2);
         .avatar {
           width: $avatarSize;
           height: $avatarSize;
@@ -315,12 +317,12 @@ $avatarSizeMobile: 6em;
         width: $avatarSize;
         height: $avatarSize;
         &.back-shadow {
-          top: -$avatarSize / 2;
+          top: math.div(-$avatarSize, 2);
           left: 45%;
           filter: opacity(0.5);
         }
         &.fore-shadow {
-          top: -$avatarSize / 3;
+          top: math.div(-$avatarSize, 3);
           left: 55%;
           filter: opacity(0.5);
         }
