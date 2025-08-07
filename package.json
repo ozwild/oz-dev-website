@@ -12,15 +12,17 @@
   "scripts": {
     "build": "gridsome build",
     "dev": "gridsome develop",
+    "tunnel": "ngrok http --url=husky-trusting-deadly.ngrok-free.app 8080",
     "explore": "gridsome explore",
     "predeploy": "npm run build",
-    "deploy": "npm run build && gh-pages -d dist --repo git@github.com:ozwild/ozwild.github.io.git"
+    "deploy": "npm run build && gh-pages -d dist --repo git@github.com:ozwild/ozwild.github.io.git --cname oskar-wild.com"
   },
   "dependencies": {
     "@gridsome/plugin-sitemap": "^0.4.0",
     "gh-pages": "^3.2.3",
     "gridsome": "^0.7.23",
     "lodash": "^4.17.21",
+    "ngrok": "^5.0.0-beta.2",
     "regenerator-runtime": "^0.14.1",
     "sass": "^1.43.4",
     "sass-loader": "^10.1.1",

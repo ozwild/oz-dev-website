@@ -102,6 +102,7 @@ export default {
   color: var(--typography);
   z-index: 100;
   width: 30em;
+  max-width: 90%;
   font-size: 0.85em;
   bottom: 1em;
   top: unset;
@@ -131,6 +132,8 @@ export default {
     background: transparent;
     color: var(--typography);
     font-size: 1em;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
     filter: opacity(0.8);
     cursor: pointer;
     &:hover {
