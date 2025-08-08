@@ -34,8 +34,17 @@
 
             <FlexBox class="bottom-frame">
               <FlexBox class="contact-section" column>
-                <a :href="documents.resume" target="_blank" class="contact-link"
+                <a
+                  :href="documents.resume.default"
+                  target="_blank"
+                  class="contact-link"
                   ><PaperclipIcon />Resume
+                </a>
+                <a
+                  :href="documents.resume.condensed"
+                  target="_blank"
+                  class="contact-link"
+                  ><PaperclipIcon />Resume (condensed)
                 </a>
                 <a
                   label="Email"
